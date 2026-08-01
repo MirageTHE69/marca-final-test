@@ -63,6 +63,21 @@ button {
   50% { opacity: 1; }
 }
 
+@keyframes marca-grain {
+  0%   { transform: translate3d(0,0,0); }
+  33%  { transform: translate3d(-2%,1.5%,0); }
+  66%  { transform: translate3d(1.5%,-1%,0); }
+  100% { transform: translate3d(0,0,0); }
+}
+
+@keyframes marca-dust {
+  0%   { transform: translate3d(0,0,0); opacity: .1; }
+  25%  { opacity: .55; }
+  50%  { transform: translate3d(14px,-38px,0); opacity: .3; }
+  75%  { opacity: .5; }
+  100% { transform: translate3d(0,0,0); opacity: .1; }
+}
+
 /* Hover utilities */
 .btn-primary {
   display: inline-flex;
