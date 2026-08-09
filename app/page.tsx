@@ -6,10 +6,9 @@ import HeroSection from '@/components/HeroSection';
 import TickerBanner from '@/components/TickerBanner';
 import ShortFormSection from '@/components/ShortFormSection';
 import LongFormSection from '@/components/LongFormSection';
-import ProcessSection from '@/components/ProcessSection';
 import DesignSection from '@/components/DesignSection';
+import ProcessSection from '@/components/ProcessSection';
 import CaseStudiesSection from '@/components/CaseStudiesSection';
-import BrandingSection from '@/components/BrandingSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import PackagesSection from '@/components/PackagesSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -26,10 +25,9 @@ export default function Home() {
       <TickerBanner />
       <ShortFormSection />
       <LongFormSection />
-      <ProcessSection />
       <DesignSection />
+      <ProcessSection />
       <CaseStudiesSection />
-      <BrandingSection />
       <PortfolioSection />
       <PackagesSection />
       <TestimonialsSection />

@@ -154,10 +154,10 @@ export default function HeroSection() {
           position: 'absolute',
           left: 'clamp(24px,6vw,60px)',
           right: 'clamp(24px,6vw,60px)',
-          bottom: 'clamp(30px,4.6vh,56px)',
+          bottom: 'clamp(44px,6vh,72px)',
           display: 'flex',
           flexDirection: 'column',
-          gap: 'clamp(18px,3vh,42px)',
+          gap: 'clamp(16px,2.4vh,34px)',
         }}
       >
         <div
@@ -191,7 +191,7 @@ export default function HeroSection() {
               willChange: 'transform',
             }}
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: '46ch' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: '54ch' }}>
               <span
                 style={{
                   fontFamily: "'Instrument Serif', Georgia, serif",

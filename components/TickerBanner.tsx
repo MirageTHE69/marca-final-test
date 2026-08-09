@@ -1,5 +1,5 @@
 export default function TickerBanner() {
-  const brands = ['Aster Health', 'Kindra', 'Ledgerloop', 'Sol & Grain', 'Vantara Interiors', 'Norwood Clinics', 'Fold Studio'];
+  const brands = ['Aadicura Hospital', 'Kindra', 'Ledgerloop', 'Sol & Grain', 'Vantara Interiors', 'Norwood Clinics', 'Fold Studio'];
 
   const renderBrands = () =>
     brands.map((brand, i) => (

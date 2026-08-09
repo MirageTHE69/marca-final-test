@@ -32,7 +32,7 @@ export default function Footer() {
             { href: '#short-form', label: 'Short form' },
             { href: '#long-form', label: 'Long form' },
             { href: '#design', label: 'Thumbnail design' },
-            { href: '#branding', label: 'Branding' },
+            { href: '/portfolio', label: 'Logo & packaging' },
             { href: '#packages', label: 'Photography' },
           ].map(link => (
             <a key={link.href} href={link.href} style={{ fontSize: 14, color: '#9AA6BA' }}>{link.label}</a>
@@ -43,7 +43,7 @@ export default function Footer() {
         <div style={{ flex: '0 1 160px', display: 'flex', flexDirection: 'column', gap: 14 }}>
           <span style={{ fontSize: 10, letterSpacing: '.26em', textTransform: 'uppercase', color: '#55627A' }}>Studio</span>
           {[
-            { href: '#portfolio', label: 'Portfolio' },
+            { href: '/portfolio', label: 'Services' },
             { href: '#case-studies', label: 'Case studies' },
             { href: '#process', label: 'Process' },
             { href: '#packages', label: 'Packages' },

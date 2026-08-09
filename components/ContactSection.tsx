@@ -6,7 +6,6 @@ export default function ContactSection() {
       style={{
         position: 'relative',
         zIndex: 11,
-        marginTop: '-14vh',
         minHeight: '92vh',
         display: 'flex',
         flexDirection: 'column',
@@ -17,29 +16,21 @@ export default function ContactSection() {
         willChange: 'transform, filter',
       }}
     >
-      {/* Closing background */}
+      {/* Closing background video */}
       <div style={{ position: 'absolute', inset: 0, opacity: .5, overflow: 'hidden', background: '#070C18' }}>
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'radial-gradient(ellipse at 60% 50%, rgba(62,109,255,.08) 0%, transparent 60%), linear-gradient(135deg, #070C18 0%, #0A1020 100%)',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E\")",
-            backgroundSize: '200px 200px',
-            opacity: 0.5,
-          }}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          src="https://res.cloudinary.com/ts350ak2/video/upload/v1785482138/MARCA_WEBSITE_02_ci6tgd.mp4"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
         />
       </div>
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(10,19,38,.9), rgba(5,7,11,.94))', pointerEvents: 'none' }} />
 
       <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 'clamp(34px,4vw,56px)', maxWidth: 1100 }}>
-        <span data-reveal="1" style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--accent)' }}>10 — Let's talk</span>
+        <span data-reveal="1" style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--accent)' }}>10 — Let&apos;s talk</span>
         <h2
           data-reveal="1"
           style={{

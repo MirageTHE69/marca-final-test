@@ -3,14 +3,14 @@
 import { useEffect, useRef } from 'react';
 
 const processSteps = [
-  { num: '01', title: 'Discovery', desc: 'A 90-minute session with the people who actually make the decisions. We leave with your positioning, your audience and what winning looks like.', deliverable: 'Creative brief', highlight: false },
-  { num: '02', title: 'Research', desc: 'Category teardown, competitor content audit and a read of what your audience already watches. Taste, backed by evidence.', deliverable: 'Insight deck', highlight: false },
-  { num: '03', title: 'Strategy', desc: 'Content pillars, formats, cadence and the one message everything ladders back to. Signed off before a camera comes out.', deliverable: 'Content strategy', highlight: false },
-  { num: '04', title: 'Script writing', desc: 'Hooks, beats and shot lists. You review words on a page, not a rough cut — cheaper to change, better to shoot.', deliverable: 'Scripts & boards', highlight: false },
-  { num: '05', title: 'Production', desc: 'Full crew, cinema glass, sound and lighting. One shoot day is engineered to feed a month of content across every format.', deliverable: 'Raw footage library', highlight: true },
-  { num: '06', title: 'Editing', desc: 'Story cut, then colour, sound design and graphics. Two rounds of feedback built into the schedule, not bolted on.', deliverable: 'Final masters', highlight: false },
-  { num: '07', title: 'Publishing', desc: 'Platform-native exports, thumbnails, captions and copy — scheduled, or handed over ready to post.', deliverable: 'Publishing kit', highlight: false },
-  { num: '08', title: 'Optimisation', desc: 'Retention curves, hook tests and a monthly review. What worked gets multiplied; what didn\'t gets retired.', deliverable: 'Performance review', highlight: false },
+  { num: '01', title: 'Discovery', desc: 'A 90-minute session with the people who actually make the decisions.', pos: 22 },
+  { num: '02', title: 'Research', desc: 'Category teardown, competitor audit and a read of what your audience already watches.', pos: 28 },
+  { num: '03', title: 'Strategy', desc: 'Content pillars, formats and the one message everything ladders back to.', pos: 34 },
+  { num: '04', title: 'Script writing', desc: 'Hooks, beats and shot lists. You review words on a page, not a rough cut.', pos: 40 },
+  { num: '05', title: 'Production', desc: 'Full crew, cinema glass, sound and lighting — one day feeds a month of content.', pos: 46 },
+  { num: '06', title: 'Editing', desc: 'Story cut, then colour, sound design and graphics. Two feedback rounds built in.', pos: 52 },
+  { num: '07', title: 'Publishing', desc: 'Platform-native exports, thumbnails, captions and copy — scheduled or handed over.', pos: 58 },
+  { num: '08', title: 'Optimisation', desc: 'Retention curves, hook tests and a monthly review of what to multiply.', pos: 64 },
 ];
 
 export default function ProcessSection() {
@@ -94,31 +94,29 @@ export default function ProcessSection() {
 
         <div
           ref={trackRef}
-          style={{ display: 'flex', gap: 'clamp(18px,2vw,32px)', padding: '0 clamp(24px,6vw,60px)', willChange: 'transform' }}
+          style={{ display: 'flex', gap: 'clamp(16px,1.8vw,28px)', padding: '0 clamp(24px,6vw,60px)', willChange: 'transform' }}
         >
           {processSteps.map((step) => (
-            <div
+            <article
               key={step.num}
               style={{
-                flex: '0 0 clamp(260px,24vw,360px)',
+                flex: '0 0 clamp(250px,23vw,330px)',
+                aspectRatio: '4 / 5',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: 18,
-                padding: '32px 28px',
-                border: '1px solid rgba(242,244,248,.1)',
-                borderRadius: 6,
-                background: step.highlight
-                  ? 'linear-gradient(180deg, rgba(62,109,255,.14), rgba(242,244,248,0))'
-                  : 'linear-gradient(180deg, rgba(242,244,248,.045), rgba(242,244,248,0))',
+                justifyContent: 'space-between',
+                padding: 'clamp(24px,2vw,34px)',
+                borderRadius: 22,
+                border: '1px solid rgba(242,244,248,.08)',
+                background: `radial-gradient(120% 110% at ${step.pos}% 10%, rgba(62,109,255,.85) 0%, rgba(30,56,150,.55) 34%, rgba(8,12,24,.96) 74%, #06080F 100%)`,
               }}
             >
-              <span style={{ fontSize: 44, fontWeight: 700, letterSpacing: '-.04em', color: 'rgba(242,244,248,.16)' }}>{step.num}</span>
-              <h3 style={{ margin: 0, fontSize: 22, fontWeight: 600, letterSpacing: '-.02em' }}>{step.title}</h3>
-              <p style={{ margin: 0, fontSize: 14, lineHeight: 1.7, color: '#8E9BB0' }}>{step.desc}</p>
-              <span style={{ marginTop: 'auto', fontSize: 10, letterSpacing: '.2em', textTransform: 'uppercase', color: '#55627A' }}>
-                Deliverable — {step.deliverable}
-              </span>
-            </div>
+              <span style={{ fontSize: 'clamp(38px,3.4vw,54px)', fontWeight: 500, letterSpacing: '-.03em', lineHeight: 1, color: '#F2F4F8' }}>{step.num}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <h3 style={{ margin: 0, fontSize: 'clamp(19px,1.6vw,24px)', fontWeight: 600, letterSpacing: '-.02em', color: '#FFFFFF' }}>{step.title}</h3>
+                <p style={{ margin: 0, fontSize: 'clamp(13px,1vw,15px)', lineHeight: 1.55, color: 'rgba(242,244,248,.72)' }}>{step.desc}</p>
+              </div>
+            </article>
           ))}
         </div>
 
