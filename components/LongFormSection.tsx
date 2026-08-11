@@ -1,35 +1,44 @@
 import MediaSlot from '@/components/MediaSlot';
 import ScrollRail from '@/components/ScrollRail';
 
-const films = [
+interface Film {
+  src?: string;
+  duration?: string;
+  category: string;
+  title: string;
+  titleSerif?: string;
+  desc?: string;
+  href?: string;
+}
+
+const films: Film[] = [
   {
-    src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1785482138/MARCA_WEBSITE_02_ci6tgd.mp4',
-    duration: '04:12',
-    category: 'Healthcare — Documentary',
-    title: 'Aadicura Hospital — ',
-    titleSerif: 'Still Here',
-    desc: 'Four weeks embedded with a night-shift trauma team. No script, no stock, no music until the final cut.',
-    href: '/case-studies/aadicura-hospital',
+    src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786474057/vidssave.com_3_Acre_Sustainable_Farmhouse_in_Vadodara___Vernacular_Architecture_Eco-Friendly_Design_480P_n5hcko.mp4',
+    category: 'Architecture — Documentary',
+    title: 'MS Design Studio — ',
+    titleSerif: 'The Vernacular Farmhouse',
+    desc: 'A 3-acre sustainable farmhouse in Vadodara, built entirely around vernacular, eco-friendly design principles.',
   },
   {
-    src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1785486291/22K_egrmzj.mp4',
-    duration: '01:30',
-    category: 'Interior Design — Commercial',
-    title: 'Vantara Interiors',
-    desc: "A 90-second film shot across three finished homes — the studio's only sales asset for a full year.",
-    href: '#case-studies',
+    src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786473746/vidssave.com_Major_Mohit_Sharma__The_Spy_Who_Infiltrated_Kashmir_s_Deadliest_Terror_Network___Dhurandhar_480P_onwwyo.mp4',
+    category: 'Storytelling — Documentary',
+    title: 'Vedang Rathod — ',
+    titleSerif: 'The Dhurandhar Story',
+    desc: "The true story of Major Mohit Sharma — the spy who infiltrated Kashmir's deadliest terror network.",
   },
   {
-    src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1785486111/ACCENT_WALL_25K_VIEWS_dmvtj8.mp4',
-    duration: '02:48',
-    category: 'Startup — Brand Film',
-    title: 'Ledgerloop, Series A',
-    desc: 'The film the founders opened every investor meeting with — one interview, four locations, zero jargon.',
-    href: '#case-studies',
+    src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786473730/vidssave.com_I_ve_Operated_on_1000_Blocked_Arteries_This_Hidden_Ingredient_Was_in_EVERY_Patient_s_Diet_360P_dbguqj.mp4',
+    category: 'Healthcare — Long Form',
+    title: 'Dr. Sumit Kapadia — ',
+    titleSerif: '1,000 Blocked Arteries',
+    desc: 'A cardiac surgeon on the one hidden dietary ingredient he found in every one of his 1,000 blocked-artery patients.',
   },
   {
-    category: 'Documentary',
-    title: 'Film 04',
+    src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786473727/vidssave.com_Eyes_Par_Yellow_Patch__Yeh_High_Cholesterol_Ka_Warning_Sign_Hai_Xanthelasma_Truth_480P_zsxocz.mp4',
+    category: 'Healthcare — Long Form',
+    title: 'Dr. Surbhi Kapadia — ',
+    titleSerif: 'The Xanthelasma Truth',
+    desc: 'Yellow patches around the eyes can be an early warning sign of high cholesterol — the truth about Xanthelasma.',
   },
 ];
 

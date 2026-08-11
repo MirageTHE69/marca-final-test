@@ -3,14 +3,11 @@
 import { useEffect, useRef } from 'react';
 
 const processSteps = [
-  { num: '01', title: 'Discovery', desc: 'A 90-minute session with the people who actually make the decisions.', pos: 22 },
-  { num: '02', title: 'Research', desc: 'Category teardown, competitor audit and a read of what your audience already watches.', pos: 28 },
-  { num: '03', title: 'Strategy', desc: 'Content pillars, formats and the one message everything ladders back to.', pos: 34 },
-  { num: '04', title: 'Script writing', desc: 'Hooks, beats and shot lists. You review words on a page, not a rough cut.', pos: 40 },
-  { num: '05', title: 'Production', desc: 'Full crew, cinema glass, sound and lighting — one day feeds a month of content.', pos: 46 },
-  { num: '06', title: 'Editing', desc: 'Story cut, then colour, sound design and graphics. Two feedback rounds built in.', pos: 52 },
-  { num: '07', title: 'Publishing', desc: 'Platform-native exports, thumbnails, captions and copy — scheduled or handed over.', pos: 58 },
-  { num: '08', title: 'Optimisation', desc: 'Retention curves, hook tests and a monthly review of what to multiply.', pos: 64 },
+  { num: '01', title: 'Research', desc: 'We research and analyze top-performing creators and content in your niche on social media to strategically build and establish your unique brand identity.', pos: 22 },
+  { num: '02', title: 'Scripting', desc: 'Using the research and information on you and your business, we script an entire month of short form content.', pos: 34 },
+  { num: '03', title: 'Filming', desc: 'We shoot all our content in a dedicated, professionally designed setup to ensure high-quality visuals and consistency.', pos: 46 },
+  { num: '04', title: 'Editing', desc: 'We edit videos using high-quality visuals and sound effects to make the content engaging and visually appealing.', pos: 58 },
+  { num: '05', title: 'Social Media Management', desc: 'We manage social media accounts, upload content consistently, and optimize it for maximum reach and engagement.', pos: 70 },
 ];
 
 export default function ProcessSection() {
@@ -36,7 +33,7 @@ export default function ProcessSection() {
         track.style.transform = 'none';
         return;
       }
-      section.style.height = '420vh';
+      section.style.height = '260vh';
       sticky.style.position = 'sticky';
       sticky.style.height = '100vh';
       sticky.style.padding = '';
@@ -74,7 +71,7 @@ export default function ProcessSection() {
         position: 'relative',
         zIndex: 4,
         marginTop: '-14vh',
-        height: '420vh',
+        height: '260vh',
         background: 'linear-gradient(180deg, #070C18 0%, #0A1326 40%, #070C18 100%)',
       }}
     >
@@ -86,7 +83,7 @@ export default function ProcessSection() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
             <span style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--accent)' }}>03 — Process</span>
             <h2 style={{ margin: 0, fontSize: 'clamp(32px,4.2vw,68px)', fontWeight: 700, letterSpacing: '-.04em', lineHeight: 1 }}>
-              Idea to <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>published</span>, in eight moves.
+              Idea to <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>published</span>, in five moves.
             </h2>
           </div>
           <span style={{ fontSize: 11, letterSpacing: '.2em', textTransform: 'uppercase', color: '#6C7A92' }}>Scroll to move through the process →</span>
