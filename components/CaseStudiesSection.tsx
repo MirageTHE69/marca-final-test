@@ -134,24 +134,38 @@ export default function CaseStudiesSection() {
                     <MediaSlot src={story.image} alt={story.title} placeholder={`${story.title} — cover`} sizes="44vw" />
                   </div>
                   <div style={{ flex: '0 0 auto', display: 'flex', gap: 'clamp(12px,1.4vw,20px)' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: '1 1 0', minWidth: 0 }}>
-                      <div style={{ position: 'relative', height: 'clamp(78px,11vh,124px)', overflow: 'hidden', borderRadius: 10, background: '#0A1120', border: '1px solid rgba(242,244,248,.08)' }}>
-                        <MediaSlot src={story.beforeImage} alt="" placeholder="Before — Instagram" sizes="200px" fit="contain" />
+                    {story.beforeImage ? (
+                      <>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: '1 1 0', minWidth: 0 }}>
+                          <div style={{ position: 'relative', height: 'clamp(150px,20vh,250px)', overflow: 'hidden', borderRadius: 10, background: '#0A1120', border: '1px solid rgba(242,244,248,.08)' }}>
+                            <MediaSlot src={story.beforeImage} alt="" placeholder="Before — Instagram" sizes="260px" fit="contain" />
+                          </div>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                            <span style={{ fontSize: 9, letterSpacing: '.2em', textTransform: 'uppercase', color: '#6C7A92' }}>Before — Instagram</span>
+                            <span style={{ fontSize: 14, fontWeight: 600, letterSpacing: '-.01em', color: '#8E9BB0' }}>{story.beforeStat}</span>
+                          </div>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: '1 1 0', minWidth: 0 }}>
+                          <div style={{ position: 'relative', height: 'clamp(150px,20vh,250px)', overflow: 'hidden', borderRadius: 10, background: '#0A1120', border: '1px solid rgba(242,244,248,.08)' }}>
+                            <MediaSlot src={story.afterImage} alt="" placeholder="After — Instagram" sizes="260px" fit="contain" />
+                          </div>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                            <span style={{ fontSize: 9, letterSpacing: '.2em', textTransform: 'uppercase', color: '#6C7A92' }}>After — Instagram</span>
+                            <span style={{ fontSize: 14, fontWeight: 600, letterSpacing: '-.01em', color: '#F2F4F8' }}>{story.afterStat}</span>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: '1 1 0', minWidth: 0 }}>
+                        <div style={{ position: 'relative', height: 'clamp(150px,20vh,250px)', overflow: 'hidden', borderRadius: 10, background: '#0A1120', border: '1px solid rgba(242,244,248,.08)' }}>
+                          <MediaSlot src={story.afterImage} alt="" placeholder="Instagram" sizes="520px" fit="contain" />
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                          <span style={{ fontSize: 9, letterSpacing: '.2em', textTransform: 'uppercase', color: '#6C7A92' }}>Instagram</span>
+                          <span style={{ fontSize: 14, fontWeight: 600, letterSpacing: '-.01em', color: '#F2F4F8' }}>{story.afterStat}</span>
+                        </div>
                       </div>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                        <span style={{ fontSize: 9, letterSpacing: '.2em', textTransform: 'uppercase', color: '#6C7A92' }}>Before — Instagram</span>
-                        <span style={{ fontSize: 14, fontWeight: 600, letterSpacing: '-.01em', color: '#8E9BB0' }}>{story.beforeStat}</span>
-                      </div>
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: '1 1 0', minWidth: 0 }}>
-                      <div style={{ position: 'relative', height: 'clamp(78px,11vh,124px)', overflow: 'hidden', borderRadius: 10, background: '#0A1120', border: '1px solid rgba(242,244,248,.08)' }}>
-                        <MediaSlot src={story.afterImage} alt="" placeholder="After — Instagram" sizes="200px" fit="contain" />
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                        <span style={{ fontSize: 9, letterSpacing: '.2em', textTransform: 'uppercase', color: '#6C7A92' }}>After — Instagram</span>
-                        <span style={{ fontSize: 14, fontWeight: 600, letterSpacing: '-.01em', color: '#F2F4F8' }}>{story.afterStat}</span>
-                      </div>
-                    </div>
+                    )}
                   </div>
                 </div>
                 <div style={{ flex: '1 1 56%', minWidth: 0, minHeight: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', gap: 'clamp(6px,1.2vh,18px)' }}>
