@@ -1,16 +1,31 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
+import MediaSlot from '@/components/MediaSlot';
 
-const stories = [
+interface Story {
+  chip: string;
+  image: string;
+  beforeImage?: string;
+  beforeStat: string;
+  afterImage: string;
+  afterStat: string;
+  category: string;
+  year: string;
+  title: string;
+  desc: string;
+  whatWeDid: string[];
+  href: string;
+}
+
+const stories: Story[] = [
   {
     chip: 'Healthcare',
     image: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1785488252/ChatGPT_Image_Jul_31_2026_02_27_07_PM_tvldb0.png',
-    beforeImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_700/v1785487014/5_rnslzq.png',
-    beforeStat: '1,240 followers',
-    afterImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_700/v1785486928/5_hw5ng6.png',
-    afterStat: '48,600 followers',
+    beforeImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_700/v1786474990/Aadicura_hospital__1_i6uwwd.png',
+    beforeStat: '0 followers',
+    afterImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_700/v1786474990/Aadicura_hospital_1_zlrdha.png',
+    afterStat: '40.5K followers',
     category: 'Documentary + Short form',
     year: '2026',
     title: 'Aadicura Hospital',
@@ -23,40 +38,39 @@ const stories = [
     href: '/case-studies/aadicura-hospital',
   },
   {
-    chip: 'Consumer',
-    image: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1785494169/WhatsApp_Image_2026-07-31_at_2.34.46_PM_f1ofwi.jpg',
-    beforeImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_700/v1785494167/WhatsApp_Image_2026-07-31_at_2.34.47_PM_plfmhl.jpg',
-    beforeStat: '3,800 followers',
-    afterImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_700/v1785494167/WhatsApp_Image_2026-07-31_at_2.34.48_PM_x4bfca.jpg',
-    afterStat: '26,000 followers',
-    category: 'Short form + Campaign',
+    chip: 'Personal Branding',
+    image: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786475276/Dr._Aditya_Shah_1_q8znli.png',
+    beforeImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_700/v1786475167/Dr._Aditya_Shah__r8jtvh.png',
+    beforeStat: '0 followers',
+    afterImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_700/v1786475167/Dr._Aditya_Shah_oqzptd.png',
+    afterStat: '85.2K followers',
+    category: 'Personal Branding + Skincare',
     year: '2026',
-    title: 'Kindra',
-    desc: 'A founder-led consumer brand posting often, remembered rarely.',
+    title: 'Dr. Aditya Shah',
+    desc: 'A dermatologist with zero social presence, running a skin and laser clinic almost no one outside his patient list had heard of.',
     whatWeDid: [
-      'Reel format built around a single repeatable hook',
-      '36 posts shipped in one quarter',
-      'Campaign cutdowns for paid social',
+      'Weekly skincare content built around real patient questions',
+      'Before-and-after treatment documentation folded into every post',
+      'A consistent visual system across Reels, carousels and consults',
     ],
     href: '/portfolio',
   },
   {
-    chip: 'Startups',
-    image: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1785487016/4_ab0ehj.jpg',
-    beforeImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_700/v1785487254/9_1_drw2xh.jpg',
-    beforeStat: '900 followers',
-    afterImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_700/v1785486926/4_c5ql8a.png',
-    afterStat: '14,200 followers',
-    category: 'Brand film + Design system',
-    year: '2025',
-    title: 'Ledgerloop',
-    desc: 'A Series A fintech that could explain itself to investors, but not to anyone else.',
+    chip: 'Consumer',
+    image: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786475349/The_Nutty_Affair_ya0nky.png',
+    beforeStat: 'New account',
+    afterImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_700/v1786475349/The_Nutty_Affair_ya0nky.png',
+    afterStat: '7,274 followers',
+    category: 'Retail + Social Growth',
+    year: '2026',
+    title: 'Nutty Affair',
+    desc: 'A premium dry-fruits and gifting brand in Vadodara, known by word of mouth and almost nowhere online.',
     whatWeDid: [
-      'One founder film used to open every investor meeting',
-      'Social design kit their in-house team still runs',
-      'Thumbnail and cover system across channels',
+      'Weekly reel series built around product close-ups and gifting moments',
+      'A repeatable hook format tailored to their bestsellers',
+      'Consistent packaging-led visual identity carried across every post',
     ],
-    href: '/case-studies/aster-health',
+    href: '/portfolio',
   },
 ];
 
@@ -117,12 +131,12 @@ export default function CaseStudiesSection() {
               >
                 <div style={{ flex: '1 1 44%', minWidth: 0, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(12px,1.6vh,20px)' }}>
                   <div style={{ position: 'relative', flex: '1 1 0', minHeight: 0, overflow: 'hidden', borderRadius: 14, background: '#0C1526', border: '1px solid rgba(242,244,248,.08)' }}>
-                    <Image src={story.image} alt={story.title} fill sizes="44vw" style={{ objectFit: 'cover' }} />
+                    <MediaSlot src={story.image} alt={story.title} placeholder={`${story.title} — cover`} sizes="44vw" />
                   </div>
                   <div style={{ flex: '0 0 auto', display: 'flex', gap: 'clamp(12px,1.4vw,20px)' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: '1 1 0', minWidth: 0 }}>
                       <div style={{ position: 'relative', height: 'clamp(78px,11vh,124px)', overflow: 'hidden', borderRadius: 10, background: '#0A1120', border: '1px solid rgba(242,244,248,.08)' }}>
-                        <Image src={story.beforeImage} alt="" fill sizes="200px" style={{ objectFit: 'contain', objectPosition: 'center' }} />
+                        <MediaSlot src={story.beforeImage} alt="" placeholder="Before — Instagram" sizes="200px" fit="contain" />
                       </div>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                         <span style={{ fontSize: 9, letterSpacing: '.2em', textTransform: 'uppercase', color: '#6C7A92' }}>Before — Instagram</span>
@@ -131,7 +145,7 @@ export default function CaseStudiesSection() {
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: '1 1 0', minWidth: 0 }}>
                       <div style={{ position: 'relative', height: 'clamp(78px,11vh,124px)', overflow: 'hidden', borderRadius: 10, background: '#0A1120', border: '1px solid rgba(242,244,248,.08)' }}>
-                        <Image src={story.afterImage} alt="" fill sizes="200px" style={{ objectFit: 'contain', objectPosition: 'center' }} />
+                        <MediaSlot src={story.afterImage} alt="" placeholder="After — Instagram" sizes="200px" fit="contain" />
                       </div>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                         <span style={{ fontSize: 9, letterSpacing: '.2em', textTransform: 'uppercase', color: '#6C7A92' }}>After — Instagram</span>

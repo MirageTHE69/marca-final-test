@@ -6,9 +6,10 @@ interface MediaSlotProps {
   alt?: string;
   placeholder: string;
   sizes?: string;
+  fit?: 'cover' | 'contain';
 }
 
-export default function MediaSlot({ src, type = 'image', alt = '', placeholder, sizes = '100vw' }: MediaSlotProps) {
+export default function MediaSlot({ src, type = 'image', alt = '', placeholder, sizes = '100vw', fit = 'cover' }: MediaSlotProps) {
   if (!src) {
     return (
       <div className="image-placeholder">
@@ -25,10 +26,10 @@ export default function MediaSlot({ src, type = 'image', alt = '', placeholder, 
         muted
         loop
         playsInline
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: fit }}
       />
     );
   }
 
-  return <Image src={src} alt={alt} fill sizes={sizes} style={{ objectFit: 'cover' }} />;
+  return <Image src={src} alt={alt} fill sizes={sizes} style={{ objectFit: fit }} />;
 }
