@@ -40,6 +40,12 @@ a:hover {
 
 button {
   font-family: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 @keyframes marca-bar {
@@ -113,6 +119,7 @@ button {
   padding: 15px 28px;
   border: 1px solid rgba(242,244,248,.2);
   border-radius: 999px;
+  background: transparent;
   font-size: 11px;
   letter-spacing: .2em;
   text-transform: uppercase;
