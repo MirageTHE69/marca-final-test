@@ -9,6 +9,7 @@ import LongFormSection from '@/components/LongFormSection';
 import DesignSection from '@/components/DesignSection';
 import ProcessSection from '@/components/ProcessSection';
 import CaseStudiesSection from '@/components/CaseStudiesSection';
+import BrandWorkSection from '@/components/BrandWorkSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import PackagesSection from '@/components/PackagesSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -28,6 +29,7 @@ export default function Home() {
       <DesignSection />
       <ProcessSection />
       <CaseStudiesSection />
+      <BrandWorkSection />
       <PortfolioSection />
       <PackagesSection />
       <TestimonialsSection />
