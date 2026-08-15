@@ -54,9 +54,10 @@ export default function Footer() {
           <span style={{ fontSize: 10, letterSpacing: '.26em', textTransform: 'uppercase', color: '#55627A' }}>Studio</span>
           {[
             { href: '/portfolio', label: 'Services' },
-            { href: '#case-studies', label: 'Case studies' },
+            { href: '/case-studies', label: 'Case studies' },
             { href: '#process', label: 'Process' },
             { href: '#packages', label: 'Packages' },
+            { href: '/faq', label: 'FAQ' },
             { href: '#contact', label: 'Contact' },
           ].map(link => (
             <a key={link.href} href={link.href} style={{ fontSize: 14, color: '#9AA6BA' }}>{link.label}</a>

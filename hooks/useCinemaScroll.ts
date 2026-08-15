@@ -79,6 +79,11 @@ export function useCinemaScroll() {
 
     const list = Array.from(slots.values());
 
+    // Promote all animated elements to their own GPU layer up-front
+    list.forEach(sl => {
+      sl.el.style.willChange = 'transform, opacity';
+    });
+
     const normalize = () => {
       const vh = H();
       const top = window.scrollY || document.documentElement.scrollTop || 0;
@@ -91,55 +96,78 @@ export function useCinemaScroll() {
     };
     normalize();
 
-    const step = (smooth: boolean) => {
+    // Raised lerp factor (.28 vs .17) — snappier, lag-free tracking
+    const LERP_FACTOR = 0.28;
+    // Only apply blur above this threshold to avoid costly GPU compositing on near-zero values
+    const BLUR_THRESHOLD = 0.4;
+
+    const step = (smooth: boolean): boolean => {
       const vh = H();
       const tops = new Map<Element, number>();
-      list.forEach(sl => sl.parts.forEach(pt => { if (!tops.has(pt.trig)) tops.set(pt.trig, pt.trig.getBoundingClientRect().top); }));
+      list.forEach(sl => sl.parts.forEach(pt => {
+        if (!tops.has(pt.trig)) tops.set(pt.trig, pt.trig.getBoundingClientRect().top);
+      }));
+      let anyMoving = false;
       for (const sl of list) {
         let y = 0, scl = 1, op = 1, bl = 0;
         for (const pt of sl.parts) {
           const sp = vh * pt.s, ep = vh * pt.e;
           const t = clamp((sp - (tops.get(pt.trig) ?? 0)) / ((sp - ep) || 1));
-          if (!smooth || pt.cur === null) pt.cur = t;
-          else {
-            pt.cur += (t - pt.cur) * .17;
-            if (Math.abs(t - pt.cur) < .001) pt.cur = t;
+          if (!smooth || pt.cur === null) {
+            pt.cur = t;
+          } else {
+            const delta = t - pt.cur;
+            pt.cur += delta * LERP_FACTOR;
+            if (Math.abs(delta) < .0005) pt.cur = t;
+            else anyMoving = true;
           }
           const v = pt.get(pt.cur);
           y += v.y; scl *= v.sc; op *= v.op; bl = Math.max(bl, v.bl);
         }
         const tf = `translate3d(0,${y.toFixed(2)}px,0) scale(${scl.toFixed(4)})`;
-        const key = tf + '|' + op.toFixed(3) + '|' + bl.toFixed(2);
+        const blStr = bl > BLUR_THRESHOLD ? `blur(${bl.toFixed(2)}px)` : 'none';
+        const key = tf + '|' + op.toFixed(3) + '|' + blStr;
         if (key !== sl.last) {
           sl.last = key;
           sl.el.style.transform = tf;
           sl.el.style.opacity = op.toFixed(3);
-          sl.el.style.filter = bl > .04 ? `blur(${bl.toFixed(2)}px)` : 'none';
+          sl.el.style.filter = blStr;
         }
       }
+      return anyMoving;
     };
 
     step(false);
 
-    let lastStep = Date.now();
-    const run = (smooth: boolean) => { lastStep = Date.now(); step(smooth); };
-    let cineRaf: number;
-    const drive = () => { run(true); cineRaf = requestAnimationFrame(drive); };
-    drive();
+    // Scroll-driven RAF loop — only keeps running while elements are still lerping
+    let cineRaf = 0;
+    let isAnimating = false;
 
-    let queued = false;
-    const onCineScroll = () => {
-      if (queued) return;
-      queued = true;
-      const go = () => { if (!queued) return; queued = false; run(true); };
-      const id = requestAnimationFrame(go);
-      setTimeout(() => { if (queued) { cancelAnimationFrame(id); go(); } }, 50);
+    const runLoop = () => {
+      const stillMoving = step(true);
+      if (stillMoving) {
+        cineRaf = requestAnimationFrame(runLoop);
+      } else {
+        isAnimating = false;
+        cineRaf = 0;
+      }
     };
+
+    const scheduleFrame = () => {
+      if (!isAnimating) {
+        isAnimating = true;
+        cineRaf = requestAnimationFrame(runLoop);
+      }
+    };
+
+    // Kick off one frame on load so initial state is correct
+    scheduleFrame();
+
+    const onCineScroll = () => scheduleFrame();
     window.addEventListener('scroll', onCineScroll, { passive: true });
 
-    const onVis = () => { if (!document.hidden) { normalize(); run(false); } };
+    const onVis = () => { if (!document.hidden) { normalize(); step(false); } };
     document.addEventListener('visibilitychange', onVis);
-    const watchdog = setInterval(() => { if (Date.now() - lastStep > 900) run(false); }, 700);
 
     let rt: ReturnType<typeof setTimeout>;
     const onResize = () => {
@@ -147,7 +175,6 @@ export function useCinemaScroll() {
       rt = setTimeout(() => {
         if (narrow()) {
           cancelAnimationFrame(cineRaf);
-          clearInterval(watchdog);
           window.removeEventListener('scroll', onCineScroll);
           cinemaFlat();
           return;
@@ -160,10 +187,11 @@ export function useCinemaScroll() {
 
     return () => {
       cancelAnimationFrame(cineRaf);
-      clearInterval(watchdog);
       window.removeEventListener('scroll', onCineScroll);
       document.removeEventListener('visibilitychange', onVis);
       window.removeEventListener('resize', onResize);
+      // Clean up will-change to free GPU memory
+      list.forEach(sl => { sl.el.style.willChange = 'auto'; });
     };
   }, []);
 }

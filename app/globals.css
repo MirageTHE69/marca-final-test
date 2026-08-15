@@ -274,3 +274,31 @@ button {
 .pf-card:hover .pf-media {
   transform: scale(1.01);
 }
+
+.work-index-card {
+  transition: border-color 500ms, background 500ms, transform 500ms cubic-bezier(.16,1,.3,1);
+}
+
+.work-index-card:hover {
+  border-color: rgba(62,109,255,.5);
+  background: rgba(62,109,255,.05);
+  transform: translateY(-3px);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  transition: color 300ms;
+}
+
+.faq-item summary:hover {
+  color: #FFFFFF;
+}
+
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
+}

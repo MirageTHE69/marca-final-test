@@ -175,7 +175,21 @@ export default function HeroSection() {
             pointerEvents: 'none',
           }}
         >
-          MARCA<br />CREATIVES
+          <span style={{ display: 'block' }}>MARCA</span>
+          <span
+            style={{
+              display: 'block',
+              marginTop: '.08em',
+              fontFamily: "'Instrument Serif', Georgia, serif",
+              fontStyle: 'italic',
+              fontWeight: 400,
+              fontSize: '.42em',
+              letterSpacing: '-.02em',
+              lineHeight: 1.05,
+            }}
+          >
+            Made to Make You Grow.
+          </span>
         </div>
 
         <div style={{ overflow: 'hidden', paddingTop: 4 }}>
@@ -192,19 +206,8 @@ export default function HeroSection() {
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: '54ch' }}>
-              <span
-                style={{
-                  fontFamily: "'Instrument Serif', Georgia, serif",
-                  fontStyle: 'italic',
-                  fontSize: 'clamp(19px,1.9vw,29px)',
-                  lineHeight: 1.3,
-                  color: '#E4E9F2',
-                }}
-              >
-                Stories worth remembering.
-              </span>
-              <p style={{ margin: 0, fontSize: 'clamp(13px,1vw,16px)', lineHeight: 1.6, color: '#A7B2C4' }}>
-                A production studio for founders and brands who want their story told properly — short form, films, identity and the strategy that holds it together.
+              <p style={{ margin: 0, fontSize: 'clamp(15px,1.35vw,21px)', lineHeight: 1.55, color: '#E4E9F2' }}>
+                We turn founders into content machines that attract clients, build authority, and drive revenue.
               </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 12 }}>
@@ -212,7 +215,7 @@ export default function HeroSection() {
                 Start a project <span style={{ fontSize: 15 }}>→</span>
               </a>
               <span style={{ fontSize: 10, letterSpacing: '.16em', textTransform: 'uppercase', color: '#6C7A92' }}>
-                Trusted by 40+ brands · healthcare, retail &amp; tech
+                Done-for-you content creation · from strategy to execution
               </span>
             </div>
           </div>

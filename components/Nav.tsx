@@ -126,8 +126,9 @@ export default function Nav({ isScrolled }: NavProps) {
               {[
                 { href: '#short-form', label: 'Short Form' },
                 { href: '#long-form', label: 'Long Form' },
-                { href: '#case-studies', label: 'Case Studies' },
+                { href: '/case-studies', label: 'Case Studies' },
                 { href: '/portfolio', label: 'Portfolio', italic: true },
+                { href: '/faq', label: 'FAQ' },
                 { href: '#contact', label: 'Contact' },
               ].map(item => (
                 <a
