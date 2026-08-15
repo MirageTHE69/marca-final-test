@@ -1,3 +1,5 @@
+import { site } from '@/content-lib/site';
+
 export default function ContactSection() {
   return (
     <section
@@ -46,10 +48,10 @@ export default function ContactSection() {
           <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>you.</span>
         </h2>
         <div data-reveal="1" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 18 }}>
-          <a href="mailto:studio@marcacreatives.co" className="btn-primary" style={{ padding: '20px 36px', fontSize: 12 }}>
+          <a href={`mailto:${site.email}`} className="btn-primary" style={{ padding: '20px 36px', fontSize: 12 }}>
             Start your project <span>→</span>
           </a>
-          <a href="tel:+919822041188" className="btn-ghost-lg">
+          <a href={site.phone.href} className="btn-ghost-lg">
             Schedule a discovery call
           </a>
           <span style={{ fontSize: 12, color: '#7A879C' }}>Usually a reply within a day.</span>

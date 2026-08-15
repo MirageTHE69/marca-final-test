@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { site } from '@/content-lib/site';
 
 interface NavProps {
   isScrolled?: boolean;
@@ -151,17 +152,23 @@ export default function Nav({ isScrolled }: NavProps) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 26, maxWidth: 300 }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 <span style={{ fontSize: 10, letterSpacing: '.28em', textTransform: 'uppercase', color: '#55627A' }}>Studio</span>
-                <span style={{ fontSize: 15, lineHeight: 1.6, color: '#9AA6BA' }}>4th Floor, Kabir House, Baner Road, Pune 411045</span>
+                <span style={{ fontSize: 15, lineHeight: 1.6, color: '#9AA6BA' }}>{site.address.full}</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 <span style={{ fontSize: 10, letterSpacing: '.28em', textTransform: 'uppercase', color: '#55627A' }}>Enquiries</span>
-                <a href="#contact" style={{ fontSize: 15, color: '#F2F4F8' }}>studio@marcacreatives.co</a>
-                <a href="#contact" style={{ fontSize: 15, color: '#9AA6BA' }}>+91 98220 41188</a>
+                <a href={`mailto:${site.email}`} style={{ fontSize: 15, color: '#F2F4F8' }}>{site.email}</a>
+                <a href={site.phone.href} style={{ fontSize: 15, color: '#9AA6BA' }}>{site.phone.display}</a>
               </div>
               <div style={{ display: 'flex', gap: 18 }}>
-                {['Instagram', 'YouTube', 'Vimeo'].map(s => (
-                  <a key={s} href="#contact" style={{ fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase', color: '#9AA6BA' }}>
-                    {s}
+                {site.socials.map(s => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase', color: '#9AA6BA' }}
+                  >
+                    {s.label}
                   </a>
                 ))}
               </div>

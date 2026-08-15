@@ -1,3 +1,5 @@
+import { site } from '@/content-lib/site';
+
 export default function Footer() {
   return (
     <footer
@@ -19,8 +21,16 @@ export default function Footer() {
             A creative production studio for content, film and brand identity.
           </p>
           <div style={{ display: 'flex', gap: 16, paddingTop: 6 }}>
-            {['Instagram', 'YouTube', 'Vimeo', 'LinkedIn'].map(s => (
-              <a key={s} href="#contact" style={{ fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase', color: '#9AA6BA' }}>{s}</a>
+            {site.socials.map(s => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase', color: '#9AA6BA' }}
+              >
+                {s.label}
+              </a>
             ))}
           </div>
         </div>
@@ -56,12 +66,12 @@ export default function Footer() {
         {/* Contact column */}
         <div style={{ flex: '1 1 240px', display: 'flex', flexDirection: 'column', gap: 14 }}>
           <span style={{ fontSize: 10, letterSpacing: '.26em', textTransform: 'uppercase', color: '#55627A' }}>Get in touch</span>
-          <a href="mailto:studio@marcacreatives.co" style={{ fontSize: 'clamp(16px,1.5vw,20px)', fontWeight: 500, letterSpacing: '-.01em', color: '#F2F4F8' }}>
-            studio@marcacreatives.co
+          <a href={`mailto:${site.email}`} style={{ fontSize: 'clamp(16px,1.5vw,20px)', fontWeight: 500, letterSpacing: '-.01em', color: '#F2F4F8' }}>
+            {site.email}
           </a>
-          <span style={{ fontSize: 14, color: '#9AA6BA' }}>+91 98220 41188</span>
+          <a href={site.phone.href} style={{ fontSize: 14, color: '#9AA6BA' }}>{site.phone.display}</a>
           <span style={{ fontSize: 14, lineHeight: 1.7, color: '#7A879C' }}>
-            4th Floor, Kabir House<br />Baner Road, Pune 411045
+            {site.address.line1}<br />{site.address.line2}
           </span>
         </div>
       </div>

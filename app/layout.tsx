@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "MARCA Creatives | Content · Film · Brand Identity Studio",
   description: "A production studio for founders and brands who want their story told properly — short form, films, identity and the strategy that holds it together.",
-  keywords: "content production, brand film, short form video, brand identity, Pune, India",
+  keywords: "content production, brand film, short form video, brand identity, Vadodara, Gujarat, India",
 };
 
 export default function RootLayout({
