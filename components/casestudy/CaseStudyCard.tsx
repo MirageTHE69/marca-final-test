@@ -15,9 +15,13 @@ interface Props {
   style?: CSSProperties;
 }
 
+/** Real aspect ratio of the Instagram profile screenshots used as before/after shots. */
+const SHOT_ASPECT_RATIO = '1723 / 913';
+
 export default function CaseStudyCard({ story, variant = 'horizontal', style }: Props) {
   const [loaded, setLoaded] = useState<Record<string, boolean>>({});
   const isHorizontal = variant === 'horizontal' || variant === 'pinned';
+  const isFlow = variant === 'flow';
 
   const shots = story.beforeImage ? [story.beforeImage, story.afterImage] : [story.afterImage];
 
@@ -61,7 +65,7 @@ export default function CaseStudyCard({ story, variant = 'horizontal', style }: 
       <div
         style={{
           display: 'flex',
-          alignItems: 'center',
+          alignItems: isFlow ? 'flex-start' : 'center',
           gap: 'clamp(14px, 1.8vw, 24px)',
           minHeight: 0,
           flex: '1 1 auto',
@@ -99,8 +103,9 @@ export default function CaseStudyCard({ story, variant = 'horizontal', style }: 
           style={{
             flex: '1 1 auto',
             display: 'flex',
-            alignItems: 'center',
-            gap: 'clamp(10px, 1.4vw, 20px)',
+            flexDirection: isFlow ? 'column' : 'row',
+            alignItems: isFlow ? 'stretch' : 'flex-start',
+            gap: isFlow ? 'clamp(18px, 2.4vh, 28px)' : 'clamp(10px, 1.4vw, 20px)',
             minWidth: 0,
           }}
         >
@@ -110,27 +115,23 @@ export default function CaseStudyCard({ story, variant = 'horizontal', style }: 
               <figure
                 key={src}
                 style={{
-                  flex: story.beforeImage ? '1 1 0' : '0 1 420px',
+                  flex: isFlow ? '0 0 auto' : story.beforeImage ? '1 1 0' : '0 1 420px',
                   minWidth: 0,
                   margin: 0,
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: 6,
+                  gap: isFlow ? 10 : 6,
                 }}
               >
                 <div
                   style={{
                     position: 'relative',
                     width: '100%',
-                    height: 'clamp(140px, 18vh, 190px)',
+                    aspectRatio: SHOT_ASPECT_RATIO,
                     overflow: 'hidden',
                     borderRadius: 'clamp(10px, 1vw, 14px)',
                     background: '#FFFFFF',
                     boxShadow: '0 12px 28px rgba(2,6,20,.5)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    padding: '4px',
                     boxSizing: 'border-box',
                   }}
                 >
@@ -148,7 +149,15 @@ export default function CaseStudyCard({ story, variant = 'horizontal', style }: 
                     }}
                   />
                 </div>
-                <figcaption style={{ fontSize: 10, letterSpacing: '.2em', textTransform: 'uppercase', color: '#8CA6D8', fontWeight: 600 }}>
+                <figcaption
+                  style={{
+                    fontSize: isFlow ? 12 : 10,
+                    letterSpacing: '.2em',
+                    textTransform: 'uppercase',
+                    color: '#8CA6D8',
+                    fontWeight: 600,
+                  }}
+                >
                   {isBefore ? 'Before' : 'After'}
                 </figcaption>
               </figure>
@@ -200,7 +209,8 @@ export default function CaseStudyCard({ story, variant = 'horizontal', style }: 
             key={di}
             style={{
               margin: 0,
-              fontSize: 'clamp(11.5px, 0.9vw, 13.5px)',
+              maxWidth: isFlow ? '78ch' : undefined,
+              fontSize: isFlow ? 14 : 'clamp(11.5px, 0.9vw, 13.5px)',
               lineHeight: 1.55,
               color: '#B6C6E4',
             }}

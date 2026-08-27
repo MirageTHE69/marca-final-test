@@ -37,12 +37,16 @@ export default function CaseStudiesPage() {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 'clamp(20px,3vw,44px)',
+          gap: 'clamp(28px,4vw,56px)',
+          maxWidth: 1080,
+          width: '100%',
+          margin: '0 auto',
           padding: '0 clamp(24px,6vw,60px) clamp(60px,8vh,100px)',
+          boxSizing: 'border-box',
         }}
       >
         {caseStudies.map((story) => (
-          <CaseStudyCard key={story.title} story={story} />
+          <CaseStudyCard key={story.title} story={story} variant="flow" />
         ))}
       </section>
 
