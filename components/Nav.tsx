@@ -1,16 +1,30 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { site } from '@/content-lib/site';
 
 interface NavProps {
   isScrolled?: boolean;
 }
 
-export default function Nav({ isScrolled }: NavProps) {
+export default function Nav({ isScrolled: propIsScrolled }: NavProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const toggleMenu = () => setMenuOpen(v => !v);
+  const toggleMenu = () => setMenuOpen((v) => !v);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isPastHero = window.scrollY > 60;
+      setScrolled(isPastHero);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isScrolled = propIsScrolled ?? scrolled;
 
   return (
     <>
@@ -24,33 +38,28 @@ export default function Nav({ isScrolled }: NavProps) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '26px clamp(24px,6vw,60px)',
+          padding: isScrolled ? '16px clamp(24px, 6vw, 60px)' : '26px clamp(24px, 6vw, 60px)',
+          background: isScrolled ? 'rgba(4, 6, 12, 0.75)' : 'transparent',
+          backdropFilter: isScrolled ? 'blur(16px)' : 'none',
+          WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
+          borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid transparent',
+          boxShadow: isScrolled ? '0 12px 36px -8px rgba(0, 0, 0, 0.85)' : 'none',
+          transition: 'background 350ms ease, backdrop-filter 350ms ease, padding 350ms ease, border-color 350ms ease, box-shadow 350ms ease',
         }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(180deg, rgba(8,9,13,.8) 0%, rgba(8,9,13,0) 100%)',
-            opacity: isScrolled ? 1 : 0,
-            pointerEvents: 'none',
-            transition: 'opacity 400ms',
-          }}
-        />
         <a
-          href="#top"
+          href="#contact"
+          className="btn-glass-discovery"
           style={{
             position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 5,
-            fontSize: 17,
-            fontWeight: 700,
-            letterSpacing: '-.02em',
-            transformOrigin: 'center',
+            padding: '10px 22px',
+            fontSize: '11px',
+            letterSpacing: '.18em',
+            textTransform: 'uppercase',
+            fontWeight: 600,
           }}
         >
-          <span>MARCA<span style={{ color: 'var(--accent)' }}>.</span></span>
+          Discovery call <span style={{ fontSize: 14 }}>→</span>
         </a>
         <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 'clamp(18px,3vw,40px)' }}>
           <span style={{ fontSize: 10, letterSpacing: '.26em', textTransform: 'uppercase', color: '#7A879C' }}>
@@ -128,9 +137,9 @@ export default function Nav({ isScrolled }: NavProps) {
                 { href: '#long-form', label: 'Long Form' },
                 { href: '/case-studies', label: 'Case Studies' },
                 { href: '/portfolio', label: 'Portfolio', italic: true },
-                { href: '/faq', label: 'FAQ' },
+                { href: '#faq', label: 'FAQ' },
                 { href: '#contact', label: 'Contact' },
-              ].map(item => (
+              ].map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
@@ -161,7 +170,7 @@ export default function Nav({ isScrolled }: NavProps) {
                 <a href={site.phone.href} style={{ fontSize: 15, color: '#9AA6BA' }}>{site.phone.display}</a>
               </div>
               <div style={{ display: 'flex', gap: 18 }}>
-                {site.socials.map(s => (
+                {site.socials.map((s) => (
                   <a
                     key={s.label}
                     href={s.href}

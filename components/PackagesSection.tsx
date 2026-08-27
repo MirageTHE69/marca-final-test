@@ -1,27 +1,61 @@
+'use client';
+
 const packages = [
   {
     num: '01',
-    title: 'Personal branding',
-    for: 'founders, doctors and consultants who need to be known by name.',
-    items: ['Monthly shoot day', '12–16 verticals per month', 'Hooks, captions & covers', 'Positioning & content pillars'],
+    name: 'Instagram',
+    subtitle: 'Content Package',
+    gradient: 'linear-gradient(135deg, #1E44AF 0%, #152E7A 45%, #0A1640 100%)',
+    headerGlow: 'radial-gradient(ellipse at 50% 0%, rgba(70, 125, 255, 0.6) 0%, rgba(20, 50, 150, 0.3) 70%, transparent 100%)',
+    items: [
+      { text: '10–15 Reels per Month', highlight: true },
+      { text: 'Topic Research & Content Strategy' },
+      { text: 'Custom Scriptwriting' },
+      { text: 'Concept & Creative Direction' },
+      { text: 'Professional Shooting & Production' },
+      { text: 'High-Quality Video Editing' },
+      { text: 'Captions, Hooks & Visual Elements' },
+      { text: 'Done-for-You Posting & Account Management' },
+      { text: 'Performance Tracking & Content Optimization' },
+    ],
   },
   {
     num: '02',
-    title: 'Business marketing',
-    for: 'clinics, restaurants and retail brands that need a steady content engine.',
-    items: ['Quarterly content strategy', 'Short form + one long form', 'Thumbnails & campaign creative', 'Monthly performance review'],
+    name: 'YouTube',
+    subtitle: 'Long-Form Package',
+    gradient: 'linear-gradient(135deg, #1A3E9E 0%, #112666 45%, #081335 100%)',
+    headerGlow: 'radial-gradient(ellipse at 50% 0%, rgba(55, 110, 255, 0.6) 0%, rgba(15, 40, 130, 0.3) 70%, transparent 100%)',
+    items: [
+      { text: '4–8 Long-Form Videos per Month', highlight: true },
+      { text: 'Topic Research & Content Strategy' },
+      { text: 'Custom Scriptwriting & Storytelling' },
+      { text: 'Concept & Creative Direction' },
+      { text: 'Professional Shooting & Production' },
+      { text: 'High-Quality Video Editing' },
+      { text: 'Custom YouTube Thumbnail Design' },
+      { text: 'Click-Focused Titles & Thumbnail Concepts' },
+      { text: 'Video Descriptions & Upload Optimization' },
+      { text: 'Performance Tracking & Content Optimization' },
+    ],
   },
   {
     num: '03',
-    title: 'Brand identity',
-    for: 'new brands, and old ones that have outgrown their look.',
-    items: ['Naming & positioning', 'Logo & type system', 'Colour, packaging, applications', 'Brand guidelines'],
-  },
-  {
-    num: '04',
-    title: 'Creative production',
-    for: 'teams with a film to make — commercial, documentary or launch.',
-    items: ['Concept, script & boards', 'Full crew production', 'Colour, sound & graphics', 'Cutdowns for every platform'],
+    name: 'Customized Plan',
+    subtitle: 'Tailored Content Package',
+    gradient: 'linear-gradient(135deg, #2450CB 0%, #173691 45%, #0B1B4A 100%)',
+    headerGlow: 'radial-gradient(ellipse at 50% 0%, rgba(85, 140, 255, 0.65) 0%, rgba(25, 60, 170, 0.3) 70%, transparent 100%)',
+    items: [
+      { text: 'Flexible Content Volume', highlight: true },
+      { text: 'Custom Content Strategy for Instagram & YouTube' },
+      { text: 'Topic Research & Scriptwriting' },
+      { text: 'Concept & Creative Direction' },
+      { text: 'Professional Shooting & Production' },
+      { text: 'Video Editing & Post-Production' },
+      { text: 'Thumbnail & Creative Design' },
+      { text: 'Social Media Management' },
+      { text: 'Campaign & Advertising Content' },
+      { text: 'Fully Tailored to Your Brand Goals', highlight: true },
+    ],
   },
 ];
 
@@ -29,54 +63,188 @@ export default function PackagesSection() {
   return (
     <section
       id="packages"
-      data-scene="1"
-      style={{ position: 'relative', zIndex: 9, marginTop: '-14vh', background: '#05070B' }}
+      style={{
+        position: 'relative',
+        zIndex: 8,
+        padding: 'clamp(80px, 11vh, 140px) clamp(24px, 6vw, 60px)',
+        background: '#04060A',
+      }}
     >
-      <div
-        data-chapter-title="1"
-        style={{ position: 'sticky', top: 0, height: '100vh', zIndex: 0, display: 'flex', alignItems: 'center', padding: '0 clamp(24px,6vw,60px)' }}
-      >
-        <div
-          data-chapter-title-inner="1"
-          style={{ width: '100%', display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 30, willChange: 'transform, filter' }}
-        >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <span data-reveal="1" style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--accent)' }}>08 — Engagements</span>
-            <h2 data-reveal="1" style={{ margin: 0, fontSize: 'clamp(34px,4.6vw,80px)', fontWeight: 700, letterSpacing: '-.04em', lineHeight: .98 }}>
-              Four ways to<br />work with us.
-            </h2>
-          </div>
-          <p data-reveal="1" style={{ margin: 0, maxWidth: '34ch', fontSize: 16, lineHeight: 1.7, color: '#96A2B6' }}>
-            Every engagement is scoped after the discovery call — this is what each one covers.
-          </p>
-        </div>
+      {/* ── Section Header ── */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, textAlign: 'center', marginBottom: 'clamp(48px, 7vh, 76px)' }}>
+        <span style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--accent)', fontWeight: 600 }}>
+          Packages
+        </span>
+        <h2 style={{ margin: 0, fontSize: 'clamp(32px, 4.2vw, 68px)', fontWeight: 700, letterSpacing: '-.04em', lineHeight: 1.04, color: '#F2F4F8' }}>
+          Social Media &amp; Content Production Packages
+        </h2>
+        <p style={{ margin: 0, maxWidth: '56ch', fontSize: 'clamp(14px, 1.1vw, 17px)', lineHeight: 1.65, color: '#96A2B6' }}>
+          Predictable, high-impact content engines designed to turn founders and businesses into industry authorities.
+        </p>
       </div>
 
+      {/* ── 3 Package Cards Grid ── */}
       <div
-        data-chapter-body="1"
-        style={{ position: 'relative', zIndex: 1, marginTop: '44vh', padding: 'clamp(34px,5vh,60px) clamp(24px,6vw,60px) clamp(90px,14vh,180px)', background: '#05070B', willChange: 'transform, filter' }}
+        style={{
+          maxWidth: 1320,
+          margin: '0 auto',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: 'clamp(20px, 2.4vw, 32px)',
+          alignItems: 'stretch',
+        }}
       >
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(16px,1.6vw,24px)' }}>
-          {packages.map((pkg) => (
-            <article
-              key={pkg.num}
-              data-reveal="1"
-              className="package-card"
+        {packages.map((pkg) => (
+          <article
+            key={pkg.num}
+            style={{
+              position: 'relative',
+              display: 'flex',
+              flexDirection: 'column',
+              borderRadius: 24,
+              background: '#090D18',
+              border: '1px solid rgba(242, 244, 248, 0.1)',
+              boxShadow: '0 24px 60px -12px rgba(0, 0, 0, 0.8)',
+              overflow: 'hidden',
+              transition: 'transform 300ms ease, border-color 300ms ease, box-shadow 300ms ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-6px)';
+              e.currentTarget.style.borderColor = 'rgba(62, 109, 255, 0.4)';
+              e.currentTarget.style.boxShadow = '0 32px 70px -12px rgba(30, 68, 175, 0.35)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.borderColor = 'rgba(242, 244, 248, 0.1)';
+              e.currentTarget.style.boxShadow = '0 24px 60px -12px rgba(0, 0, 0, 0.8)';
+            }}
+          >
+            {/* Top Gradient Header (Matching reference styling in our blue theme) */}
+            <div
+              style={{
+                position: 'relative',
+                padding: 'clamp(28px, 3.4vh, 40px) clamp(24px, 2.6vw, 36px)',
+                background: pkg.gradient,
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 6,
+              }}
             >
-              <span style={{ fontSize: 10, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--accent)' }}>{pkg.num}</span>
-              <h3 style={{ margin: 0, fontSize: 'clamp(22px,2vw,28px)', fontWeight: 600, letterSpacing: '-.025em' }}>{pkg.title}</h3>
-              <p style={{ margin: 0, fontSize: 14, lineHeight: 1.7, color: '#8E9BB0' }}>
-                <strong style={{ color: '#C3CBD9', fontWeight: 500 }}>For</strong> {pkg.for}
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, paddingTop: 20, borderTop: '1px solid rgba(242,244,248,.08)', fontSize: 13, color: '#96A2B6' }}>
-                {pkg.items.map(item => <span key={item}>{item}</span>)}
-              </div>
-              <a href="#contact" style={{ marginTop: 'auto', display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase', color: '#F2F4F8' }}>
-                Enquire <span>→</span>
-              </a>
-            </article>
-          ))}
-        </div>
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: pkg.headerGlow,
+                  pointerEvents: 'none',
+                }}
+              />
+              <span
+                style={{
+                  position: 'relative',
+                  fontSize: 10,
+                  letterSpacing: '.28em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(215, 230, 255, 0.8)',
+                  fontWeight: 600,
+                }}
+              >
+                {pkg.num} · {pkg.subtitle}
+              </span>
+              <h3
+                style={{
+                  position: 'relative',
+                  margin: 0,
+                  fontSize: 'clamp(24px, 2.2vw, 32px)',
+                  fontWeight: 700,
+                  letterSpacing: '-.03em',
+                  color: '#FFFFFF',
+                  lineHeight: 1.1,
+                }}
+              >
+                {pkg.name}
+              </h3>
+            </div>
+
+            {/* Card Body with Deliverables Checklist */}
+            <div
+              style={{
+                padding: 'clamp(26px, 3vh, 36px) clamp(24px, 2.6vw, 36px) clamp(30px, 3.6vh, 42px)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 16,
+                flex: '1 1 auto',
+              }}
+            >
+              {pkg.items.map((item, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: 12,
+                    fontSize: 'clamp(13px, 1vw, 15px)',
+                    lineHeight: 1.5,
+                    color: item.highlight ? '#FFFFFF' : '#9EB0CB',
+                    fontWeight: item.highlight ? 600 : 400,
+                  }}
+                >
+                  <span
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      width: 18,
+                      height: 18,
+                      borderRadius: 999,
+                      background: item.highlight ? 'rgba(62, 109, 255, 0.25)' : 'rgba(255, 255, 255, 0.06)',
+                      color: item.highlight ? '#5B8CFF' : '#8CA6D8',
+                      fontSize: 11,
+                      fontWeight: 700,
+                      marginTop: 2,
+                    }}
+                  >
+                    ✓
+                  </span>
+                  <span>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {/* ── Bottom CTA matching reference image ── */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'clamp(44px, 6vh, 72px)' }}>
+        <a
+          href="#contact"
+          className="btn-outline"
+          style={{
+            padding: '16px 36px',
+            fontSize: 'clamp(12px, 1.05vw, 14px)',
+            borderRadius: 999,
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 10,
+            background: 'rgba(12, 18, 32, 0.8)',
+            borderColor: 'rgba(62, 109, 255, 0.4)',
+            boxShadow: '0 0 24px -4px rgba(62, 109, 255, 0.35)',
+            transition: 'all 300ms ease',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = 'var(--accent)';
+            e.currentTarget.style.boxShadow = '0 0 32px 2px rgba(62, 109, 255, 0.6)';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'rgba(62, 109, 255, 0.4)';
+            e.currentTarget.style.boxShadow = '0 0 24px -4px rgba(62, 109, 255, 0.35)';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+        >
+          Book a free discovery call <span>↗</span>
+        </a>
       </div>
     </section>
   );

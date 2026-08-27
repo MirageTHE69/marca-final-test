@@ -43,7 +43,7 @@ export default function HeroSection() {
     const wr = word.getBoundingClientRect();
     const wordScale = 0.28;
     const wordDX = vw / 2 - (wr.left + wr.width / 2);
-    const wordDY = vh * .5 + vh * .12 - (wr.top + wr.height / 2);
+    const wordDY = vh / 2 - (wr.top + wr.height / 2);
 
     const place = (w: number) => {
       word.style.transform = `translate3d(${(wordDX * (1 - w)).toFixed(2)}px,${(wordDY * (1 - w)).toFixed(2)}px,0) scale(${lerp(wordScale, 1, w).toFixed(4)})`;
@@ -130,7 +130,7 @@ export default function HeroSection() {
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(180deg, rgba(8,9,13,.68) 0%, rgba(8,9,13,.08) 30%, rgba(8,9,13,.5) 66%, rgba(8,9,13,.93) 100%)',
+              background: 'linear-gradient(180deg, rgba(8,9,13,.7) 0%, rgba(8,9,13,.2) 40%, rgba(8,9,13,.5) 70%, rgba(8,9,13,.95) 100%)',
               pointerEvents: 'none',
             }}
           />
@@ -149,37 +149,43 @@ export default function HeroSection() {
         </div>
       </div>
 
+      {/* Centered Hero Title & Tagline */}
       <div
         style={{
           position: 'absolute',
-          left: 'clamp(24px,6vw,60px)',
-          right: 'clamp(24px,6vw,60px)',
-          bottom: 'clamp(44px,6vh,72px)',
+          inset: 0,
           display: 'flex',
           flexDirection: 'column',
-          gap: 'clamp(16px,2.4vh,34px)',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '0 clamp(20px, 4vw, 40px)',
+          zIndex: 2,
+          pointerEvents: 'none',
         }}
       >
         <div
           ref={wordRef}
           style={{
             textAlign: 'center',
-            fontSize: 'clamp(38px, min(9.2vw, 19vh), 168px)',
+            fontSize: 'clamp(42px, min(10.5vw, 17vh), 160px)',
             fontWeight: 800,
             letterSpacing: '-.055em',
-            lineHeight: .84,
+            lineHeight: .86,
             color: '#F4F6FA',
             clipPath: 'inset(0px 0px 100% 0px)',
-            transformOrigin: 'center',
+            transformOrigin: 'center center',
             willChange: 'transform, clip-path',
             pointerEvents: 'none',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
           <span style={{ display: 'block' }}>MARCA</span>
           <span
             style={{
               display: 'block',
-              marginTop: '.08em',
+              marginTop: '.12em',
               fontFamily: "'Instrument Serif', Georgia, serif",
               fontStyle: 'italic',
               fontWeight: 400,
@@ -191,33 +197,34 @@ export default function HeroSection() {
             Made to Make You Grow.
           </span>
         </div>
+      </div>
 
-        <div style={{ overflow: 'hidden', paddingTop: 4 }}>
-          <div
-            ref={bandRef}
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              alignItems: 'flex-end',
-              justifyContent: 'space-between',
-              gap: 'clamp(24px,3.4vw,60px)',
-              transform: 'translate3d(0,110%,0)',
-              willChange: 'transform',
-            }}
-          >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: '54ch' }}>
-              <p style={{ margin: 0, fontSize: 'clamp(15px,1.35vw,21px)', lineHeight: 1.55, color: '#E4E9F2' }}>
-                We turn founders into content machines that attract clients, build authority, and drive revenue.
-              </p>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 12 }}>
-              <a href="#contact" className="btn-primary">
-                Start a project <span style={{ fontSize: 15 }}>→</span>
-              </a>
-              <span style={{ fontSize: 10, letterSpacing: '.16em', textTransform: 'uppercase', color: '#6C7A92' }}>
-                Done-for-you content creation · from strategy to execution
-              </span>
-            </div>
+      {/* Bottom info band */}
+      <div
+        style={{
+          position: 'absolute',
+          left: 'clamp(24px,6vw,60px)',
+          right: 'clamp(24px,6vw,60px)',
+          bottom: 'clamp(32px,5vh,56px)',
+          overflow: 'hidden',
+          paddingTop: 4,
+          zIndex: 3,
+        }}
+      >
+        <div
+          ref={bandRef}
+          style={{
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'space-between',
+            transform: 'translate3d(0,110%,0)',
+            willChange: 'transform',
+          }}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: '56ch' }}>
+            <p style={{ margin: 0, fontSize: 'clamp(14px,1.25vw,19px)', lineHeight: 1.55, color: '#E4E9F2' }}>
+              We turn founders into content machines that attract clients, build authority, and drive revenue.
+            </p>
           </div>
         </div>
       </div>

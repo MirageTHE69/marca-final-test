@@ -47,17 +47,18 @@ export default function DesignSection() {
       style={{
         position: 'relative',
         zIndex: 4,
-        padding: 'clamp(80px,11vh,140px) 0 clamp(70px,10vh,120px)',
+        padding: 'clamp(80px,11vh,140px) 0 clamp(100px,14vh,160px)',
+        marginBottom: 'clamp(30px, 4vh, 60px)',
         background: 'linear-gradient(180deg, #05070B 0%, #080D18 55%, #05070B 100%)',
       }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, padding: '0 clamp(24px,6vw,60px)', textAlign: 'center' }}>
         <span data-reveal="1" style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--accent)' }}>Design</span>
         <h2 data-reveal="1" style={{ margin: 0, maxWidth: '20ch', fontSize: 'clamp(34px,4.6vw,76px)', fontWeight: 700, letterSpacing: '-.04em', lineHeight: 1.02 }}>
-          The frame people decide to <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>click.</span>
+          Thumbnails
         </h2>
         <p data-reveal="1" style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: '#A7B2C4' }}>
-          Thumbnails, covers and campaign creative designed against the only metric that matters: whether someone stops scrolling.
+          YouTube thumbnails designed to earn the click with bold visuals, clear messaging, and instant curiosity.
         </p>
       </div>
 

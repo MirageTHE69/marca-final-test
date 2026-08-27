@@ -70,7 +70,6 @@ export default function ProcessSection() {
       style={{
         position: 'relative',
         zIndex: 4,
-        marginTop: '-14vh',
         height: '260vh',
         background: 'linear-gradient(180deg, #070C18 0%, #0A1326 40%, #070C18 100%)',
       }}
@@ -79,12 +78,15 @@ export default function ProcessSection() {
         ref={stickyRef}
         style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(30px,5vh,60px)' }}
       >
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, padding: '0 clamp(24px,6vw,60px)' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, padding: '0 clamp(24px,6vw,60px)', textAlign: 'left' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 14 }}>
             <span style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--accent)' }}>03 — Process</span>
             <h2 style={{ margin: 0, fontSize: 'clamp(32px,4.2vw,68px)', fontWeight: 700, letterSpacing: '-.04em', lineHeight: 1 }}>
-              Idea to <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>published</span>, in five moves.
+              Our Process
             </h2>
+            <p style={{ margin: 0, fontSize: 'clamp(15px,1.15vw,19px)', lineHeight: 1.6, color: '#A7B2C4' }}>
+              Done for you end to end!
+            </p>
           </div>
           <span style={{ fontSize: 11, letterSpacing: '.2em', textTransform: 'uppercase', color: '#6C7A92' }}>Scroll to move through the process →</span>
         </div>

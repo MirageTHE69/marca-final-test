@@ -56,24 +56,28 @@ export default function LongFormSection() {
       style={{
         position: 'relative',
         zIndex: 3,
-        padding: 'clamp(80px,11vh,140px) 0 clamp(70px,10vh,120px)',
-        background: 'linear-gradient(180deg, #070C18 0%, #05070B 55%, #070C18 100%)',
+        padding: 'clamp(90px,12vh,150px) 0 clamp(80px,11vh,130px)',
+        background: `
+          radial-gradient(140% 70% at 50% -10%, rgba(45, 105, 255, 0.62) 0%, rgba(26, 68, 190, 0.44) 30%, rgba(12, 28, 88, 0.22) 60%, rgba(5, 7, 11, 0) 82%),
+          radial-gradient(130% 55% at 50% 112%, rgba(28, 72, 195, 0.42) 0%, rgba(12, 28, 80, 0.28) 42%, rgba(5, 7, 11, 0.92) 80%, #05070B 100%),
+          linear-gradient(180deg, #081024 0%, #05070B 48%, #060C1C 100%)
+        `,
       }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, padding: '0 clamp(24px,6vw,60px)', textAlign: 'center' }}>
-        <span data-reveal="1" style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--accent)' }}>Long Form</span>
-        <h2 data-reveal="1" style={{ margin: 0, maxWidth: '20ch', fontSize: 'clamp(34px,4.6vw,76px)', fontWeight: 700, letterSpacing: '-.04em', lineHeight: 1.02 }}>
-          Films that hold a room <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>quiet.</span>
+        <span data-reveal="1" style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: '#5B8CFF', fontWeight: 600 }}>Long Form</span>
+        <h2 data-reveal="1" style={{ margin: 0, maxWidth: '20ch', fontSize: 'clamp(36px,4.8vw,80px)', fontWeight: 700, letterSpacing: '-.04em', lineHeight: 1.02 }}>
+          YouTube
         </h2>
-        <p data-reveal="1" style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: '#A7B2C4' }}>
-          Commercials, documentaries, brand films and interviews — written, directed and produced entirely in-house.
+        <p data-reveal="1" style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: '#A0B0CC' }}>
+          YouTube long-form content crafted to hook viewers early, tell compelling stories, and keep them watching.
         </p>
       </div>
 
       <ScrollRail ariaLabel="films">
         {films.map((film, i) => (
           <article key={i} style={{ flex: '0 0 clamp(320px,42vw,620px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 18 }}>
-            <div style={{ position: 'relative', aspectRatio: '16 / 9', overflow: 'hidden', borderRadius: 14, background: '#0B1220', border: '1px solid rgba(242,244,248,.08)' }}>
+            <div style={{ position: 'relative', aspectRatio: '16 / 9', overflow: 'hidden', borderRadius: 16, background: '#0C1528', border: '1px solid rgba(242,244,248,.1)', boxShadow: '0 24px 60px -12px rgba(0,0,0,0.85)' }}>
               {film.src ? (
                 <MediaSlot type="video" src={film.src} placeholder="Drop film" sizes="620px" />
               ) : (
@@ -101,7 +105,7 @@ export default function LongFormSection() {
               )}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <span style={{ fontSize: 10, letterSpacing: '.24em', textTransform: 'uppercase', color: '#6C7A92' }}>{film.category}</span>
+              <span style={{ fontSize: 10, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--accent)', fontWeight: 600 }}>{film.category}</span>
               <h3 style={{ margin: 0, fontSize: 'clamp(20px,1.9vw,30px)', fontWeight: 600, letterSpacing: '-.028em', lineHeight: 1.1 }}>
                 {film.title}
                 {film.titleSerif && (

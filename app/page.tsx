@@ -10,10 +10,9 @@ import LongFormSection from '@/components/LongFormSection';
 import DesignSection from '@/components/DesignSection';
 import ProcessSection from '@/components/ProcessSection';
 import CaseStudiesSection from '@/components/CaseStudiesSection';
-import BrandWorkSection from '@/components/BrandWorkSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import PackagesSection from '@/components/PackagesSection';
-import WhoWeWorkWithSection from '@/components/WhoWeWorkWithSection';
+import FaqSection from '@/components/FaqSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
@@ -26,17 +25,16 @@ export default function Home() {
       <Nav />
       <HeroSection />
       <TickerBanner />
-      <WorkIntroSection />
+      {/* <WorkIntroSection /> */}
       <ShortFormSection />
       <LongFormSection />
       <DesignSection />
       <ProcessSection />
       <CaseStudiesSection />
-      <BrandWorkSection />
       <PortfolioSection />
       <PackagesSection />
-      <WhoWeWorkWithSection />
       <TestimonialsSection />
+      <FaqSection />
       <ContactSection />
       <Footer />
     </main>
