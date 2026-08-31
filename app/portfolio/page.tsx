@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import PageNav from '@/components/PageNav';
-import PortfolioGrid from '@/components/portfolio/PortfolioGrid';
+import PortfolioSections from '@/components/portfolio/PortfolioSections';
 
 export const metadata: Metadata = {
   title: 'Portfolio — Marca Creatives',
-  description: 'Films, reels, identity, packaging and photography — filter by the kind of work you came to see.',
+  description: 'Fashion shoots, product shoots, branding, ad campaigns, reels and films — organised by the kind of work you came to see.',
 };
 
 export default function PortfolioPage() {
@@ -28,11 +28,11 @@ export default function PortfolioPage() {
           Everything we have <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>made.</span>
         </h1>
         <p style={{ margin: 0, maxWidth: '56ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: '#A7B2C4' }}>
-          Films, reels, identity, packaging and photography — filter by the kind of work you came to see.
+          Fashion shoots, product shoots, branding, ad campaigns, reels and films — organised by the kind of work you came to see.
         </p>
       </section>
 
-      <PortfolioGrid />
+      <PortfolioSections />
 
       <section
         style={{

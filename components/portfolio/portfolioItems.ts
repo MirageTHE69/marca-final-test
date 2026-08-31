@@ -1,33 +1,81 @@
-export type PortfolioCategory = 'branding' | 'photoshoot' | 'packaging' | 'long' | 'short';
+export type PortfolioSectionKey =
+  | 'fashion-shoots'
+  | 'product-shoots'
+  | 'branding-packaging'
+  | 'ad-campaigns'
+  | 'instagram-reels'
+  | 'youtube-videos';
 
 export interface PortfolioItem {
   id: string;
-  category: PortfolioCategory;
-  span2?: boolean;
+  category: PortfolioSectionKey;
   aspectRatio: string;
   fit?: 'cover' | 'contain';
   type: 'video' | 'image';
   src: string;
-  duration?: string;
   title: string;
   label: string;
 }
 
-export const filters: { key: 'all' | PortfolioCategory; label: string; countLabel: string }[] = [
-  { key: 'all', label: 'All work', countLabel: 'pieces' },
-  { key: 'branding', label: 'Branding', countLabel: 'branding projects' },
-  { key: 'photoshoot', label: 'Photoshoot', countLabel: 'shoots' },
-  { key: 'packaging', label: 'Packaging', countLabel: 'packaging projects' },
-  { key: 'long', label: 'Long video', countLabel: 'films' },
-  { key: 'short', label: 'Short video', countLabel: 'reels' },
+export interface PortfolioSection {
+  key: PortfolioSectionKey;
+  kicker: string;
+  title: string;
+  description: string;
+  /** `mixed` — natural-width row of varied-aspect stills. `reel` — fixed 9:16 columns. `film` — fixed 16:9 columns. */
+  layout: 'mixed' | 'reel' | 'film';
+}
+
+export const portfolioSections: PortfolioSection[] = [
+  {
+    key: 'fashion-shoots',
+    kicker: 'Photoshoot',
+    title: 'Fashion Shoots',
+    description: 'Editorial and bridal fashion photography built to make a brand’s visual identity unmistakable.',
+    layout: 'mixed',
+  },
+  {
+    key: 'product-shoots',
+    kicker: 'Photoshoot',
+    title: 'Product Shoots',
+    description: 'Product, food and lifestyle photography styled to make every SKU impossible to scroll past.',
+    layout: 'mixed',
+  },
+  {
+    key: 'branding-packaging',
+    kicker: 'Identity',
+    title: 'Branding and Packaging',
+    description: 'Brand systems, labels and packaging design engineered to win shelf and feed attention.',
+    layout: 'mixed',
+  },
+  {
+    key: 'ad-campaigns',
+    kicker: 'Paid Media',
+    title: 'Ad Campaigns',
+    description: 'Scroll-stopping performance ads — concept to platform-native cutdown — engineered for maximum ROAS.',
+    layout: 'reel',
+  },
+  {
+    key: 'instagram-reels',
+    kicker: 'Short Form',
+    title: 'Instagram Reels',
+    description: 'Organic short-form content built to grow followings, drive views, and build creator authority.',
+    layout: 'reel',
+  },
+  {
+    key: 'youtube-videos',
+    kicker: 'Long Form',
+    title: 'Youtube Videos',
+    description: 'Documentary-style long-form films crafted to hook viewers early and keep them watching.',
+    layout: 'film',
+  },
 ];
 
 export const portfolioItems: PortfolioItem[] = [
-  // Long form films
+  // ── Youtube Videos ──
   {
     id: 'vedang-rathore',
-    category: 'long',
-    span2: true,
+    category: 'youtube-videos',
     aspectRatio: '16 / 9',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786473746/vidssave.com_Major_Mohit_Sharma__The_Spy_Who_Infiltrated_Kashmir_s_Deadliest_Terror_Network___Dhurandhar_480P_onwwyo.mp4',
@@ -36,8 +84,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'ms-design-studio',
-    category: 'long',
-    span2: true,
+    category: 'youtube-videos',
     aspectRatio: '16 / 9',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786474057/vidssave.com_3_Acre_Sustainable_Farmhouse_in_Vadodara___Vernacular_Architecture_Eco-Friendly_Design_480P_n5hcko.mp4',
@@ -46,8 +93,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'sumit-kapadia-arteries',
-    category: 'long',
-    span2: true,
+    category: 'youtube-videos',
     aspectRatio: '16 / 9',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786473730/vidssave.com_I_ve_Operated_on_1000_Blocked_Arteries_This_Hidden_Ingredient_Was_in_EVERY_Patient_s_Diet_360P_dbguqj.mp4',
@@ -56,8 +102,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'mithun-panchal',
-    category: 'long',
-    span2: true,
+    category: 'youtube-videos',
     aspectRatio: '16 / 9',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786555893/vidssave.com_The_Real_Reason_Shah_Rukh_Khan_Still_Has_Thick_Hair_at_60_360P_ktnzlg.mp4',
@@ -66,8 +111,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'surbhi-kapadia',
-    category: 'long',
-    span2: true,
+    category: 'youtube-videos',
     aspectRatio: '16 / 9',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786473727/vidssave.com_Eyes_Par_Yellow_Patch__Yeh_High_Cholesterol_Ka_Warning_Sign_Hai_Xanthelasma_Truth_480P_zsxocz.mp4',
@@ -75,10 +119,10 @@ export const portfolioItems: PortfolioItem[] = [
     label: 'Healthcare — Long Form',
   },
 
-  // Short form reels
+  // ── Ad Campaigns ──
   {
     id: 'ayushi-clairveda',
-    category: 'short',
+    category: 'ad-campaigns',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786553225/Video-59256_f9vyja.mp4',
@@ -86,17 +130,8 @@ export const portfolioItems: PortfolioItem[] = [
     label: 'Cinematic Ad',
   },
   {
-    id: 'sumit-kapadia-varicose',
-    category: 'short',
-    aspectRatio: '9 / 16',
-    type: 'video',
-    src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786553205/Varicose_Vein_EXPERT_Shares_Top_3_Exercises_for_Relief_ghxgtx.mp4',
-    title: 'Dr Sumit Kapadia | Vascular Surgeon',
-    label: '3.6M Views | 380K Subscribers',
-  },
-  {
     id: 'rajvi-cinematic-1',
-    category: 'short',
+    category: 'ad-campaigns',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786553180/Video-38021_hhhbkc.mp4',
@@ -105,7 +140,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'rajvi-cinematic-2',
-    category: 'short',
+    category: 'ad-campaigns',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786553181/Video-81552_skecuv.mp4',
@@ -113,17 +148,8 @@ export const portfolioItems: PortfolioItem[] = [
     label: 'Cinematic Ad',
   },
   {
-    id: 'sandip-mavani-short',
-    category: 'short',
-    aspectRatio: '9 / 16',
-    type: 'video',
-    src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786553287/5.7M_1_r2lysy.mp4',
-    title: 'Dr Sandip Mavani | Neurosurgeon',
-    label: '5.7M Views | 49K Followers',
-  },
-  {
     id: 'eos-couture',
-    category: 'short',
+    category: 'ad-campaigns',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786553217/Video-12950_kemi72.mp4',
@@ -131,8 +157,37 @@ export const portfolioItems: PortfolioItem[] = [
     label: 'Ad Campaign',
   },
   {
+    id: 'nutty-affair-short',
+    category: 'ad-campaigns',
+    aspectRatio: '9 / 16',
+    type: 'video',
+    src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786553006/Video-95206_dmsnpi.mp4',
+    title: 'Nutty Affair',
+    label: 'Ad Campaign',
+  },
+
+  // ── Instagram Reels ──
+  {
+    id: 'sumit-kapadia-varicose',
+    category: 'instagram-reels',
+    aspectRatio: '9 / 16',
+    type: 'video',
+    src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786553205/Varicose_Vein_EXPERT_Shares_Top_3_Exercises_for_Relief_ghxgtx.mp4',
+    title: 'Dr Sumit Kapadia | Vascular Surgeon',
+    label: '3.6M Views | 380K Subscribers',
+  },
+  {
+    id: 'sandip-mavani-short',
+    category: 'instagram-reels',
+    aspectRatio: '9 / 16',
+    type: 'video',
+    src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786553287/5.7M_1_r2lysy.mp4',
+    title: 'Dr Sandip Mavani | Neurosurgeon',
+    label: '5.7M Views | 49K Followers',
+  },
+  {
     id: 'frenzy-couture',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786553000/Video-71601_agafjd.mp4',
@@ -140,17 +195,8 @@ export const portfolioItems: PortfolioItem[] = [
     label: 'Fashion Reels',
   },
   {
-    id: 'nutty-affair-short',
-    category: 'short',
-    aspectRatio: '9 / 16',
-    type: 'video',
-    src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786553006/Video-95206_dmsnpi.mp4',
-    title: 'Nutty Affair',
-    label: 'Ad Campaign',
-  },
-  {
     id: 'aditya-shah-short',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786553011/Video-54738_z4yoen.mp4',
@@ -159,7 +205,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'aadicura-short',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786553046/Video-24171_zi192s.mp4',
@@ -168,7 +214,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'preay-mehta',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786555487/Video-58265_imt14r.mp4',
@@ -177,7 +223,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'nachiket-kaneria',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786555496/Video-18727_er0ho2.mp4',
@@ -186,7 +232,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'interior-rotating-tv',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786692120/ROTATING_TV_190K_IG_zcnpbh.mp4',
@@ -195,7 +241,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'interior-flooring-reveal',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786692123/FLOORING_IG_111K_VIEWS_nvuhnl.mp4',
@@ -204,7 +250,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'yuvraj-jadeja-1',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786692133/2.6M_gcgl94.mp4',
@@ -213,7 +259,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'interior-foyer-terrace',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786692133/FOYER_TERRACE_APT_VIEWS_135K_IG_toxeol.mp4',
@@ -222,7 +268,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'yuvraj-jadeja-2',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786692137/1.6M_oifvzb.mp4',
@@ -231,7 +277,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'business-explainer-1',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786692165/73K_olzgee.mp4',
@@ -240,7 +286,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'business-explainer-2',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786692168/22K_1_hbhtzu.mp4',
@@ -249,7 +295,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'yuvraj-jadeja-3',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786692169/1.3M_krivra.mp4',
@@ -258,7 +304,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'business-explainer-3',
-    category: 'short',
+    category: 'instagram-reels',
     aspectRatio: '9 / 16',
     type: 'video',
     src: 'https://res.cloudinary.com/ts350ak2/video/upload/v1786692175/4.5K_aij4iy.mp4',
@@ -266,10 +312,37 @@ export const portfolioItems: PortfolioItem[] = [
     label: '4.5K Views',
   },
 
-  // Packaging
+  // ── Branding and Packaging ──
+  {
+    id: 'aadicura-label-system',
+    category: 'branding-packaging',
+    aspectRatio: '4 / 5',
+    type: 'image',
+    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1785487014/5_rnslzq.png',
+    title: 'Aadicura Hospital — Label System',
+    label: 'Identity',
+  },
+  {
+    id: 'aadicura-identity-applied',
+    category: 'branding-packaging',
+    aspectRatio: '16 / 9',
+    type: 'image',
+    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1785487254/9_1_drw2xh.jpg',
+    title: 'Aadicura Hospital — Identity Applied',
+    label: 'Brand Identity',
+  },
+  {
+    id: 'ledgerloop-social-system',
+    category: 'branding-packaging',
+    aspectRatio: '1 / 1',
+    type: 'image',
+    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1785486926/4_c5ql8a.png',
+    title: 'Ledgerloop — Social Design System',
+    label: 'Design System',
+  },
   {
     id: 'nutty-seeds-berries',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786607756/1_2_yk2t4j.jpg',
@@ -278,8 +351,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'nutty-mukhwas',
-    category: 'packaging',
-    span2: true,
+    category: 'branding-packaging',
     aspectRatio: '4 / 3',
     fit: 'contain',
     type: 'image',
@@ -289,8 +361,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'nutty-dehydrated-fruits',
-    category: 'packaging',
-    span2: true,
+    category: 'branding-packaging',
     aspectRatio: '4 / 3',
     fit: 'contain',
     type: 'image',
@@ -300,7 +371,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'celebration-gift-box',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 3',
     fit: 'contain',
     type: 'image',
@@ -310,7 +381,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'nutty-immunity-booster',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690577/1_3_uqbcwk.jpg',
@@ -319,7 +390,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'nutty-berry-nuts',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690575/1_4_onx4hk.jpg',
@@ -328,7 +399,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'nutty-foxnuts-chilli-cheese',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690564/WhatsApp_Image_2021-02-12_at_3.55.13_AM_21_xpfglv.jpg',
@@ -337,7 +408,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'nutty-foxnuts-peri-peri',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690563/WhatsApp_Image_2021-02-12_at_3.55.13_AM_22_nwaekj.jpg',
@@ -346,8 +417,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'chini-kam-toucan-box',
-    category: 'packaging',
-    span2: true,
+    category: 'branding-packaging',
     aspectRatio: '3 / 2',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690587/3_aupud4.jpg',
@@ -356,7 +426,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'chini-kam-botanical-box',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '3 / 2',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690576/1_pbzryg.jpg',
@@ -365,7 +435,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'chini-kam-rajasthan-box',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 3',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690563/WhatsApp_Image_2021-02-12_at_3.55.13_AM_11_w0yq0w.jpg',
@@ -374,7 +444,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'chini-kam-paris-box',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 3',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690563/WhatsApp_Image_2021-02-12_at_3.55.13_AM_13_solwfn.jpg',
@@ -383,7 +453,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'chini-kam-teal-box',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 3',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690573/2_1_hm1t7d.jpg',
@@ -392,7 +462,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'chini-kam-marble-box',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 3',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690570/3_2_djfibq.jpg',
@@ -401,8 +471,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'chini-kam-heritage-box',
-    category: 'packaging',
-    span2: true,
+    category: 'branding-packaging',
     aspectRatio: '3 / 2',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690563/WhatsApp_Image_2021-02-12_at_3.55.13_AM_16_nafp2t.jpg',
@@ -411,7 +480,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'chini-kam-floral-box',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 3',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690563/WhatsApp_Image_2021-02-12_at_3.55.13_AM_9_m7xkur.jpg',
@@ -420,7 +489,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'chini-kam-ivory-castle-box',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 3',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690563/WhatsApp_Image_2021-02-12_at_3.55.13_AM_14_evhxvw.jpg',
@@ -429,7 +498,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'chini-kam-mumbai-box',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690562/WhatsApp_Image_2021-02-12_at_3.55.13_AM_4_ex5kgg.jpg',
@@ -438,7 +507,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'chini-kam-noir-castle-box',
-    category: 'packaging',
+    category: 'branding-packaging',
     aspectRatio: '4 / 3',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786690563/WhatsApp_Image_2021-02-12_at_3.55.13_AM_15_hxcgf3.jpg',
@@ -446,19 +515,10 @@ export const portfolioItems: PortfolioItem[] = [
     label: 'Gift Box',
   },
 
-  // Photoshoot
-  {
-    id: 'picnic-lifestyle',
-    category: 'photoshoot',
-    aspectRatio: '4 / 5',
-    type: 'image',
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786608765/ChatGPT_Image_Jul_16_2026_05_41_45_PM_hox3lo.png',
-    title: 'Picnic Set Launch',
-    label: 'Lifestyle',
-  },
+  // ── Fashion Shoots ──
   {
     id: 'bridal-lehenga',
-    category: 'photoshoot',
+    category: 'fashion-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786608769/ChatGPT_Image_Jul_16_2026_06_10_05_PM_c7dwfy.png',
@@ -466,26 +526,8 @@ export const portfolioItems: PortfolioItem[] = [
     label: 'Fashion',
   },
   {
-    id: 'moody-cookies',
-    category: 'photoshoot',
-    aspectRatio: '4 / 5',
-    type: 'image',
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786607738/ChatGPT_Image_Jul_16_2026_06_08_31_PM_ckdz6t.png',
-    title: 'Moody Edits',
-    label: 'Food',
-  },
-  {
-    id: 'dessert-relaunch',
-    category: 'photoshoot',
-    aspectRatio: '4 / 5',
-    type: 'image',
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786607737/ChatGPT_Image_Jul_16_2026_06_02_05_PM_zx5xye.png',
-    title: 'Dessert Menu Relaunch',
-    label: 'Food',
-  },
-  {
     id: 'menswear-campaign',
-    category: 'photoshoot',
+    category: 'fashion-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786607737/ChatGPT_Image_Jul_16_2026_05_55_07_PM_nx1dgt.png',
@@ -494,7 +536,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'menswear-duo',
-    category: 'photoshoot',
+    category: 'fashion-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786607736/ChatGPT_Image_Jul_16_2026_05_53_26_PM_c90ttf.png',
@@ -503,7 +545,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'menswear-everyday',
-    category: 'photoshoot',
+    category: 'fashion-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786607732/ChatGPT_Image_Jul_16_2026_05_53_35_PM_oewfwt.png',
@@ -512,8 +554,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'photoshoot-bridal-trio-field',
-    category: 'photoshoot',
-    span2: true,
+    category: 'fashion-shoots',
     aspectRatio: '3 / 2',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691250/ChatGPT_Image_Aug_12_2026_02_26_19_PM_puys6a.png',
@@ -521,26 +562,8 @@ export const portfolioItems: PortfolioItem[] = [
     label: 'Fashion',
   },
   {
-    id: 'photoshoot-picnic-tasting',
-    category: 'photoshoot',
-    aspectRatio: '4 / 5',
-    type: 'image',
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691249/ChatGPT_Image_Jul_16_2026_05_44_31_PM_vzikkk.png',
-    title: 'Picnic Set — Tasting Notes',
-    label: 'Lifestyle',
-  },
-  {
-    id: 'photoshoot-picnic-garden-table',
-    category: 'photoshoot',
-    aspectRatio: '4 / 5',
-    type: 'image',
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691249/ChatGPT_Image_Jul_16_2026_05_49_43_PM_bcha6s.png',
-    title: 'Picnic Set — Garden Table',
-    label: 'Lifestyle',
-  },
-  {
     id: 'photoshoot-bridal-horse',
-    category: 'photoshoot',
+    category: 'fashion-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691250/ChatGPT_Image_Aug_12_2026_02_37_26_PM_kvolqv.png',
@@ -549,7 +572,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'photoshoot-field-silver-plum',
-    category: 'photoshoot',
+    category: 'fashion-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691249/ChatGPT_Image_Aug_12_2026_02_28_16_PM_zlxq2x.png',
@@ -558,7 +581,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'photoshoot-harvest-standing',
-    category: 'photoshoot',
+    category: 'fashion-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691249/ChatGPT_Image_Aug_12_2026_02_31_27_PM_h7z2bq.png',
@@ -567,7 +590,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'photoshoot-harvest-seated',
-    category: 'photoshoot',
+    category: 'fashion-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691249/ChatGPT_Image_Aug_12_2026_02_36_09_PM_u1vznk.png',
@@ -576,7 +599,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'photoshoot-palace-sherwani',
-    category: 'photoshoot',
+    category: 'fashion-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691248/ChatGPT_Image_Jul_16_2026_05_56_38_PM_earsyc.png',
@@ -585,8 +608,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'photoshoot-bridal-duo-mintred',
-    category: 'photoshoot',
-    span2: true,
+    category: 'fashion-shoots',
     aspectRatio: '3 / 2',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691248/ChatGPT_Image_Jul_16_2026_06_12_10_PM_hakt6w.png',
@@ -595,7 +617,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'photoshoot-menswear-asthetic',
-    category: 'photoshoot',
+    category: 'fashion-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691248/ChatGPT_Image_Jul_16_2026_06_00_57_PM_eneitn.png',
@@ -604,7 +626,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'photoshoot-menswear-tecido',
-    category: 'photoshoot',
+    category: 'fashion-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691248/ChatGPT_Image_Jul_16_2026_06_00_50_PM_csa2tw.png',
@@ -612,17 +634,8 @@ export const portfolioItems: PortfolioItem[] = [
     label: 'Fashion',
   },
   {
-    id: 'photoshoot-picnic-afternoon',
-    category: 'photoshoot',
-    aspectRatio: '4 / 5',
-    type: 'image',
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691248/ChatGPT_Image_Jul_16_2026_05_51_43_PM_yloraq.png',
-    title: 'Picnic Set — Afternoon Rest',
-    label: 'Lifestyle',
-  },
-  {
     id: 'photoshoot-bridal-duo-courtyard',
-    category: 'photoshoot',
+    category: 'fashion-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691166/ChatGPT_Image_Jul_16_2026_06_12_37_PM_qcutji.png',
@@ -630,18 +643,8 @@ export const portfolioItems: PortfolioItem[] = [
     label: 'Fashion',
   },
   {
-    id: 'photoshoot-jewelry-concrete',
-    category: 'photoshoot',
-    aspectRatio: '4 / 3',
-    type: 'image',
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691128/ChatGPT_Image_Jul_16_2026_06_24_24_PM_werpqs.png',
-    title: 'Concrete & Gold Jewelry',
-    label: 'Product',
-  },
-  {
     id: 'photoshoot-field-duo-greenpink',
-    category: 'photoshoot',
-    span2: true,
+    category: 'fashion-shoots',
     aspectRatio: '3 / 2',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691128/ChatGPT_Image_Jul_16_2026_06_26_24_PM_nsgb7m.png',
@@ -650,16 +653,108 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'photoshoot-striped-midi-field',
-    category: 'photoshoot',
+    category: 'fashion-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691125/ChatGPT_Image_Jul_17_2026_01_54_17_PM_likiyr.png',
     title: 'Striped Midi — Open Field',
+    label: 'Fashion',
+  },
+  {
+    id: 'photoshoot-striped-midi-golden',
+    category: 'fashion-shoots',
+    aspectRatio: '4 / 5',
+    type: 'image',
+    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691119/ChatGPT_Image_Jul_17_2026_01_57_00_PM_lzspne.png',
+    title: 'Striped Midi — Golden Hour',
+    label: 'Fashion',
+  },
+  {
+    id: 'photoshoot-sequin-studio',
+    category: 'fashion-shoots',
+    aspectRatio: '4 / 5',
+    type: 'image',
+    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691120/ChatGPT_Image_Jul_17_2026_12_51_06_PM_rguzdl.png',
+    title: 'Sequin Train — Studio',
+    label: 'Fashion',
+  },
+  {
+    id: 'photoshoot-sequin-rooftop',
+    category: 'fashion-shoots',
+    aspectRatio: '4 / 5',
+    type: 'image',
+    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691119/ChatGPT_Image_Jul_17_2026_12_46_26_PM_m2yck9.png',
+    title: 'Sequin Train — Rooftop',
+    label: 'Fashion',
+  },
+
+  // ── Product Shoots ──
+  {
+    id: 'picnic-lifestyle',
+    category: 'product-shoots',
+    aspectRatio: '4 / 5',
+    type: 'image',
+    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786608765/ChatGPT_Image_Jul_16_2026_05_41_45_PM_hox3lo.png',
+    title: 'Picnic Set Launch',
     label: 'Lifestyle',
   },
   {
+    id: 'moody-cookies',
+    category: 'product-shoots',
+    aspectRatio: '4 / 5',
+    type: 'image',
+    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786607738/ChatGPT_Image_Jul_16_2026_06_08_31_PM_ckdz6t.png',
+    title: 'Moody Edits',
+    label: 'Food',
+  },
+  {
+    id: 'dessert-relaunch',
+    category: 'product-shoots',
+    aspectRatio: '4 / 5',
+    type: 'image',
+    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786607737/ChatGPT_Image_Jul_16_2026_06_02_05_PM_zx5xye.png',
+    title: 'Dessert Menu Relaunch',
+    label: 'Food',
+  },
+  {
+    id: 'photoshoot-picnic-tasting',
+    category: 'product-shoots',
+    aspectRatio: '4 / 5',
+    type: 'image',
+    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691249/ChatGPT_Image_Jul_16_2026_05_44_31_PM_vzikkk.png',
+    title: 'Picnic Set — Tasting Notes',
+    label: 'Lifestyle',
+  },
+  {
+    id: 'photoshoot-picnic-garden-table',
+    category: 'product-shoots',
+    aspectRatio: '4 / 5',
+    type: 'image',
+    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691249/ChatGPT_Image_Jul_16_2026_05_49_43_PM_bcha6s.png',
+    title: 'Picnic Set — Garden Table',
+    label: 'Lifestyle',
+  },
+  {
+    id: 'photoshoot-picnic-afternoon',
+    category: 'product-shoots',
+    aspectRatio: '4 / 5',
+    type: 'image',
+    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691248/ChatGPT_Image_Jul_16_2026_05_51_43_PM_yloraq.png',
+    title: 'Picnic Set — Afternoon Rest',
+    label: 'Lifestyle',
+  },
+  {
+    id: 'photoshoot-jewelry-concrete',
+    category: 'product-shoots',
+    aspectRatio: '4 / 3',
+    type: 'image',
+    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691128/ChatGPT_Image_Jul_16_2026_06_24_24_PM_werpqs.png',
+    title: 'Concrete & Gold Jewelry',
+    label: 'Product',
+  },
+  {
     id: 'photoshoot-jewelry-campaign',
-    category: 'photoshoot',
+    category: 'product-shoots',
     aspectRatio: '4 / 5',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691124/ChatGPT_Image_Jul_16_2026_06_23_08_PM_agyuxc.png',
@@ -668,68 +763,11 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'photoshoot-coffee-friends',
-    category: 'photoshoot',
+    category: 'product-shoots',
     aspectRatio: '4 / 3',
     type: 'image',
     src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691121/ChatGPT_Image_Jul_17_2026_01_55_35_PM_btygsz.png',
     title: 'Coffee Table — Two Friends',
     label: 'Lifestyle',
-  },
-  {
-    id: 'photoshoot-sequin-studio',
-    category: 'photoshoot',
-    aspectRatio: '4 / 5',
-    type: 'image',
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691120/ChatGPT_Image_Jul_17_2026_12_51_06_PM_rguzdl.png',
-    title: 'Sequin Train — Studio',
-    label: 'Fashion',
-  },
-  {
-    id: 'photoshoot-striped-midi-golden',
-    category: 'photoshoot',
-    aspectRatio: '4 / 5',
-    type: 'image',
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691119/ChatGPT_Image_Jul_17_2026_01_57_00_PM_lzspne.png',
-    title: 'Striped Midi — Golden Hour',
-    label: 'Lifestyle',
-  },
-  {
-    id: 'photoshoot-sequin-rooftop',
-    category: 'photoshoot',
-    aspectRatio: '4 / 5',
-    type: 'image',
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786691119/ChatGPT_Image_Jul_17_2026_12_46_26_PM_m2yck9.png',
-    title: 'Sequin Train — Rooftop',
-    label: 'Fashion',
-  },
-
-  // Branding
-  {
-    id: 'aadicura-label-system',
-    category: 'branding',
-    aspectRatio: '4 / 5',
-    type: 'image',
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1785487014/5_rnslzq.png',
-    title: 'Aadicura Hospital — Label System',
-    label: 'Identity',
-  },
-  {
-    id: 'aadicura-identity-applied',
-    category: 'branding',
-    span2: true,
-    aspectRatio: '16 / 9',
-    type: 'image',
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1785487254/9_1_drw2xh.jpg',
-    title: 'Aadicura Hospital — Identity Applied',
-    label: 'Brand Identity',
-  },
-  {
-    id: 'ledgerloop-social-system',
-    category: 'branding',
-    aspectRatio: '1 / 1',
-    type: 'image',
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1785486926/4_c5ql8a.png',
-    title: 'Ledgerloop — Social Design System',
-    label: 'Design System',
   },
 ];
