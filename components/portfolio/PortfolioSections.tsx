@@ -24,8 +24,9 @@ function MixedRow({ items }: { items: PortfolioItem[] }) {
   return (
     <>
       {items.map((item) => (
-        <article key={item.id} style={{ flex: '0 0 auto', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <article key={item.id} className="pf-card" style={{ flex: '0 0 auto', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div
+            className="pf-media"
             style={{
               position: 'relative',
               height: RAIL_HEIGHT,
@@ -49,8 +50,8 @@ function ReelRow({ items }: { items: PortfolioItem[] }) {
   return (
     <>
       {items.map((item) => (
-        <article key={item.id} style={{ flex: '0 0 clamp(230px,22vw,300px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <div style={{ position: 'relative', aspectRatio: '9 / 16', overflow: 'hidden', borderRadius: 14, background: '#0C1526', border: '1px solid rgba(242,244,248,.08)' }}>
+        <article key={item.id} className="pf-card" style={{ flex: '0 0 clamp(230px,22vw,300px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div className="pf-media" style={{ position: 'relative', aspectRatio: '9 / 16', overflow: 'hidden', borderRadius: 14, background: '#0C1526', border: '1px solid rgba(242,244,248,.08)' }}>
             <MediaSlot type="video" src={item.src} placeholder="Drop reel" sizes="300px" />
           </div>
           <ItemCaption item={item} />
@@ -64,8 +65,9 @@ function FilmRow({ items }: { items: PortfolioItem[] }) {
   return (
     <>
       {items.map((item) => (
-        <article key={item.id} style={{ flex: '0 0 clamp(320px,42vw,620px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 18 }}>
+        <article key={item.id} className="pf-card" style={{ flex: '0 0 clamp(320px,42vw,620px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 18 }}>
           <div
+            className="pf-media"
             style={{
               position: 'relative',
               aspectRatio: '16 / 9',
@@ -93,10 +95,14 @@ function CategorySection({ section, items, index }: { section: PortfolioSection;
         position: 'relative',
         padding: 'clamp(70px,10vh,120px) 0',
         background: BACKGROUNDS[index % BACKGROUNDS.length],
+        ['--card-accent' as string]: section.accent,
       }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, padding: '0 clamp(24px,6vw,60px)', textAlign: 'center' }}>
-        <span style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--accent)' }}>{section.kicker}</span>
+        <span style={{ display: 'inline-flex', alignItems: 'center', fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: section.accent }}>
+          <span className="pf-kicker-dot" aria-hidden="true" />
+          {section.kicker}
+        </span>
         <h2 style={{ margin: 0, maxWidth: '22ch', fontSize: 'clamp(32px,4.2vw,64px)', fontWeight: 700, letterSpacing: '-.04em', lineHeight: 1.04 }}>
           {section.title}
         </h2>
