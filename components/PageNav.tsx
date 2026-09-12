@@ -101,13 +101,12 @@ export default function PageNav({
         justifyContent: 'space-between',
         gap: 20,
         padding: '22px clamp(24px,6vw,60px)',
-        background: 'rgba(5,7,11,.82)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(242,244,248,.07)',
+        background: 'var(--riot-black)',
+        borderBottom: '2px solid var(--accent-ads)',
       }}
     >
       <Link href="/" style={{ fontSize: 17, fontWeight: 700, letterSpacing: '-.02em' }}>
-        MARCA<span style={{ color: 'var(--accent)' }}>.</span>
+        MARCA<span style={{ color: 'var(--accent-ads)' }}>.</span>
       </Link>
       <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: 10, letterSpacing: '.22em', textTransform: 'uppercase', color: '#8E9BB0' }}>
         <span>←</span> Back to site
