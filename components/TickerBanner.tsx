@@ -31,20 +31,9 @@ const clients: ClientMark[] = [
   },
 ];
 
-const RIOT_ACCENTS = [
-  'var(--accent-fashion)',
-  'var(--accent-product)',
-  'var(--accent-branding)',
-  'var(--accent-reels)',
-  'var(--accent-youtube)',
-  'var(--accent-ads)',
-];
-
 export default function TickerBanner() {
   const renderClients = (runId: string) =>
-    [...clients, ...clients].map((client, i) => {
-      const accent = RIOT_ACCENTS[i % RIOT_ACCENTS.length];
-      return (
+    [...clients, ...clients].map((client, i) => (
       <span key={`${runId}-${i}`} style={{ display: 'flex', alignItems: 'center', gap: 52, flexShrink: 0 }}>
         {client.logo ? (
           <span
@@ -55,9 +44,11 @@ export default function TickerBanner() {
               height: 60,
               padding: '0 26px',
               borderRadius: 14,
-              background: client.bgLight ? '#FFFFFF' : 'rgba(255, 255, 255, 0.06)',
-              border: `2px solid ${accent}`,
-              boxShadow: `0 0 18px -4px ${accent}`,
+              background: client.bgLight ? '#FFFFFF' : 'rgba(255, 255, 255, 0.08)',
+              border: client.bgLight ? '2px solid rgba(130, 175, 255, 0.8)' : '1px solid rgba(255, 255, 255, 0.16)',
+              boxShadow: client.bgLight
+                ? '0 0 18px rgba(90, 150, 255, 0.45), 0 4px 12px rgba(0, 0, 0, 0.5)'
+                : 'inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 4px 14px rgba(0, 0, 0, 0.35)',
             }}
           >
             <img
@@ -82,8 +73,9 @@ export default function TickerBanner() {
               height: 60,
               padding: '0 26px',
               borderRadius: 999,
-              background: 'rgba(255, 255, 255, 0.04)',
-              border: `2px solid ${accent}`,
+              background: 'rgba(62, 109, 255, 0.14)',
+              border: '1px solid rgba(62, 109, 255, 0.38)',
+              boxShadow: '0 0 24px rgba(62, 109, 255, 0.2)',
               boxSizing: 'border-box',
             }}
           >
@@ -95,8 +87,8 @@ export default function TickerBanner() {
                 width: 26,
                 height: 26,
                 borderRadius: '50%',
-                background: accent,
-                color: 'var(--riot-black)',
+                background: 'rgba(62, 109, 255, 0.4)',
+                color: '#9EBAFF',
                 fontSize: 15,
                 fontWeight: 700,
                 lineHeight: 1,
@@ -130,21 +122,20 @@ export default function TickerBanner() {
             {client.name}
           </span>
         )}
-        <span style={{ color: accent, fontSize: 16 }}>✦</span>
+        <span style={{ color: 'var(--accent)', opacity: 0.7, fontSize: 16 }}>✦</span>
       </span>
-      );
-    });
+    ));
 
   return (
     <div
       style={{
         position: 'relative',
         zIndex: 1,
-        borderTop: '2px solid var(--accent-ads)',
-        borderBottom: '2px solid var(--accent-ads)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
         overflow: 'hidden',
         padding: '28px 0',
-        background: 'var(--riot-black)',
+        background: 'linear-gradient(180deg, #090E1B 0%, #060911 100%)',
       }}
     >
       <div

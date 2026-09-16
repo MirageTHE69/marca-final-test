@@ -39,20 +39,24 @@ export default function Nav({ isScrolled: propIsScrolled }: NavProps) {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: isScrolled ? '16px clamp(24px, 6vw, 60px)' : '26px clamp(24px, 6vw, 60px)',
-          background: isScrolled ? 'var(--riot-black)' : 'transparent',
-          borderBottom: isScrolled ? '2px solid var(--accent-ads)' : '2px solid transparent',
+          background: isScrolled ? 'rgba(4, 6, 12, 0.75)' : 'transparent',
+          backdropFilter: isScrolled ? 'blur(16px)' : 'none',
+          WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
+          borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid transparent',
           boxShadow: isScrolled ? '0 12px 36px -8px rgba(0, 0, 0, 0.85)' : 'none',
-          transition: 'background 350ms ease, padding 350ms ease, border-color 350ms ease, box-shadow 350ms ease',
+          transition: 'background 350ms ease, backdrop-filter 350ms ease, padding 350ms ease, border-color 350ms ease, box-shadow 350ms ease',
         }}
       >
         <a
           href="#contact"
-          className="riot-pill"
+          className="btn-glass-discovery"
           style={{
             position: 'relative',
-            ['--card-accent' as string]: 'var(--accent-ads)',
-            padding: '11px 22px',
+            padding: '10px 22px',
             fontSize: '11px',
+            letterSpacing: '.18em',
+            textTransform: 'uppercase',
+            fontWeight: 600,
           }}
         >
           Discovery call <span style={{ fontSize: 14 }}>→</span>
@@ -92,7 +96,7 @@ export default function Nav({ isScrolled: propIsScrolled }: NavProps) {
             position: 'fixed',
             inset: 0,
             zIndex: 200,
-            background: 'var(--riot-black)',
+            background: 'rgba(5,7,11,.97)',
             display: 'flex',
             flexDirection: 'column',
             padding: '26px clamp(24px,6vw,60px) clamp(30px,6vh,60px)',
@@ -100,7 +104,7 @@ export default function Nav({ isScrolled: propIsScrolled }: NavProps) {
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <span style={{ fontSize: 17, fontWeight: 700, letterSpacing: '-.02em' }}>
-              MARCA<span style={{ color: 'var(--accent-ads)' }}>.</span>
+              MARCA<span style={{ color: 'var(--accent)' }}>.</span>
             </span>
             <button
               onClick={toggleMenu}
@@ -129,18 +133,17 @@ export default function Nav({ isScrolled: propIsScrolled }: NavProps) {
           >
             <nav style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {[
-                { href: '#short-form', label: 'Short Form', color: 'var(--accent-reels)' },
-                { href: '#long-form', label: 'Long Form', color: 'var(--accent-youtube)' },
-                { href: '/case-studies', label: 'Case Studies', color: 'var(--accent-ads)' },
-                { href: '/portfolio', label: 'Portfolio', italic: true, color: 'var(--accent-fashion)' },
-                { href: '#faq', label: 'FAQ', color: 'var(--accent-product)' },
-                { href: '#contact', label: 'Contact', color: 'var(--accent-branding)' },
+                { href: '#short-form', label: 'Short Form' },
+                { href: '#long-form', label: 'Long Form' },
+                { href: '/case-studies', label: 'Case Studies' },
+                { href: '/portfolio', label: 'Portfolio', italic: true },
+                { href: '#faq', label: 'FAQ' },
+                { href: '#contact', label: 'Contact' },
               ].map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={toggleMenu}
-                  className="riot-nav-link"
                   style={{
                     fontSize: 'clamp(34px,5.5vw,72px)',
                     fontWeight: item.italic ? 400 : 700,
@@ -150,8 +153,6 @@ export default function Nav({ isScrolled: propIsScrolled }: NavProps) {
                     fontStyle: item.italic ? 'italic' : undefined,
                     color: '#F2F4F8',
                     textDecoration: 'none',
-                    width: 'fit-content',
-                    ['--mark-color' as string]: item.color,
                   }}
                 >
                   {item.label}

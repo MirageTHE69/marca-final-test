@@ -80,11 +80,11 @@ export default function ShortFormSection() {
   return (
     <section
       id="short-form"
-      className="riot-black-section"
       style={{
         position: 'relative',
         zIndex: 2,
         padding: 'clamp(80px,11vh,140px) 0 clamp(70px,10vh,120px)',
+        background: 'linear-gradient(180deg, #05070B 0%, #070C18 55%, #05070B 100%)',
         ['--card-accent' as string]: 'var(--accent-reels)',
       }}
     >
@@ -93,28 +93,18 @@ export default function ShortFormSection() {
           <span className="pf-kicker-dot" aria-hidden="true" />
           Short Form
         </span>
-        <h2 data-reveal="1" className="riot-heading" style={{ margin: 0, maxWidth: '20ch', fontSize: 'clamp(48px,7.5vw,128px)' }}>
+        <h2 data-reveal="1" style={{ margin: 0, maxWidth: '20ch', fontSize: 'clamp(34px,4.6vw,76px)', fontWeight: 700, letterSpacing: '-.04em', lineHeight: 1.02 }}>
           Instagram
         </h2>
-        <p data-reveal="1" style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: '#B8BFCC' }}>
-          Content that helps you{' '}
-          <span className="riot-mark" style={{ ['--mark-color' as string]: 'var(--accent-reels)' }}>grow and sell</span>.
+        <p data-reveal="1" style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: '#A7B2C4' }}>
+          Content that helps you grow and sell.
         </p>
       </div>
 
       <ScrollRail ariaLabel="reels">
         {reels.map((reel, i) => (
-          <article
-            key={i}
-            className="polaroid"
-            style={{
-              flex: '0 0 clamp(230px,22vw,300px)',
-              scrollSnapAlign: 'center',
-              ['--tilt' as string]: `${[-3, 2, -1.5, 3, -2, 1.5][i % 6]}deg`,
-            }}
-          >
-            <span className="polaroid-tape" aria-hidden="true" />
-            <div className="polaroid-frame" style={{ aspectRatio: '9 / 16', borderRadius: 1 }}>
+          <article key={i} className="pf-card" style={{ flex: '0 0 clamp(230px,22vw,300px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div className="pf-media" style={{ position: 'relative', aspectRatio: '9 / 16', overflow: 'hidden', borderRadius: 14, background: '#0C1526', border: '1px solid rgba(242,244,248,.08)' }}>
               <MediaSlot type="video" src={reel.src} placeholder="Drop reel" sizes="300px" />
               <span
                 style={{
@@ -135,9 +125,9 @@ export default function ShortFormSection() {
                 {reel.badge}
               </span>
             </div>
-            <div className="polaroid-caption" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: '-.01em', color: 'var(--riot-ink)' }}>{reel.title}</span>
-              <span style={{ fontSize: 11, color: '#6B6459' }}>{reel.subtitle}</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <span style={{ fontSize: 15, fontWeight: 600, letterSpacing: '-.01em', color: '#F2F4F8' }}>{reel.title}</span>
+              <span style={{ fontSize: 12, color: '#8E9BB0' }}>{reel.subtitle}</span>
             </div>
           </article>
         ))}

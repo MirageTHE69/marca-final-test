@@ -44,44 +44,34 @@ export default function DesignSection() {
   return (
     <section
       id="design"
-      className="riot-cream-section"
       style={{
         position: 'relative',
         zIndex: 4,
         padding: 'clamp(80px,11vh,140px) 0 clamp(100px,14vh,160px)',
         marginBottom: 'clamp(30px, 4vh, 60px)',
-        ['--card-accent' as string]: 'var(--accent-branding)',
+        background: 'linear-gradient(180deg, #05070B 0%, #080D18 55%, #05070B 100%)',
       }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, padding: '0 clamp(24px,6vw,60px)', textAlign: 'center' }}>
-        <span data-reveal="1" style={{ display: 'inline-flex', alignItems: 'center', fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--accent-branding)', fontWeight: 700 }}>
-          <span className="pf-kicker-dot" aria-hidden="true" />
-          Design
-        </span>
-        <h2 data-reveal="1" className="riot-heading" style={{ margin: 0, maxWidth: '20ch', fontSize: 'clamp(46px,7vw,120px)' }}>
+        <span data-reveal="1" style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--accent)' }}>Design</span>
+        <h2 data-reveal="1" style={{ margin: 0, maxWidth: '20ch', fontSize: 'clamp(34px,4.6vw,76px)', fontWeight: 700, letterSpacing: '-.04em', lineHeight: 1.02 }}>
           Thumbnails
         </h2>
-        <p data-reveal="1" style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: '#4A443A' }}>
-          YouTube thumbnails designed to earn the click with{' '}
-          <span className="riot-mark" style={{ ['--mark-color' as string]: 'var(--accent-branding)' }}>bold visuals</span>, clear messaging, and instant curiosity.
+        <p data-reveal="1" style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: '#A7B2C4' }}>
+          YouTube thumbnails designed to earn the click with bold visuals, clear messaging, and instant curiosity.
         </p>
       </div>
 
       <ScrollRail ariaLabel="design work">
         {pieces.map((piece, i) => (
-          <article
-            key={i}
-            className="polaroid"
-            style={{ flex: '0 0 clamp(300px,34vw,480px)', scrollSnapAlign: 'center', ['--tilt' as string]: `${[-2, 1.5, -1, 2, -1.5, 1][i % 6]}deg` }}
-          >
-            <span className="polaroid-tape" aria-hidden="true" />
-            <div className="polaroid-frame" style={{ aspectRatio: '16 / 9', borderRadius: 1 }}>
+          <article key={i} style={{ flex: '0 0 clamp(300px,34vw,480px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 18 }}>
+            <div style={{ position: 'relative', aspectRatio: '16 / 9', overflow: 'hidden', borderRadius: 14, background: '#0C1526', border: '1px solid rgba(242,244,248,.08)' }}>
               <MediaSlot src={piece.src} alt={piece.title} placeholder="Drop image" sizes="480px" />
             </div>
-            <div className="polaroid-caption" style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <span style={{ fontSize: 10, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--accent-branding)', fontWeight: 700 }}>{piece.category}</span>
-              <h3 style={{ margin: 0, fontSize: 'clamp(16px,1.4vw,20px)', fontWeight: 700, letterSpacing: '-.02em', lineHeight: 1.2, color: 'var(--riot-ink)' }}>{piece.title}</h3>
-              <p style={{ margin: 0, fontSize: 13, lineHeight: 1.6, color: '#6B6459' }}>{piece.desc}</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <span style={{ fontSize: 10, letterSpacing: '.24em', textTransform: 'uppercase', color: '#6C7A92' }}>{piece.category}</span>
+              <h3 style={{ margin: 0, fontSize: 'clamp(18px,1.7vw,26px)', fontWeight: 600, letterSpacing: '-.025em', lineHeight: 1.15 }}>{piece.title}</h3>
+              <p style={{ margin: 0, maxWidth: '42ch', fontSize: 14, lineHeight: 1.65, color: '#8E9BB0' }}>{piece.desc}</p>
             </div>
           </article>
         ))}

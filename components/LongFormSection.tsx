@@ -53,12 +53,15 @@ export default function LongFormSection() {
   return (
     <section
       id="long-form"
-      className="riot-black-section"
       style={{
         position: 'relative',
         zIndex: 3,
         padding: 'clamp(90px,12vh,150px) 0 clamp(80px,11vh,130px)',
-        borderTop: '2px solid var(--accent-youtube)',
+        background: `
+          radial-gradient(140% 70% at 50% -10%, rgba(45, 105, 255, 0.62) 0%, rgba(26, 68, 190, 0.44) 30%, rgba(12, 28, 88, 0.22) 60%, rgba(5, 7, 11, 0) 82%),
+          radial-gradient(130% 55% at 50% 112%, rgba(28, 72, 195, 0.42) 0%, rgba(12, 28, 80, 0.28) 42%, rgba(5, 7, 11, 0.92) 80%, #05070B 100%),
+          linear-gradient(180deg, #081024 0%, #05070B 48%, #060C1C 100%)
+        `,
         ['--card-accent' as string]: 'var(--accent-youtube)',
       }}
     >
@@ -67,52 +70,46 @@ export default function LongFormSection() {
           <span className="pf-kicker-dot" aria-hidden="true" />
           Long Form
         </span>
-        <h2 data-reveal="1" className="riot-heading" style={{ margin: 0, maxWidth: '20ch', fontSize: 'clamp(50px,8vw,140px)' }}>
+        <h2 data-reveal="1" style={{ margin: 0, maxWidth: '20ch', fontSize: 'clamp(36px,4.8vw,80px)', fontWeight: 700, letterSpacing: '-.04em', lineHeight: 1.02 }}>
           YouTube
         </h2>
-        <p data-reveal="1" style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: '#B8BFCC' }}>
-          Long-form content crafted to hook viewers early,{' '}
-          <span className="riot-mark" style={{ ['--mark-color' as string]: 'var(--accent-youtube)' }}>tell compelling stories</span>, and keep them watching.
+        <p data-reveal="1" style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: '#A0B0CC' }}>
+          YouTube long-form content crafted to hook viewers early, tell compelling stories, and keep them watching.
         </p>
       </div>
 
       <ScrollRail ariaLabel="films">
         {films.map((film, i) => (
-          <article key={i} style={{ flex: '0 0 clamp(320px,42vw,620px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <div className="polaroid" style={{ ['--tilt' as string]: `${[-2, 1.5, -1, 2][i % 4]}deg` }}>
-              <span className="polaroid-tape" aria-hidden="true" />
-              <div className="polaroid-frame" style={{ aspectRatio: '16 / 9', borderRadius: 1, boxShadow: '0 24px 60px -12px rgba(0,0,0,0.85)' }}>
-                {film.src ? (
-                  <MediaSlot type="video" src={film.src} placeholder="Drop film" sizes="620px" />
-                ) : (
-                  <MediaSlot placeholder="Drop film" />
-                )}
-                {film.duration && (
-                  <span
-                    style={{
-                      position: 'absolute',
-                      bottom: 14,
-                      right: 14,
-                      padding: '6px 12px',
-                      borderRadius: 999,
-                      background: 'rgba(8,9,13,.62)',
-                      backdropFilter: 'blur(6px)',
-                      fontSize: 9,
-                      letterSpacing: '.2em',
-                      textTransform: 'uppercase',
-                      color: '#D8DEEA',
-                      pointerEvents: 'none',
-                    }}
-                  >
-                    {film.duration}
-                  </span>
-                )}
-              </div>
-              <div className="polaroid-caption" style={{ textAlign: 'left', padding: '12px 6px 16px' }}>
-                <span style={{ fontSize: 10, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--accent-youtube)', fontWeight: 700 }}>{film.category}</span>
-              </div>
+          <article key={i} className="pf-card" style={{ flex: '0 0 clamp(320px,42vw,620px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 18 }}>
+            <div className="pf-media" style={{ position: 'relative', aspectRatio: '16 / 9', overflow: 'hidden', borderRadius: 16, background: '#0C1528', border: '1px solid rgba(242,244,248,.1)', boxShadow: '0 24px 60px -12px rgba(0,0,0,0.85)' }}>
+              {film.src ? (
+                <MediaSlot type="video" src={film.src} placeholder="Drop film" sizes="620px" />
+              ) : (
+                <MediaSlot placeholder="Drop film" />
+              )}
+              {film.duration && (
+                <span
+                  style={{
+                    position: 'absolute',
+                    bottom: 14,
+                    right: 14,
+                    padding: '6px 12px',
+                    borderRadius: 999,
+                    background: 'rgba(8,9,13,.62)',
+                    backdropFilter: 'blur(6px)',
+                    fontSize: 9,
+                    letterSpacing: '.2em',
+                    textTransform: 'uppercase',
+                    color: '#D8DEEA',
+                    pointerEvents: 'none',
+                  }}
+                >
+                  {film.duration}
+                </span>
+              )}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <span style={{ fontSize: 10, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--accent)', fontWeight: 600 }}>{film.category}</span>
               <h3 style={{ margin: 0, fontSize: 'clamp(20px,1.9vw,30px)', fontWeight: 600, letterSpacing: '-.028em', lineHeight: 1.1 }}>
                 {film.title}
                 {film.titleSerif && (
