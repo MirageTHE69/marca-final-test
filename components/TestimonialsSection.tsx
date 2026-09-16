@@ -16,7 +16,12 @@ const testimonials = [
   },
 ];
 
-export default function TestimonialsSection() {
+interface TestimonialsSectionProps {
+  /** Overrides the section background — used by the /v2 jewel-tone preview. */
+  background?: string;
+}
+
+export default function TestimonialsSection({ background }: TestimonialsSectionProps = {}) {
   return (
     <section
       id="testimonials"
@@ -24,7 +29,7 @@ export default function TestimonialsSection() {
         position: 'relative',
         zIndex: 10,
         padding: 'clamp(80px,11vh,140px) clamp(24px,6vw,60px)',
-        background: 'linear-gradient(180deg, #05070B, #0A1326)',
+        background: background ?? 'linear-gradient(180deg, #05070B, #0A1326)',
       }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, textAlign: 'center' }}>
