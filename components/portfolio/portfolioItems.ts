@@ -24,8 +24,6 @@ export interface PortfolioSection {
   description: string;
   /** `mixed` — natural-width row of varied-aspect stills. `reel` — fixed 9:16 columns. `film` — fixed 16:9 columns. */
   layout: 'mixed' | 'reel' | 'film';
-  /** This category's Signal accent — a `--accent-*` custom property from globals.css. */
-  accent: string;
 }
 
 export const portfolioSections: PortfolioSection[] = [
@@ -35,7 +33,6 @@ export const portfolioSections: PortfolioSection[] = [
     title: 'Fashion Shoots',
     description: 'Editorial and bridal fashion photography built to make a brand’s visual identity unmistakable.',
     layout: 'mixed',
-    accent: 'var(--accent-fashion)',
   },
   {
     key: 'product-shoots',
@@ -43,7 +40,6 @@ export const portfolioSections: PortfolioSection[] = [
     title: 'Product Shoots',
     description: 'Product, food and lifestyle photography styled to make every SKU impossible to scroll past.',
     layout: 'mixed',
-    accent: 'var(--accent-product)',
   },
   {
     key: 'branding-packaging',
@@ -51,7 +47,6 @@ export const portfolioSections: PortfolioSection[] = [
     title: 'Branding and Packaging',
     description: 'Brand systems, labels and packaging design engineered to win shelf and feed attention.',
     layout: 'mixed',
-    accent: 'var(--accent-branding)',
   },
   {
     key: 'ad-campaigns',
@@ -59,7 +54,6 @@ export const portfolioSections: PortfolioSection[] = [
     title: 'Ad Campaigns',
     description: 'Scroll-stopping performance ads — concept to platform-native cutdown — engineered for maximum ROAS.',
     layout: 'reel',
-    accent: 'var(--accent-ads)',
   },
   {
     key: 'instagram-reels',
@@ -67,7 +61,6 @@ export const portfolioSections: PortfolioSection[] = [
     title: 'Instagram Reels',
     description: 'Organic short-form content built to grow followings, drive views, and build creator authority.',
     layout: 'reel',
-    accent: 'var(--accent-reels)',
   },
   {
     key: 'youtube-videos',
@@ -75,7 +68,6 @@ export const portfolioSections: PortfolioSection[] = [
     title: 'Youtube Videos',
     description: 'Documentary-style long-form films crafted to hook viewers early and keep them watching.',
     layout: 'film',
-    accent: 'var(--accent-youtube)',
   },
 ];
 

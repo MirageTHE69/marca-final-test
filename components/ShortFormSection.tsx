@@ -85,14 +85,10 @@ export default function ShortFormSection() {
         zIndex: 2,
         padding: 'clamp(80px,11vh,140px) 0 clamp(70px,10vh,120px)',
         background: 'linear-gradient(180deg, #05070B 0%, #070C18 55%, #05070B 100%)',
-        ['--card-accent' as string]: 'var(--accent-reels)',
       }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, padding: '0 clamp(24px,6vw,60px)', textAlign: 'center' }}>
-        <span data-reveal="1" style={{ display: 'inline-flex', alignItems: 'center', fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--accent-reels)' }}>
-          <span className="pf-kicker-dot" aria-hidden="true" />
-          Short Form
-        </span>
+        <span data-reveal="1" style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--accent)' }}>Short Form</span>
         <h2 data-reveal="1" style={{ margin: 0, maxWidth: '20ch', fontSize: 'clamp(34px,4.6vw,76px)', fontWeight: 700, letterSpacing: '-.04em', lineHeight: 1.02 }}>
           Instagram
         </h2>
@@ -103,8 +99,8 @@ export default function ShortFormSection() {
 
       <ScrollRail ariaLabel="reels">
         {reels.map((reel, i) => (
-          <article key={i} className="pf-card" style={{ flex: '0 0 clamp(230px,22vw,300px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <div className="pf-media" style={{ position: 'relative', aspectRatio: '9 / 16', overflow: 'hidden', borderRadius: 14, background: '#0C1526', border: '1px solid rgba(242,244,248,.08)' }}>
+          <article key={i} style={{ flex: '0 0 clamp(230px,22vw,300px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div style={{ position: 'relative', aspectRatio: '9 / 16', overflow: 'hidden', borderRadius: 14, background: '#0C1526', border: '1px solid rgba(242,244,248,.08)' }}>
               <MediaSlot type="video" src={reel.src} placeholder="Drop reel" sizes="300px" />
               <span
                 style={{
