@@ -19,13 +19,27 @@ export default function V2Footer() {
         </div>
 
         <div style={{ flex: '0 1 160px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <span className="v2-micro" style={{ color: 'rgba(241,238,233,.4)' }}>Services</span>
+          {[
+            { href: '#short-form', label: 'Short form' },
+            { href: '#long-form', label: 'Long form' },
+            { href: '#design', label: 'Thumbnail design' },
+            { href: '/portfolio', label: 'Logo & packaging' },
+            { href: '#packages', label: 'Photography' },
+          ].map((l) => (
+            <a key={l.href} href={l.href} style={{ fontSize: 13, color: 'rgba(241,238,233,.72)' }}>{l.label}</a>
+          ))}
+        </div>
+
+        <div style={{ flex: '0 1 160px', display: 'flex', flexDirection: 'column', gap: 10 }}>
           <span className="v2-micro" style={{ color: 'rgba(241,238,233,.4)' }}>Studio</span>
           {[
-            { href: '#work', label: 'Work' },
-            { href: '#services', label: 'Services' },
+            { href: '/portfolio', label: 'Services' },
             { href: '/case-studies', label: 'Case studies' },
-            { href: '/portfolio', label: 'Portfolio' },
-            { href: '#faq', label: 'FAQ' },
+            { href: '#process', label: 'Process' },
+            { href: '#packages', label: 'Packages' },
+            { href: '/faq', label: 'FAQ' },
+            { href: '#contact', label: 'Contact' },
           ].map((l) => (
             <a key={l.href} href={l.href} style={{ fontSize: 13, color: 'rgba(241,238,233,.72)' }}>{l.label}</a>
           ))}
@@ -54,8 +68,11 @@ export default function V2Footer() {
           borderTop: '1px solid rgba(241,238,233,.14)',
         }}
       >
-        <span className="v2-micro" style={{ color: 'rgba(241,238,233,.4)' }}>© 2026 Marca Creatives</span>
-        <span className="v2-micro" style={{ color: 'rgba(241,238,233,.4)' }}>Concept — version 2</span>
+        <span className="v2-micro" style={{ color: 'rgba(241,238,233,.4)' }}>© 2026 Marca Creatives. All rights reserved.</span>
+        <div style={{ display: 'flex', gap: 22 }}>
+          <a href="#contact" className="v2-micro" style={{ color: 'rgba(241,238,233,.4)' }}>Privacy policy</a>
+          <a href="#contact" className="v2-micro" style={{ color: 'rgba(241,238,233,.4)' }}>Terms &amp; conditions</a>
+        </div>
       </div>
     </footer>
   );

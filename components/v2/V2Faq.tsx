@@ -28,16 +28,18 @@ function AnswerBlock({ block }: { block: FaqBlock }) {
 export default function V2Faq() {
   return (
     <section id="faq" className="v2-paper" style={{ padding: 'clamp(46px,7vh,90px) clamp(18px,4vw,44px) clamp(56px,9vh,110px)' }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 20 }}>
-        <h2 className="v2-display" style={{ fontSize: 'clamp(30px,5vw,78px)' }}>
-          Questions, <span className="v2-dim-dark">answered</span>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 14 }}>
+        <span className="v2-micro" style={{ color: 'var(--c-red)' }}>FAQ</span>
+        <h2 className="v2-display" style={{ fontSize: 'clamp(28px,4.6vw,70px)', maxWidth: '20ch' }}>
+          Frequently Asked <span className="v2-dim-dark">Questions</span>
         </h2>
-        <a href="#contact" className="v2-micro" style={{ color: 'var(--c-ink)', textDecoration: 'underline', textUnderlineOffset: 5 }}>
-          Still unsure? Book a call ↗
-        </a>
+        <p style={{ margin: 0, maxWidth: '58ch', fontSize: 13.5, lineHeight: 1.7, color: 'var(--c-dim-dark)' }}>
+          Everything you need to know about how we work, what we deliver, and what to expect when partnering with
+          MARCA Creatives.
+        </p>
       </div>
 
-      <div style={{ maxWidth: 900, marginTop: 'clamp(28px,4.5vh,50px)' }}>
+      <div style={{ maxWidth: 900, margin: 'clamp(28px,4.5vh,50px) auto 0' }}>
         {faqs.map((faq) => (
           <details key={faq.question} className="v2-faq">
             <summary
@@ -78,6 +80,31 @@ export default function V2Faq() {
             </div>
           </details>
         ))}
+      </div>
+
+      {/* Closing helper block, as on the live landing page */}
+      <div
+        style={{
+          maxWidth: 900,
+          margin: 'clamp(30px,4.5vh,50px) auto 0',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+          gap: 16,
+          padding: 'clamp(26px,3vw,40px)',
+          borderRadius: 20,
+          background: 'var(--c-red)',
+          color: '#FFFFFF',
+        }}
+      >
+        <span className="v2-micro" style={{ opacity: 0.85 }}>Have a different question?</span>
+        <h3 className="v2-display" style={{ fontSize: 'clamp(19px,2vw,28px)', maxWidth: '24ch' }}>
+          Let’s talk through your vision directly on a call.
+        </h3>
+        <a href="#contact" className="v2-cta" style={{ background: '#FFFFFF', borderColor: '#FFFFFF', color: 'var(--c-red)' }}>
+          Book a free discovery call ↗
+        </a>
       </div>
     </section>
   );

@@ -30,8 +30,8 @@ export const caseStudies: CaseStudy[] = [
     title: 'Aadicura Hospital',
     href: '/case-studies/aadicura-hospital',
     logo: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_500/v1786735211/images_2_hhaqap.png',
-    beforeImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_900/v1786474990/Aadicura_hospital_1_zlrdha.png',
-    afterImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_900/v1786474990/Aadicura_hospital__1_i6uwwd.png',
+    beforeImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_900/v1786474990/Aadicura_hospital__1_i6uwwd.png',
+    afterImage: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_900/v1786474990/Aadicura_hospital_1_zlrdha.png',
     stats: [
       { value: '40K+', label: 'Instagram followers organically built' },
       { value: '54K+', label: 'YouTube subscribers' },

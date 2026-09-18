@@ -11,23 +11,43 @@ export default function V2Contact() {
         padding: 'clamp(60px,10vh,120px) clamp(18px,4vw,44px) 0',
       }}
     >
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between', gap: 'clamp(24px,4vw,60px)' }}>
-        <h2 className="v2-display" style={{ flex: '1 1 460px', fontSize: 'clamp(28px,4.2vw,64px)', maxWidth: '16ch' }}>
-          Somebody is going to tell your story this year.{' '}
-          <span style={{ color: 'var(--c-red-bright)' }}>It should be you.</span>
+      <span className="v2-micro" style={{ color: 'var(--c-red-bright)' }}>10 — Let&apos;s talk</span>
+
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'flex-end',
+          justifyContent: 'space-between',
+          gap: 'clamp(24px,4vw,60px)',
+          marginTop: 'clamp(20px,3vh,34px)',
+        }}
+      >
+        <h2 className="v2-display" style={{ flex: '1 1 520px', fontSize: 'clamp(30px,4.8vw,76px)', maxWidth: '17ch' }}>
+          Somebody is going to tell your story this year. It should be{' '}
+          <span
+            style={{
+              fontFamily: "'Instrument Serif', Georgia, serif",
+              fontStyle: 'italic',
+              fontWeight: 400,
+              textTransform: 'none',
+              color: 'var(--c-red-bright)',
+            }}
+          >
+            you.
+          </span>
         </h2>
 
-        <div style={{ flex: '0 1 320px', display: 'flex', flexDirection: 'column', gap: 18 }}>
-          <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.7, color: 'rgba(241,238,233,.68)' }}>
-            Tell us where the business is going. We&apos;ll come back with the content plan that gets it there —
-            usually within a day.
-          </p>
+        <div style={{ flex: '0 1 300px', display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
             <a href={`mailto:${site.email}`} className="v2-cta v2-cta-solid">
-              Start your project
+              Start your project ↗
             </a>
-            <a href={site.phone.href} className="v2-round" aria-label="Call the studio">↗</a>
+            <a href={site.phone.href} className="v2-cta" style={{ color: 'var(--c-paper)' }}>
+              Schedule a discovery call
+            </a>
           </div>
+          <span style={{ fontSize: 12, color: 'rgba(241,238,233,.6)' }}>Usually a reply within a day.</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             <a href={`mailto:${site.email}`} style={{ fontSize: 14, fontWeight: 600, color: 'var(--c-paper)' }}>{site.email}</a>
             <a href={site.phone.href} className="v2-micro" style={{ color: 'rgba(241,238,233,.6)' }}>{site.phone.display}</a>

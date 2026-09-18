@@ -1,10 +1,12 @@
 import MediaSlot from '@/components/MediaSlot';
 
-const tags = ['Branding', 'Short Form', 'Long Form', 'Creative Strategy'];
+/** Service names as the live site lists them in its nav and footer. */
+const tags = ['Short form', 'Long form', 'Thumbnail design', 'Logo & packaging', 'Photography'];
 
 export default function V2Hero() {
   return (
     <section
+      id="top"
       style={{
         position: 'relative',
         minHeight: 'min(88vh, 860px)',
@@ -24,7 +26,6 @@ export default function V2Hero() {
         />
       </div>
 
-      {/* Top row — positioning line on the left, the wordmark block on the right */}
       <div
         style={{
           position: 'relative',
@@ -37,36 +38,36 @@ export default function V2Hero() {
           paddingTop: 'clamp(10px,3vh,34px)',
         }}
       >
-        <div style={{ flex: '0 1 240px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <span className="v2-micro" style={{ fontSize: 12, letterSpacing: '.12em' }}>
-            Source of
-            <br />
-            bold ideas/
-          </span>
-          <p style={{ margin: 0, maxWidth: '26ch', fontSize: 12, lineHeight: 1.6, color: 'rgba(241,238,233,.62)' }}>
-            When founders stop posting into the void and start being chosen.
-          </p>
-        </div>
+        <span className="v2-micro" style={{ flex: '0 1 200px', fontSize: 11, letterSpacing: '.24em' }}>
+          Content · Film · Identity
+        </span>
 
-        <div style={{ flex: '1 1 520px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 22, textAlign: 'right' }}>
-          <h1 className="v2-display" style={{ fontSize: 'clamp(38px,6.6vw,104px)' }}>
-            Creative
-            <br />
-            Content
-            <br />
-            Studio
+        <div style={{ flex: '1 1 520px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 18, textAlign: 'right' }}>
+          <h1 className="v2-display" style={{ fontSize: 'clamp(56px,12vw,190px)', letterSpacing: '-.05em' }}>
+            Marca
           </h1>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 18, maxWidth: 460 }}>
-            <p style={{ margin: 0, fontSize: 13, lineHeight: 1.6, color: 'rgba(241,238,233,.75)' }}>
-              We turn founders into content machines that attract clients, build authority, and{' '}
-              <strong style={{ color: 'var(--c-paper)', fontWeight: 700 }}>drive revenue</strong>.
+          <span
+            style={{
+              fontFamily: "'Instrument Serif', Georgia, serif",
+              fontStyle: 'italic',
+              fontWeight: 400,
+              fontSize: 'clamp(20px,3.2vw,50px)',
+              lineHeight: 1.05,
+              color: 'var(--c-paper)',
+              marginTop: -8,
+            }}
+          >
+            Made to Make You Grow.
+          </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 18, maxWidth: 480, marginTop: 6 }}>
+            <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.65, color: 'rgba(241,238,233,.78)' }}>
+              We turn founders into content machines that attract clients, build authority, and drive revenue.
             </p>
-            <a href="#contact" className="v2-round" aria-label="Start a project">↗</a>
+            <a href="#contact" className="v2-round" aria-label="Book a discovery call">↗</a>
           </div>
         </div>
       </div>
 
-      {/* Bottom row — frosted proof cards on the left, service tags on the right */}
       <div
         style={{
           position: 'relative',
@@ -78,16 +79,15 @@ export default function V2Hero() {
           gap: 'clamp(18px,3vw,40px)',
         }}
       >
+        {/* Studio-wide results, as stated in the site's own FAQ */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-          <div className="v2-glass" style={{ minWidth: 150 }}>
-            <span className="v2-micro" style={{ color: 'rgba(241,238,233,.6)' }}>Views generated</span>
-            <div className="v2-display" style={{ fontSize: 34, marginTop: 6 }}>350M+</div>
-            <span style={{ fontSize: 11, color: 'rgba(241,238,233,.6)' }}>Across client channels</span>
+          <div className="v2-glass" style={{ minWidth: 160 }}>
+            <div className="v2-display" style={{ fontSize: 32 }}>10M+</div>
+            <span style={{ fontSize: 11, color: 'rgba(241,238,233,.62)' }}>Monthly views generated</span>
           </div>
-          <div className="v2-glass" style={{ minWidth: 150 }}>
-            <span className="v2-micro" style={{ color: 'rgba(241,238,233,.6)' }}>Built organically</span>
-            <div className="v2-display" style={{ fontSize: 34, marginTop: 6 }}>400K+</div>
-            <span style={{ fontSize: 11, color: 'rgba(241,238,233,.6)' }}>Followers &amp; subscribers</span>
+          <div className="v2-glass" style={{ minWidth: 160 }}>
+            <div className="v2-display" style={{ fontSize: 32 }}>100K</div>
+            <span style={{ fontSize: 11, color: 'rgba(241,238,233,.62)' }}>Pages grown to, from zero</span>
           </div>
         </div>
 

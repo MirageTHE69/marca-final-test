@@ -3,12 +3,14 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+/** Same destinations the live site's nav offers. */
 const links = [
-  { href: '#work', label: 'Work' },
-  { href: '#services', label: 'Services' },
-  { href: '#cases', label: 'Cases' },
-  { href: '#packages', label: 'Packages' },
+  { href: '#short-form', label: 'Short Form' },
+  { href: '#long-form', label: 'Long Form' },
+  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/portfolio', label: 'Portfolio' },
   { href: '#faq', label: 'FAQ' },
+  { href: '#contact', label: 'Contact' },
 ];
 
 export default function V2Nav() {
