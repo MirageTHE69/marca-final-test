@@ -18,10 +18,10 @@ export default function V2Hero() {
       }}
     >
       {/* Crimson-graded hero film */}
-      <div className="v2-grade" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+      <div className="v2-grade v2-grade-deep" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <MediaSlot
           type="video"
-          src="https://res.cloudinary.com/ts350ak2/video/upload/v1785482138/MARCA_WEBSITE_02_ci6tgd.mp4"
+          src="https://ik.imagekit.io/5feqwwaxb/MARCA%20WEBSITE%2001.mp4"
           placeholder="Drop hero film"
         />
       </div>

@@ -429,6 +429,17 @@ button {
   z-index: 1;
 }
 
+/* Deeper grade for full-bleed footage sitting behind type. Bright
+   source video otherwise washes out to pink and the headline loses
+   its contrast. */
+.v2-grade-deep::before {
+  background: linear-gradient(180deg, rgba(18,3,5,.58) 0%, rgba(18,3,5,.8) 100%);
+}
+
+.v2-grade-deep::after {
+  background: linear-gradient(165deg, rgba(200,16,46,.7) 0%, rgba(96,12,24,.8) 100%);
+}
+
 /* Lighter grade for artwork that has to stay legible — the case-study
    screenshots are evidence, so they keep the tint but not the wash. */
 .v2-grade-soft::before {
