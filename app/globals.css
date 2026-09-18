@@ -621,3 +621,10 @@ button {
   .v2-nav-links { display: none !important; }
   .v2-menu-btn { display: inline-flex !important; }
 }
+
+/* Only on 320px-class screens do the logo, CTA pill and menu button
+   stop fitting on one row. The pill goes there — Contact is in the
+   menu directly beside it. Mainstream phones keep the CTA. */
+@media (max-width: 350px) {
+  .v2-nav-cta { display: none !important; }
+}

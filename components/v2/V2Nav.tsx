@@ -67,7 +67,7 @@ export default function V2Nav() {
         </nav>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <a href="#contact" className="v2-cta v2-cta-solid" style={{ padding: '11px 22px', fontSize: 10 }}>
+          <a href="#contact" className="v2-cta v2-cta-solid v2-nav-cta" style={{ padding: '11px 22px', fontSize: 10 }}>
             Discovery call
           </a>
           <button

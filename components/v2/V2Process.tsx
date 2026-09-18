@@ -25,7 +25,7 @@ export default function V2Process() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(220px, 100%), 1fr))',
           gap: 'clamp(16px,2vw,28px)',
           marginTop: 'clamp(32px,5vh,58px)',
         }}

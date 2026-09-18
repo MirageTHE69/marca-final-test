@@ -25,8 +25,8 @@ function CaseCard({ story }: { story: CaseStudy }) {
         border: '1px solid rgba(241,238,233,.16)',
       }}
     >
-      {/* Title row */}
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16 }}>
+      {/* Title row — wraps so the nowrap CTA drops below on narrow cards */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           {story.logo && (
             <span
@@ -120,7 +120,7 @@ export default function V2Cases() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))',
           gap: 'clamp(16px,2vw,26px)',
           marginTop: 'clamp(30px,5vh,56px)',
         }}
