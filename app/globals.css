@@ -429,15 +429,27 @@ button {
   z-index: 1;
 }
 
-/* Deeper grade for full-bleed footage sitting behind type. Bright
-   source video otherwise washes out to pink and the headline loses
-   its contrast. */
-.v2-grade-deep::before {
-  background: linear-gradient(180deg, rgba(18,3,5,.58) 0%, rgba(18,3,5,.8) 100%);
+/* Ungraded footage — keeps the film's own colour. Only a neutral scrim
+   is laid over it, enough to hold the headline's contrast. */
+.v2-scrim {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #14100F;
 }
 
-.v2-grade-deep::after {
-  background: linear-gradient(165deg, rgba(200,16,46,.7) 0%, rgba(96,12,24,.8) 100%);
+.v2-scrim::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(10,8,8,.34) 0%, rgba(10,8,8,.52) 55%, rgba(10,8,8,.7) 100%);
+  pointer-events: none;
+}
+
+.v2-scrim > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Lighter grade for artwork that has to stay legible — the case-study

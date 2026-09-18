@@ -17,8 +17,8 @@ export default function V2Hero() {
         overflow: 'hidden',
       }}
     >
-      {/* Crimson-graded hero film */}
-      <div className="v2-grade v2-grade-deep" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+      {/* Hero film, ungraded — neutral scrim only, so the footage keeps its own colour */}
+      <div className="v2-scrim" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <MediaSlot
           type="video"
           src="https://ik.imagekit.io/5feqwwaxb/MARCA%20WEBSITE%2001.mp4"
