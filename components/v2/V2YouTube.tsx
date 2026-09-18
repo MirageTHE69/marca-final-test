@@ -57,7 +57,7 @@ export default function V2YouTube() {
             key={i}
             style={{ flex: '0 0 clamp(290px,38vw,520px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 16 }}
           >
-            <div className="v2-tile v2-grade" style={{ aspectRatio: '16 / 9' }}>
+            <div className="v2-tile v2-media" style={{ aspectRatio: '16 / 9' }}>
               <span className="v2-chip">{film.category}</span>
               <MediaSlot type="video" src={film.src} placeholder="Drop film" />
             </div>

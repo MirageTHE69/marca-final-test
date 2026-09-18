@@ -60,7 +60,7 @@ export default function V2OtherServices() {
           >
             <span className="v2-micro" style={{ color: 'var(--c-red)' }}>{s.num} · Service</span>
             <h3 className="v2-display" style={{ fontSize: 'clamp(20px,2vw,28px)' }}>{s.title}</h3>
-            <div className="v2-grade" style={{ width: '100%', aspectRatio: '4 / 3', borderRadius: 14 }}>
+            <div className="v2-media" style={{ width: '100%', aspectRatio: '4 / 3', borderRadius: 14 }}>
               <MediaSlot src={s.src} alt={s.title} placeholder="Drop image" sizes="420px" />
             </div>
             <p style={{ margin: 0, fontSize: 12.5, lineHeight: 1.65, color: 'var(--c-dim-dark)' }}>{s.tagline}</p>

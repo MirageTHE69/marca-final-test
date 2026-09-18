@@ -383,10 +383,13 @@ button {
 /* The crimson base matters even when artwork loads fine: media fades in
    over brand colour instead of a black hole, and a missing asset still
    reads as an intentional panel. */
-.v2-grade {
+/* Media frame. Artwork is shown in its own colours — no tint is laid
+   over it. The crimson panel underneath is only ever visible when an
+   asset is missing, so a failed load still reads as an intentional
+   block rather than a hole. */
+.v2-media {
   position: relative;
   overflow: hidden;
-  isolation: isolate;
   background: linear-gradient(145deg, #7A0F1E 0%, #460B13 55%, #22050A 100%);
 }
 
@@ -405,32 +408,8 @@ button {
   color: transparent;
 }
 
-.v2-grade::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: linear-gradient(180deg, rgba(26,4,6,.25) 0%, rgba(26,4,6,.55) 100%);
-  pointer-events: none;
-}
-
-.v2-grade::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  background: linear-gradient(165deg, rgba(200,16,46,.62) 0%, rgba(122,15,30,.72) 100%);
-  mix-blend-mode: color;
-  pointer-events: none;
-}
-
-.v2-grade > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Ungraded footage — keeps the film's own colour. Only a neutral scrim
-   is laid over it, enough to hold the headline's contrast. */
+/* Full-bleed footage behind type. Keeps its own colour; only a neutral
+   scrim is laid over it, enough to hold the headline's contrast. */
 .v2-scrim {
   position: relative;
   overflow: hidden;
@@ -450,16 +429,6 @@ button {
 .v2-scrim > * {
   position: relative;
   z-index: 1;
-}
-
-/* Lighter grade for artwork that has to stay legible — the case-study
-   screenshots are evidence, so they keep the tint but not the wash. */
-.v2-grade-soft::before {
-  background: linear-gradient(180deg, rgba(26,4,6,.06) 0%, rgba(26,4,6,.2) 100%);
-}
-
-.v2-grade-soft::after {
-  background: linear-gradient(165deg, rgba(200,16,46,.3) 0%, rgba(122,15,30,.36) 100%);
 }
 
 /* Small uppercase micro-label, used at panel edges. */

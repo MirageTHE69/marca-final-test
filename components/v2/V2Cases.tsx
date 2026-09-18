@@ -68,7 +68,7 @@ function CaseCard({ story }: { story: CaseStudy }) {
         {shots.map((shot) => (
           <figure key={shot.src} style={{ flex: '1 1 260px', margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
             <div
-              className="v2-grade v2-grade-soft"
+              className="v2-media"
               style={{ width: '100%', aspectRatio: SHOT_ASPECT, borderRadius: 12, border: '1px solid rgba(241,238,233,.14)' }}
             >
               <MediaSlot src={shot.src} alt={`${story.title} — ${shot.caption.toLowerCase()}`} placeholder="Drop image" sizes="(max-width: 860px) 90vw, 420px" />

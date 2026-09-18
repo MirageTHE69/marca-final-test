@@ -34,7 +34,7 @@ export default function V2Instagram() {
             key={i}
             style={{ flex: '0 0 clamp(200px,19vw,260px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 13 }}
           >
-            <div className="v2-tile v2-grade" style={{ aspectRatio: '9 / 16' }}>
+            <div className="v2-tile v2-media" style={{ aspectRatio: '9 / 16' }}>
               <span className="v2-chip">{reel.badge}</span>
               <MediaSlot type="video" src={reel.src} placeholder="Drop reel" />
             </div>

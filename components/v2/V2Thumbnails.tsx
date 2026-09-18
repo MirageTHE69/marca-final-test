@@ -58,7 +58,7 @@ export default function V2Thumbnails() {
             key={i}
             style={{ flex: '0 0 clamp(270px,32vw,440px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 16 }}
           >
-            <div className="v2-tile v2-grade v2-grade-soft" style={{ aspectRatio: '16 / 9' }}>
+            <div className="v2-tile v2-media" style={{ aspectRatio: '16 / 9' }}>
               <MediaSlot src={piece.src} alt={piece.title} placeholder="Drop image" sizes="440px" />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
