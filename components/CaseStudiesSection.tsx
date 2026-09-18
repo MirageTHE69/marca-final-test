@@ -4,12 +4,7 @@ import { useEffect, useRef } from 'react';
 import CaseStudyCard from '@/components/casestudy/CaseStudyCard';
 import { featuredCaseStudies } from '@/components/casestudy/caseStudies';
 
-interface CaseStudiesSectionProps {
-  /** Overrides the section background — used by the /v2 jewel-tone preview. */
-  background?: string;
-}
-
-export default function CaseStudiesSection({ background }: CaseStudiesSectionProps = {}) {
+export default function CaseStudiesSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -73,7 +68,7 @@ export default function CaseStudiesSection({ background }: CaseStudiesSectionPro
         position: 'relative',
         zIndex: 6,
         height: '280vh',
-        background: background ?? '#04060A',
+        background: '#04060A',
       }}
     >
       <div

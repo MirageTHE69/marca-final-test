@@ -59,12 +59,7 @@ const packages = [
   },
 ];
 
-interface PackagesSectionProps {
-  /** Overrides the section background — used by the /v2 jewel-tone preview. */
-  background?: string;
-}
-
-export default function PackagesSection({ background }: PackagesSectionProps = {}) {
+export default function PackagesSection() {
   return (
     <section
       id="packages"
@@ -72,7 +67,7 @@ export default function PackagesSection({ background }: PackagesSectionProps = {
         position: 'relative',
         zIndex: 8,
         padding: 'clamp(80px, 11vh, 140px) clamp(24px, 6vw, 60px)',
-        background: background ?? '#04060A',
+        background: '#04060A',
       }}
     >
       {/* ── Section Header ── */}

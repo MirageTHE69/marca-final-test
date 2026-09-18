@@ -76,12 +76,7 @@ const reels = [
   },
 ];
 
-interface ShortFormSectionProps {
-  /** Overrides the section background — used by the /v2 jewel-tone preview. */
-  background?: string;
-}
-
-export default function ShortFormSection({ background }: ShortFormSectionProps = {}) {
+export default function ShortFormSection() {
   return (
     <section
       id="short-form"
@@ -89,7 +84,7 @@ export default function ShortFormSection({ background }: ShortFormSectionProps =
         position: 'relative',
         zIndex: 2,
         padding: 'clamp(80px,11vh,140px) 0 clamp(70px,10vh,120px)',
-        background: background ?? 'linear-gradient(180deg, #05070B 0%, #070C18 55%, #05070B 100%)',
+        background: 'linear-gradient(180deg, #05070B 0%, #070C18 55%, #05070B 100%)',
       }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, padding: '0 clamp(24px,6vw,60px)', textAlign: 'center' }}>
