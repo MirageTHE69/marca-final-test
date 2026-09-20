@@ -1,45 +1,45 @@
-import type { Metadata } from 'next';
-import V2Nav from '@/components/v2/V2Nav';
-import V2Hero from '@/components/v2/V2Hero';
-import V2Ticker from '@/components/v2/V2Ticker';
-import V2Instagram from '@/components/v2/V2Instagram';
-import V2YouTube from '@/components/v2/V2YouTube';
-import V2Thumbnails from '@/components/v2/V2Thumbnails';
-import V2Process from '@/components/v2/V2Process';
-import V2Cases from '@/components/v2/V2Cases';
-import V2OtherServices from '@/components/v2/V2OtherServices';
-import V2Packages from '@/components/v2/V2Packages';
-import V2Testimonials from '@/components/v2/V2Testimonials';
-import V2Faq from '@/components/v2/V2Faq';
-import V2Contact from '@/components/v2/V2Contact';
-import V2Footer from '@/components/v2/V2Footer';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'MARCA Creatives — Concept v2',
-  description: 'A crimson editorial concept for the Marca Creatives landing page — the same content in a bolder visual direction.',
-};
+import { useCinemaScroll } from '@/hooks/useCinemaScroll';
+import Nav from '@/components/Nav';
+import HeroSection from '@/components/HeroSection';
+import TickerBanner from '@/components/TickerBanner';
+import ShortFormSection from '@/components/ShortFormSection';
+import LongFormSection from '@/components/LongFormSection';
+import DesignSection from '@/components/DesignSection';
+import ProcessSection from '@/components/ProcessSection';
+import CaseStudiesSection from '@/components/CaseStudiesSection';
+import PortfolioSection from '@/components/PortfolioSection';
+import PackagesSection from '@/components/PackagesSection';
+import FaqSection from '@/components/FaqSection';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import ContactSection from '@/components/ContactSection';
+import Footer from '@/components/Footer';
 
 /**
- * Section order mirrors the live landing page one-for-one, so the two
- * versions can be compared on design alone rather than on content.
+ * Version 2 — currently an exact copy of the landing page, as the
+ * starting point for tweaks. It renders the same components as `/`, so
+ * the two are identical until a section is forked to diverge.
  */
 export default function V2Page() {
+  useCinemaScroll();
+
   return (
-    <main className="v2-page">
-      <V2Nav />
-      <V2Hero />
-      <V2Ticker />
-      <V2Instagram />
-      <V2YouTube />
-      <V2Thumbnails />
-      <V2Process />
-      <V2Cases />
-      <V2OtherServices />
-      <V2Packages />
-      <V2Testimonials />
-      <V2Faq />
-      <V2Contact />
-      <V2Footer />
+    <main>
+      <Nav />
+      <HeroSection />
+      <TickerBanner />
+      <ShortFormSection />
+      <LongFormSection />
+      <DesignSection />
+      <ProcessSection />
+      <CaseStudiesSection />
+      <PortfolioSection />
+      <PackagesSection />
+      <TestimonialsSection />
+      <FaqSection />
+      <ContactSection />
+      <Footer />
     </main>
   );
 }
