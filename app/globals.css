@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=Archivo+Black&family=Instrument+Serif:ital@0;1&display=swap');
 
 :root {
   --accent: #3E6DFF;
@@ -335,4 +335,210 @@ button {
 
 .faq-item[open] .faq-icon {
   transform: rotate(45deg);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   /v2 — "Riot" theme. Same page structure as the landing page, with a
+   yellow/cream/black palette and heavy display type. Everything is
+   scoped under .riot so it can never reach the main site.
+   ══════════════════════════════════════════════════════════════════ */
+
+.riot {
+  --r-yellow: #EDE64C;
+  --r-yellow-deep: #D9D02F;
+  --r-cream: #F3F0DD;
+  --r-black: #121212;
+  --r-olive: #C6BB3C;
+  --r-blue: #A7CBE6;
+  --r-orange: #D08A2C;
+  --r-red: #E4613A;
+  --r-ink: #1A1A16;
+  --r-muted: #5E5B4E;
+
+  background: var(--r-cream);
+  color: var(--r-ink);
+  font-family: Archivo, system-ui, sans-serif;
+}
+
+/* Heavy poster display face — the reference's loudest signal. */
+.riot-display {
+  margin: 0;
+  font-family: 'Archivo Black', Archivo, system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -.03em;
+  line-height: .95;
+}
+
+.riot-cream { background: var(--r-cream); color: var(--r-ink); }
+.riot-black { background: var(--r-black); color: var(--r-cream); }
+.riot-yellow { background: var(--r-yellow); color: var(--r-black); }
+.riot-olive { background: var(--r-olive); color: var(--r-black); }
+
+/* Small coloured pill that sits inline over a headline. */
+.riot-pill {
+  display: inline-block;
+  padding: 4px 13px;
+  border-radius: 999px;
+  background: var(--pill, var(--r-yellow));
+  color: var(--r-black);
+  font-family: Archivo, system-ui, sans-serif;
+  font-size: .3em;
+  font-weight: 700;
+  letter-spacing: 0;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Rounded capsule buttons, in the reference's four colourways. */
+.riot-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 28px;
+  border-radius: 999px;
+  border: 2px solid var(--r-black);
+  background: var(--r-blue);
+  color: var(--r-black);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 260ms cubic-bezier(.16,1,.3,1), background 260ms, color 260ms;
+}
+
+.riot-btn:hover {
+  transform: translateY(-3px);
+  background: var(--r-black);
+  color: var(--r-yellow);
+}
+
+.riot-btn-yellow { background: var(--r-yellow); }
+.riot-btn-olive { background: var(--r-olive); }
+.riot-btn-cream { background: var(--r-cream); }
+
+.riot-btn-ghost {
+  background: transparent;
+  border-color: currentColor;
+}
+
+.riot-btn-ghost:hover {
+  background: var(--r-yellow);
+  border-color: var(--r-yellow);
+  color: var(--r-black);
+}
+
+/* Angled marquee band — the reference's "Break the Rules" ribbon. */
+.riot-band {
+  position: relative;
+  overflow: hidden;
+  padding: 16px 0;
+  background: var(--r-yellow);
+  border-top: 2px solid var(--r-black);
+  border-bottom: 2px solid var(--r-black);
+  transform: rotate(-1.6deg) scaleX(1.06);
+}
+
+.riot-band-track {
+  display: flex;
+  width: max-content;
+  gap: 30px;
+  animation: marca-drift 28s linear infinite;
+}
+
+/* Media frame. Artwork keeps its own colour; the panel underneath is
+   only visible where an asset is missing. */
+.riot-media {
+  position: relative;
+  overflow: hidden;
+  background: #23231C;
+  border: 2px solid var(--r-black);
+}
+
+.riot .image-placeholder {
+  background: linear-gradient(145deg, #2C2C22 0%, #17170F 100%);
+}
+
+.riot .image-placeholder-inner {
+  color: rgba(243, 240, 221, 0.5);
+}
+
+/* A missing asset should not stamp a broken glyph over the panel. */
+.riot img {
+  font-size: 0;
+  color: transparent;
+}
+
+.riot-card {
+  border: 2px solid var(--r-black);
+  border-radius: 20px;
+  transition: transform 300ms cubic-bezier(.16,1,.3,1), box-shadow 300ms;
+}
+
+.riot-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 0 -4px var(--r-black);
+}
+
+/* Rails need their arrows re-themed per surface. */
+.riot-cream .rail-arrow,
+.riot-yellow .rail-arrow,
+.riot-olive .rail-arrow {
+  border: 2px solid var(--r-black);
+  color: var(--r-black);
+}
+
+.riot-cream .rail-arrow:hover,
+.riot-yellow .rail-arrow:hover,
+.riot-olive .rail-arrow:hover {
+  background: var(--r-yellow);
+  border-color: var(--r-black);
+}
+
+.riot-black .rail-arrow {
+  border: 2px solid var(--r-cream);
+  color: var(--r-cream);
+}
+
+.riot-black .rail-arrow:hover {
+  background: var(--r-yellow);
+  border-color: var(--r-yellow);
+  color: var(--r-black);
+}
+
+/* FAQ rows use the reference's "+" disclosure. */
+.riot-faq {
+  border: 2px solid var(--r-black);
+  border-radius: 16px;
+  background: var(--r-cream);
+  overflow: hidden;
+}
+
+.riot-faq summary::-webkit-details-marker { display: none; }
+
+.riot-faq summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.riot-faq[open] {
+  background: var(--r-yellow);
+}
+
+.riot-faq[open] .riot-faq-icon {
+  transform: rotate(45deg);
+}
+
+.riot-nav-links { display: flex; }
+.riot-menu-btn { display: none; }
+
+@media (max-width: 860px) {
+  .riot-nav-links { display: none !important; }
+  .riot-menu-btn { display: inline-flex !important; }
+}
+
+@media (max-width: 360px) {
+  .riot-nav-cta { display: none !important; }
 }

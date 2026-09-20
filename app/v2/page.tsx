@@ -1,45 +1,46 @@
-'use client';
+import type { Metadata } from 'next';
+import RiotNav from '@/components/v2/RiotNav';
+import RiotHero from '@/components/v2/RiotHero';
+import RiotTicker from '@/components/v2/RiotTicker';
+import RiotShortForm from '@/components/v2/RiotShortForm';
+import RiotLongForm from '@/components/v2/RiotLongForm';
+import RiotDesign from '@/components/v2/RiotDesign';
+import RiotProcess from '@/components/v2/RiotProcess';
+import RiotCaseStudies from '@/components/v2/RiotCaseStudies';
+import RiotOtherServices from '@/components/v2/RiotOtherServices';
+import RiotPackages from '@/components/v2/RiotPackages';
+import RiotTestimonials from '@/components/v2/RiotTestimonials';
+import RiotFaq from '@/components/v2/RiotFaq';
+import RiotContact from '@/components/v2/RiotContact';
+import RiotFooter from '@/components/v2/RiotFooter';
 
-import { useCinemaScroll } from '@/hooks/useCinemaScroll';
-import Nav from '@/components/Nav';
-import HeroSection from '@/components/HeroSection';
-import TickerBanner from '@/components/TickerBanner';
-import ShortFormSection from '@/components/ShortFormSection';
-import LongFormSection from '@/components/LongFormSection';
-import DesignSection from '@/components/DesignSection';
-import ProcessSection from '@/components/ProcessSection';
-import CaseStudiesSection from '@/components/CaseStudiesSection';
-import PortfolioSection from '@/components/PortfolioSection';
-import PackagesSection from '@/components/PackagesSection';
-import FaqSection from '@/components/FaqSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import ContactSection from '@/components/ContactSection';
-import Footer from '@/components/Footer';
+export const metadata: Metadata = {
+  title: 'MARCA Creatives — v2',
+  description: 'The Marca Creatives landing page in a bold yellow/cream/black theme — same structure and content, new look.',
+};
 
 /**
- * Version 2 — currently an exact copy of the landing page, as the
- * starting point for tweaks. It renders the same components as `/`, so
- * the two are identical until a section is forked to diverge.
+ * Version 2 — the landing page's structure, section for section, in the
+ * Riot theme (yellow/cream/black, heavy display type). Content matches
+ * `/` exactly; only the styling differs.
  */
 export default function V2Page() {
-  useCinemaScroll();
-
   return (
-    <main>
-      <Nav />
-      <HeroSection />
-      <TickerBanner />
-      <ShortFormSection />
-      <LongFormSection />
-      <DesignSection />
-      <ProcessSection />
-      <CaseStudiesSection />
-      <PortfolioSection />
-      <PackagesSection />
-      <TestimonialsSection />
-      <FaqSection />
-      <ContactSection />
-      <Footer />
+    <main className="riot">
+      <RiotNav />
+      <RiotHero />
+      <RiotTicker />
+      <RiotShortForm />
+      <RiotLongForm />
+      <RiotDesign />
+      <RiotProcess />
+      <RiotCaseStudies />
+      <RiotOtherServices />
+      <RiotPackages />
+      <RiotTestimonials />
+      <RiotFaq />
+      <RiotContact />
+      <RiotFooter />
     </main>
   );
 }
