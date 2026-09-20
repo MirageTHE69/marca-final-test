@@ -31,7 +31,7 @@ export default function RiotHero() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(180deg, rgba(12,12,12,.4) 0%, rgba(12,12,12,.3) 45%, rgba(12,12,12,.78) 100%)',
+            background: 'linear-gradient(180deg, rgba(12,12,12,.46) 0%, rgba(12,12,12,.52) 45%, rgba(12,12,12,.82) 100%)',
             pointerEvents: 'none',
           }}
         />

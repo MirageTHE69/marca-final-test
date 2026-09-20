@@ -3,9 +3,13 @@
 import { useState } from 'react';
 import { faqs, type FaqBlock } from '@/content-lib/faqs';
 
+/* Answers only render on the open (yellow) row, so they need a darker
+   tone than --r-muted to stay readable against it. */
+const ANSWER_INK = 'rgba(18,18,18,.82)';
+
 function AnswerBlock({ block }: { block: FaqBlock }) {
   if (block.kind === 'p') {
-    return <p style={{ margin: '0 0 10px 0', fontSize: 14, lineHeight: 1.7, color: 'var(--r-muted)' }}>{block.text}</p>;
+    return <p style={{ margin: '0 0 10px 0', fontSize: 14, lineHeight: 1.7, color: ANSWER_INK }}>{block.text}</p>;
   }
   if (block.kind === 'list') {
     const ListTag = block.ordered ? 'ol' : 'ul';
@@ -21,7 +25,7 @@ function AnswerBlock({ block }: { block: FaqBlock }) {
     return (
       <div style={{ margin: '0 0 14px 0', display: 'flex', flexDirection: 'column', gap: 3 }}>
         <h4 style={{ margin: 0, fontSize: 14, fontWeight: 700, color: 'var(--r-ink)' }}>{block.title}</h4>
-        <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.65, color: 'var(--r-muted)' }}>{block.text}</p>
+        <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.65, color: ANSWER_INK }}>{block.text}</p>
       </div>
     );
   }
