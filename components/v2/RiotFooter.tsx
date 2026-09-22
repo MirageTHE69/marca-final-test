@@ -1,4 +1,5 @@
 import { site } from '@/content-lib/site';
+import Link from 'next/link';
 
 /** Same four columns and links as Footer. */
 export default function RiotFooter() {
@@ -31,11 +32,11 @@ export default function RiotFooter() {
         <div style={{ flex: '0 1 160px', display: 'flex', flexDirection: 'column', gap: 13 }}>
           <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'rgba(18,18,18,.6)' }}>Services</span>
           {[
-            { href: '#short-form', label: 'Short form' },
-            { href: '#long-form', label: 'Long form' },
-            { href: '#design', label: 'Thumbnail design' },
+            { href: '/#short-form', label: 'Short form' },
+            { href: '/#long-form', label: 'Long form' },
+            { href: '/#design', label: 'Thumbnail design' },
             { href: '/portfolio', label: 'Logo & packaging' },
-            { href: '#packages', label: 'Photography' },
+            { href: '/#packages', label: 'Photography' },
           ].map((link) => (
             <a key={link.href} href={link.href} style={{ fontSize: 14, color: 'var(--r-black)' }}>{link.label}</a>
           ))}
@@ -46,10 +47,10 @@ export default function RiotFooter() {
           {[
             { href: '/portfolio', label: 'Services' },
             { href: '/case-studies', label: 'Case studies' },
-            { href: '#process', label: 'Process' },
-            { href: '#packages', label: 'Packages' },
+            { href: '/#process', label: 'Process' },
+            { href: '/#packages', label: 'Packages' },
             { href: '/faq', label: 'FAQ' },
-            { href: '#contact', label: 'Contact' },
+            { href: '/#contact', label: 'Contact' },
           ].map((link) => (
             <a key={link.href} href={link.href} style={{ fontSize: 14, color: 'var(--r-black)' }}>{link.label}</a>
           ))}
@@ -82,8 +83,8 @@ export default function RiotFooter() {
       >
         <span style={{ fontSize: 11, fontWeight: 600, color: 'rgba(18,18,18,.7)' }}>© 2026 Marca Creatives. All rights reserved.</span>
         <div style={{ display: 'flex', gap: 24 }}>
-          <a href="#contact" style={{ fontSize: 11, fontWeight: 600, color: 'rgba(18,18,18,.7)' }}>Privacy policy</a>
-          <a href="#contact" style={{ fontSize: 11, fontWeight: 600, color: 'rgba(18,18,18,.7)' }}>Terms &amp; conditions</a>
+          <Link href="/#contact" style={{ fontSize: 11, fontWeight: 600, color: 'rgba(18,18,18,.7)' }}>Privacy policy</Link>
+          <Link href="/#contact" style={{ fontSize: 11, fontWeight: 600, color: 'rgba(18,18,18,.7)' }}>Terms &amp; conditions</Link>
         </div>
       </div>
     </footer>

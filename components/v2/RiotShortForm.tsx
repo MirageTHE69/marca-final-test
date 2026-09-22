@@ -20,11 +20,11 @@ const reels = [
 export default function RiotShortForm() {
   return (
     <section id="short-form" className="riot-cream" style={{ padding: 'clamp(56px,9vh,120px) 0' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, padding: '0 clamp(18px,4vw,44px)', textAlign: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '0 clamp(18px,4vw,44px)', textAlign: 'center' }}>
         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-muted)' }}>
           Short Form
         </span>
-        <h2 className="riot-display" style={{ maxWidth: '20ch', fontSize: 'clamp(40px,7vw,110px)' }}>
+        <h2 className="riot-display" style={{ maxWidth: '20ch', fontSize: 'clamp(42px,8.4vw,132px)', color: 'var(--r-h-red)' }}>
           Instagram
         </h2>
         <p style={{ margin: 0, maxWidth: '52ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: 'var(--r-muted)' }}>

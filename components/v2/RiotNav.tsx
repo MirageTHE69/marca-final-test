@@ -1,15 +1,16 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { site } from '@/content-lib/site';
 
 const links = [
-  { href: '#short-form', label: 'Short Form' },
-  { href: '#long-form', label: 'Long Form' },
+  { href: '/#short-form', label: 'Short Form' },
+  { href: '/#long-form', label: 'Long Form' },
   { href: '/case-studies', label: 'Case Studies' },
   { href: '/portfolio', label: 'Portfolio' },
-  { href: '#faq', label: 'FAQ' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#faq', label: 'FAQ' },
+  { href: '/#contact', label: 'Contact' },
 ];
 
 export default function RiotNav() {
@@ -32,9 +33,9 @@ export default function RiotNav() {
           borderBottom: '2px solid var(--r-black)',
         }}
       >
-        <a href="#top" className="riot-display" style={{ fontSize: 'clamp(18px,2vw,24px)', color: 'var(--r-black)', textDecoration: 'none' }}>
+        <Link href="/#top" className="riot-display" style={{ fontSize: 'clamp(18px,2vw,24px)', color: 'var(--r-black)', textDecoration: 'none' }}>
           Marca
-        </a>
+        </Link>
 
         <nav className="riot-nav-links" style={{ alignItems: 'center', gap: 'clamp(14px,2vw,28px)' }}>
           {links.map((l) => (
@@ -49,9 +50,9 @@ export default function RiotNav() {
         </nav>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <a href="#contact" className="riot-btn riot-nav-cta" style={{ padding: '9px 18px', fontSize: 11 }}>
+          <Link href="/#contact" className="riot-btn riot-nav-cta" style={{ padding: '9px 18px', fontSize: 11 }}>
             Discovery call
-          </a>
+          </Link>
           <button
             type="button"
             onClick={toggleMenu}

@@ -70,11 +70,11 @@ export default function RiotProcess() {
         style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(26px,4.5vh,54px)' }}
       >
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 22, padding: '0 clamp(18px,4vw,44px)' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 12 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}>
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-muted)' }}>
               03 — Process
             </span>
-            <h2 className="riot-display" style={{ fontSize: 'clamp(36px,6vw,92px)' }}>Our Process</h2>
+            <h2 className="riot-display" style={{ fontSize: 'clamp(40px,7.2vw,112px)', color: 'var(--r-h-red)' }}>Our Process</h2>
             <p style={{ margin: 0, fontSize: 'clamp(15px,1.15vw,19px)', lineHeight: 1.6, color: 'var(--r-muted)' }}>
               Done for you end to end!
             </p>

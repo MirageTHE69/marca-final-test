@@ -33,9 +33,9 @@ export default function RiotContact() {
         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-yellow)' }}>
           10 — Let&apos;s talk
         </span>
-        <h2 className="riot-display" style={{ fontSize: 'clamp(34px,6.4vw,112px)', color: 'var(--r-cream)' }}>
+        <h2 className="riot-display" style={{ fontSize: 'clamp(36px,7.2vw,124px)', color: 'var(--r-h-yellow)' }}>
           Somebody is going to tell your story this year. It should be{' '}
-          <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'var(--r-yellow)' }}>
+          <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'var(--r-cream)' }}>
             you.
           </span>
         </h2>

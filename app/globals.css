@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=Archivo+Black&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=Archivo+Black&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&display=swap');
 
 :root {
   --accent: #3E6DFF;
@@ -355,6 +355,12 @@ button {
   --r-ink: #1A1A16;
   --r-muted: #5E5B4E;
 
+  /* Heading colours. Three, rotated by section so neighbours never
+     match: red and blue for light surfaces, yellow for dark ones. */
+  --r-h-red: #D8401F;
+  --r-h-blue: #2447C9;
+  --r-h-yellow: #EDE64C;
+
   background: var(--r-cream);
   color: var(--r-ink);
   font-family: Archivo, system-ui, sans-serif;
@@ -544,4 +550,39 @@ button {
 
 @media (max-width: 360px) {
   .riot-nav-cta { display: none !important; }
+}
+
+/* ── Portfolio page: split hero with the reference's striped panel ── */
+
+.riot-stripes {
+  background: repeating-linear-gradient(90deg, #BCD3EA 0 34px, var(--r-cream) 34px 68px);
+}
+
+.riot-script {
+  font-family: 'Caveat', 'Instrument Serif', cursive;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* Circular sticker with text running around its ring. */
+@keyframes riot-spin {
+  to { transform: rotate(360deg); }
+}
+
+.riot-badge-ring {
+  animation: riot-spin 22s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .riot-badge-ring,
+  .riot-band-track { animation: none; }
+}
+
+/* Hand-drawn arrows sit either side of the callout; they only make
+   sense with room beside it. */
+.riot-doodle { display: block; }
+
+@media (max-width: 900px) {
+  .riot-doodle { display: none; }
 }

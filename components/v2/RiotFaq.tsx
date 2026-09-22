@@ -39,11 +39,11 @@ export default function RiotFaq() {
   return (
     <section id="faq" className="riot-olive" style={{ position: 'relative', padding: 'clamp(60px,10vh,140px) clamp(18px,4vw,44px)', borderTop: '2px solid var(--r-black)' }}>
       <div style={{ maxWidth: 880, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 'clamp(30px,4.5vh,50px)' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 14 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 8 }}>
           <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-black)' }}>
             FAQ
           </span>
-          <h2 className="riot-display" style={{ fontSize: 'clamp(30px,4.8vw,70px)' }}>Frequently Asked Questions</h2>
+          <h2 className="riot-display" style={{ fontSize: 'clamp(34px,5.8vw,86px)', color: 'var(--r-h-blue)' }}>Frequently Asked Questions</h2>
           <p style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: 'rgba(18,18,18,.75)' }}>
             Everything you need to know about how we work, what we deliver, and what to expect when partnering with
             MARCA Creatives.

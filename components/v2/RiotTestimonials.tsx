@@ -23,11 +23,11 @@ const testimonials = [
 export default function RiotTestimonials() {
   return (
     <section id="testimonials" className="riot-cream" style={{ padding: 'clamp(56px,9vh,120px) clamp(18px,4vw,44px)', borderTop: '2px solid var(--r-black)' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, textAlign: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, textAlign: 'center' }}>
         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-muted)' }}>
           Testimonials
         </span>
-        <h2 className="riot-display" style={{ maxWidth: '20ch', fontSize: 'clamp(34px,5.6vw,84px)' }}>
+        <h2 className="riot-display" style={{ maxWidth: '20ch', fontSize: 'clamp(36px,6.8vw,104px)', color: 'var(--r-h-red)' }}>
           What it&apos;s like to{' '}
           <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, letterSpacing: '-.01em' }}>
             work with us.

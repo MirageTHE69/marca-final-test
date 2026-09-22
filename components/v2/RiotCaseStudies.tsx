@@ -79,7 +79,7 @@ export default function RiotCaseStudies() {
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-yellow)' }}>
               Case Studies
             </span>
-            <h2 className="riot-display" style={{ fontSize: 'clamp(30px,4.4vw,66px)', color: 'var(--r-cream)' }}>
+            <h2 className="riot-display" style={{ fontSize: 'clamp(34px,5.4vw,82px)', color: 'var(--r-h-yellow)' }}>
               Proof, told as{' '}
               <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, letterSpacing: '-.01em' }}>
                 a story.

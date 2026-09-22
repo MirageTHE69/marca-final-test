@@ -58,11 +58,11 @@ const packages = [
 export default function RiotPackages() {
   return (
     <section id="packages" className="riot-black" style={{ padding: 'clamp(56px,9vh,120px) clamp(18px,4vw,44px)' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 15, textAlign: 'center', marginBottom: 'clamp(38px,6vh,68px)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, textAlign: 'center', marginBottom: 'clamp(38px,6vh,68px)' }}>
         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-yellow)' }}>
           Packages
         </span>
-        <h2 className="riot-display" style={{ fontSize: 'clamp(30px,4.6vw,70px)', maxWidth: '22ch', color: 'var(--r-cream)' }}>
+        <h2 className="riot-display" style={{ fontSize: 'clamp(32px,5.6vw,86px)', maxWidth: '22ch', color: 'var(--r-h-yellow)' }}>
           Social Media &amp; Content Production Packages
         </h2>
         <p style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.1vw,17px)', lineHeight: 1.65, color: 'rgba(243,240,221,.68)' }}>
