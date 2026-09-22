@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import RiotCaseStudyCard from './RiotCaseStudyCard';
+import RiotCaseStudyCard, { CARD_ACCENTS } from './RiotCaseStudyCard';
 import { featuredCaseStudies } from '@/components/casestudy/caseStudies';
 
 /** Same sticky horizontal-scroll deck as CaseStudiesSection. */
@@ -100,15 +100,20 @@ export default function RiotCaseStudies() {
           ref={trackRef}
           style={{ display: 'flex', gap: 'clamp(20px,2.6vw,36px)', padding: 'clamp(10px,1.5vh,20px) clamp(18px,4vw,44px)', willChange: 'transform', alignItems: 'stretch' }}
         >
-          {featuredCaseStudies.map((story) => (
-            <RiotCaseStudyCard key={story.title} story={story} />
+          {featuredCaseStudies.map((story, i) => (
+            <RiotCaseStudyCard
+              key={story.title}
+              story={story}
+              variant="deck"
+              accent={CARD_ACCENTS[i % CARD_ACCENTS.length]}
+            />
           ))}
 
           <article
             className="riot-card"
             style={{
-              flex: '0 0 clamp(330px, 60vw, 860px)',
-              width: 'clamp(330px, 60vw, 860px)',
+              flex: '0 0 clamp(300px, 52vw, 700px)',
+              width: 'clamp(300px, 52vw, 700px)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',

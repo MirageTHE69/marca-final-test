@@ -552,6 +552,29 @@ button {
   .riot-nav-cta { display: none !important; }
 }
 
+/* Long-form case study pages keep their bespoke layout; this puts their
+   headings on the theme's display face without touching each one. */
+.riot-longform h1,
+.riot-longform h2,
+.riot-longform h3 {
+  font-family: 'Bricolage Grotesque', 'Archivo Black', Archivo, system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -.03em;
+}
+
+/* Case study card: landscape two-column — info left, before/after
+   right — collapsing to one column when there isn't room. */
+.riot-case {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 820px) {
+  .riot-case {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    align-items: stretch;
+  }
+}
+
 /* ── Portfolio page: split hero with the reference's striped panel ── */
 
 .riot-stripes {

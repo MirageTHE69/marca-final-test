@@ -1,8 +1,28 @@
+import Link from 'next/link';
 import MediaSlot from '@/components/MediaSlot';
 import type { CaseStudy } from '@/components/casestudy/caseStudies';
 
-/** Riot-themed twin of CaseStudyCard — same content, same before/after pair. */
-export default function RiotCaseStudyCard({ story }: { story: CaseStudy }) {
+/** Before/after screenshots are all 1723×913 — lock the frames to that. */
+const SHOT_ASPECT = '1723 / 913';
+
+export const CARD_ACCENTS = ['var(--r-yellow)', 'var(--r-blue)', 'var(--r-orange)'] as const;
+
+interface Props {
+  story: CaseStudy;
+  /** Tints the logo ring, shot labels and CTA. */
+  accent?: string;
+  /**
+   * `deck` — fixed width for the landing page's horizontal rail.
+   * `list` — full width, for the case studies index.
+   */
+  variant?: 'deck' | 'list';
+}
+
+/**
+ * Landscape card: identity and numbers on the left, the before/after
+ * pair on the right. Collapses to a single column under ~820px.
+ */
+export default function RiotCaseStudyCard({ story, accent = 'var(--r-yellow)', variant = 'list' }: Props) {
   const shots = story.beforeImage
     ? [
         { src: story.beforeImage, caption: 'Before' },
@@ -10,25 +30,26 @@ export default function RiotCaseStudyCard({ story }: { story: CaseStudy }) {
       ]
     : [{ src: story.afterImage, caption: 'After' }];
 
+  const deck = variant === 'deck';
+
   return (
     <article
-      className="riot-card"
+      className="riot-card riot-case"
       style={{
-        flex: '0 0 clamp(330px, 60vw, 860px)',
-        width: 'clamp(330px, 60vw, 860px)',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        gap: 'clamp(13px,1.7vh,20px)',
-        padding: 'clamp(20px,2.2vw,32px)',
+        flex: deck ? '0 0 clamp(300px, 82vw, 1020px)' : undefined,
+        width: deck ? 'clamp(300px, 82vw, 1020px)' : '100%',
+        display: 'grid',
+        gap: 'clamp(18px,2.4vw,34px)',
+        padding: 'clamp(18px,2.2vw,32px)',
         background: 'var(--r-cream)',
         color: 'var(--r-ink)',
         boxSizing: 'border-box',
+        scrollSnapAlign: 'center',
       }}
     >
-      {/* Title + CTA */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 14, flexShrink: 0 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 13 }}>
+      {/* ── Left: identity, numbers, copy ── */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,1.6vh,18px)', minWidth: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           {story.logo && (
             <span
               style={{
@@ -36,75 +57,94 @@ export default function RiotCaseStudyCard({ story }: { story: CaseStudy }) {
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexShrink: 0,
-                width: 'clamp(46px,4.6vw,62px)',
-                height: 'clamp(46px,4.6vw,62px)',
+                width: 'clamp(44px,4.2vw,58px)',
+                height: 'clamp(44px,4.2vw,58px)',
                 borderRadius: 999,
                 overflow: 'hidden',
                 background: '#FFFFFF',
                 border: '2px solid var(--r-black)',
+                boxShadow: `0 0 0 4px ${accent}`,
               }}
             >
-              <span style={{ position: 'relative', width: '72%', height: '72%' }}>
-                <MediaSlot src={story.logo} alt={`${story.title} logo`} placeholder="Logo" sizes="62px" fit="contain" />
+              <span style={{ position: 'relative', width: '70%', height: '70%' }}>
+                <MediaSlot src={story.logo} alt={`${story.title} logo`} placeholder="Logo" sizes="60px" fit="contain" />
               </span>
             </span>
           )}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-            <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--r-muted)' }}>
-              {story.category}&nbsp;·&nbsp;{story.year}
-            </span>
-            <h3 className="riot-display" style={{ fontSize: 'clamp(20px,1.9vw,30px)' }}>{story.title}</h3>
-          </div>
+          <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--r-muted)' }}>
+            {story.category}
+            <br />
+            {story.year}
+          </span>
         </div>
+
+        <h3 className="riot-display" style={{ fontSize: 'clamp(24px,2.6vw,40px)' }}>{story.title}</h3>
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(12px,1.6vw,24px)' }}>
+          {story.stats.map((stat, i) => (
+            <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 1, minWidth: 0 }}>
+              {stat.value && (
+                <span className="riot-display" style={{ fontSize: 'clamp(20px,2vw,30px)', color: 'var(--r-h-red)' }}>{stat.value}</span>
+              )}
+              <span style={{ fontSize: 11.5, lineHeight: 1.4, color: 'var(--r-muted)', maxWidth: '18ch' }}>{stat.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingTop: 12, borderTop: '2px solid var(--r-black)' }}>
+          {story.descriptions.slice(0, deck ? 1 : 2).map((d, i) => (
+            <p key={i} style={{ margin: 0, fontSize: 'clamp(12px,.92vw,13.5px)', lineHeight: 1.6, color: 'var(--r-muted)' }}>{d}</p>
+          ))}
+        </div>
+
         {story.href && (
-          <a href={story.href} className="riot-btn" style={{ padding: '9px 18px', fontSize: 10 }}>
+          <Link
+            href={story.href}
+            className="riot-btn"
+            style={{ alignSelf: 'flex-start', marginTop: 'auto', padding: '11px 22px', fontSize: 11, background: accent }}
+          >
             Read case study →
-          </a>
+          </Link>
         )}
       </div>
 
-      {/* Before / after */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px,1.3vw,18px)', flex: '1 1 auto', minHeight: 0 }}>
+      {/* ── Right: the before / after pair ── */}
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(10px,1.4vh,16px)', minWidth: 0 }}>
         {shots.map((shot) => (
-          <figure key={shot.src} style={{ flex: '1 1 240px', minWidth: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 7 }}>
-            <div className="riot-media" style={{ width: '100%', aspectRatio: '1723 / 913', borderRadius: 10, background: '#FFFFFF' }}>
+          <figure key={shot.src} style={{ margin: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <div
+              className="riot-media"
+              style={{ width: '100%', aspectRatio: SHOT_ASPECT, borderRadius: 12, background: '#FFFFFF' }}
+            >
               <MediaSlot
                 src={shot.src}
                 alt={`${story.title} — ${shot.caption.toLowerCase()}`}
                 placeholder="Drop image"
-                sizes="(max-width: 860px) 90vw, 420px"
+                sizes="(max-width: 820px) 90vw, 520px"
                 fit="contain"
               />
+              <span
+                style={{
+                  position: 'absolute',
+                  top: 8,
+                  left: 8,
+                  zIndex: 4,
+                  padding: '4px 11px',
+                  borderRadius: 999,
+                  background: shot.caption === 'After' ? accent : 'var(--r-cream)',
+                  border: '2px solid var(--r-black)',
+                  fontSize: 9,
+                  fontWeight: 700,
+                  letterSpacing: '.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--r-black)',
+                  pointerEvents: 'none',
+                }}
+              >
+                {shot.caption}
+              </span>
             </div>
-            <figcaption
-              style={{
-                fontSize: 10,
-                fontWeight: 700,
-                letterSpacing: '.18em',
-                textTransform: 'uppercase',
-                color: shot.caption === 'After' ? 'var(--r-black)' : 'var(--r-muted)',
-              }}
-            >
-              {shot.caption}
-            </figcaption>
           </figure>
-        ))}
-      </div>
-
-      {/* Stats */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flexShrink: 0 }}>
-        {story.stats.map((stat, i) => (
-          <p key={i} style={{ margin: 0, fontSize: 'clamp(13px,1.05vw,16px)', lineHeight: 1.3, letterSpacing: '-.01em' }}>
-            {stat.value && <span className="riot-display" style={{ fontSize: '1.05em' }}>{stat.value} </span>}
-            {stat.label}
-          </p>
-        ))}
-      </div>
-
-      {/* Descriptions */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingTop: 'clamp(9px,1.2vh,14px)', borderTop: '2px solid var(--r-black)', flexShrink: 0 }}>
-        {story.descriptions.map((d, i) => (
-          <p key={i} style={{ margin: 0, fontSize: 'clamp(11.5px,.9vw,13.5px)', lineHeight: 1.55, color: 'var(--r-muted)' }}>{d}</p>
         ))}
       </div>
     </article>
