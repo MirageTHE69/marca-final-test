@@ -18,7 +18,7 @@ export default function CaseStudiesPage() {
 
       {/* Hero */}
       <section
-        className="riot-stripes"
+        className="riot-black"
         style={{
           position: 'relative',
           display: 'flex',
@@ -26,14 +26,13 @@ export default function CaseStudiesPage() {
           alignItems: 'center',
           gap: 14,
           padding: 'clamp(54px,9vh,120px) clamp(18px,4vw,44px)',
-          borderBottom: '2px solid var(--r-black)',
           textAlign: 'center',
         }}
       >
-        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-muted)' }}>
+        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-yellow)' }}>
           Case Studies
         </span>
-        <h1 className="riot-display" style={{ maxWidth: '14ch', fontSize: 'clamp(48px,9.4vw,168px)', color: 'var(--r-h-red)' }}>
+        <h1 className="riot-display" style={{ maxWidth: '14ch', fontSize: 'clamp(48px,9.4vw,168px)', color: 'var(--r-h-yellow)' }}>
           Proof, told as{' '}
           <span
             style={{
@@ -41,13 +40,13 @@ export default function CaseStudiesPage() {
               fontStyle: 'italic',
               fontWeight: 400,
               textTransform: 'none',
-              color: 'var(--r-ink)',
+              color: 'var(--r-cream)',
             }}
           >
             a story.
           </span>
         </h1>
-        <p style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: 'var(--r-ink)' }}>
+        <p style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: 'rgba(224,225,207,.72)' }}>
           Every brand here started somewhere quieter. These are the accounts we built, the numbers behind them, and the
           content strategy that got them there.
         </p>
@@ -55,21 +54,26 @@ export default function CaseStudiesPage() {
 
       {/* The deck */}
       <section
-        className="riot-cream"
+        className="riot-black"
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 'clamp(22px,3vw,40px)',
-          maxWidth: 1240,
-          width: '100%',
-          margin: '0 auto',
           padding: 'clamp(46px,7vh,90px) clamp(18px,4vw,44px) clamp(56px,9vh,110px)',
           boxSizing: 'border-box',
         }}
       >
-        {caseStudies.map((story, i) => (
-          <RiotCaseStudyCard key={story.title} story={story} accent={CARD_ACCENTS[i % CARD_ACCENTS.length]} />
-        ))}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 'clamp(22px,3vw,40px)',
+            maxWidth: 1240,
+            width: '100%',
+            margin: '0 auto',
+          }}
+        >
+          {caseStudies.map((story, i) => (
+            <RiotCaseStudyCard key={story.title} story={story} accent={CARD_ACCENTS[i % CARD_ACCENTS.length]} />
+          ))}
+        </div>
       </section>
 
       {/* Closing */}
@@ -81,7 +85,7 @@ export default function CaseStudiesPage() {
           alignItems: 'center',
           gap: 22,
           padding: 'clamp(70px,11vh,130px) clamp(18px,4vw,44px)',
-          borderTop: '2px solid var(--r-black)',
+          borderTop: '2px solid rgba(224,225,207,.16)',
           textAlign: 'center',
         }}
       >

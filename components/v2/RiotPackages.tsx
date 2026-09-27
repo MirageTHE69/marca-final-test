@@ -100,7 +100,7 @@ export default function RiotPackages() {
               <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase' }}>
                 {pkg.num} · {pkg.subtitle}
               </span>
-              <h3 className="riot-display" style={{ fontSize: 'clamp(24px,2.2vw,32px)' }}>{pkg.name}</h3>
+              <h3 className="riot-display" style={{ fontSize: 'clamp(29px,3vw,44px)', lineHeight: .98 }}>{pkg.name}</h3>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14, flex: '1 1 auto', padding: 'clamp(22px,2.8vh,32px) clamp(20px,2.4vw,32px) clamp(26px,3.2vh,38px)' }}>

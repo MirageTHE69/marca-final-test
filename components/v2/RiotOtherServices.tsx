@@ -84,7 +84,7 @@ function ServiceCard({ service, onBook }: { service: ServiceItem; onBook: () => 
         <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase' }}>
           {service.num} · Service
         </span>
-        <h3 className="riot-display" style={{ fontSize: 'clamp(20px,1.9vw,28px)' }}>{service.title}</h3>
+        <h3 className="riot-display" style={{ fontSize: 'clamp(25px,2.7vw,40px)', lineHeight: .98 }}>{service.title}</h3>
         <p style={{ margin: 0, fontSize: 'clamp(12px,.95vw,14px)', lineHeight: 1.6, color: 'rgba(18,18,18,.78)' }}>
           {service.tagline}
         </p>
