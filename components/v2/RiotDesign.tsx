@@ -66,8 +66,8 @@ export default function RiotDesign() {
               <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(18,18,18,.65)' }}>
                 {piece.category}
               </span>
-              <h3 className="riot-display" style={{ fontSize: 'clamp(18px,1.8vw,26px)' }}>{piece.title}</h3>
-              <p style={{ margin: 0, maxWidth: '42ch', fontSize: 14, lineHeight: 1.6, color: 'rgba(18,18,18,.7)' }}>{piece.desc}</p>
+              <h3 className="riot-display" style={{ fontSize: 'clamp(21px,2.1vw,30px)' }}>{piece.title}</h3>
+              <p style={{ margin: 0, maxWidth: '42ch', fontSize: 'clamp(14px,1.08vw,16px)', fontWeight: 500, lineHeight: 1.6, color: 'rgba(18,18,18,.78)' }}>{piece.desc}</p>
             </div>
           </article>
         ))}

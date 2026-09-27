@@ -302,7 +302,7 @@ const inputStyle = {
   padding: '13px 15px',
   border: '2px solid var(--r-black)',
   borderRadius: 10,
-  background: '#FFFFFF',
+  background: '#EDEEE2',
   color: 'var(--r-ink)',
   fontFamily: 'inherit',
   fontSize: 14,

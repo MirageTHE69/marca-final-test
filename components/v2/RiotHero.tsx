@@ -64,7 +64,7 @@ export default function RiotHero() {
           padding: 'clamp(20px,4vh,40px) 0',
         }}
       >
-        <h1 className="riot-display" style={{ fontSize: 'clamp(52px,12vw,180px)', color: 'var(--r-cream)' }}>
+        <h1 className="riot-display" style={{ fontSize: 'clamp(62px,15.5vw,248px)', letterSpacing: '-.055em', color: 'var(--r-cream)' }}>
           MARCA
         </h1>
         <span
@@ -72,7 +72,7 @@ export default function RiotHero() {
             fontFamily: "'Instrument Serif', Georgia, serif",
             fontStyle: 'italic',
             fontWeight: 400,
-            fontSize: 'clamp(20px,4.6vw,68px)',
+            fontSize: 'clamp(26px,6vw,96px)',
             lineHeight: 1.05,
             color: 'var(--r-yellow)',
           }}

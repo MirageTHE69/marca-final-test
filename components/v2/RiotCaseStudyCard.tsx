@@ -61,7 +61,7 @@ export default function RiotCaseStudyCard({ story, accent = 'var(--r-yellow)', v
                 height: 'clamp(44px,4.2vw,58px)',
                 borderRadius: 999,
                 overflow: 'hidden',
-                background: '#FFFFFF',
+                background: 'var(--r-cream)',
                 border: '2px solid var(--r-black)',
                 boxShadow: `0 0 0 4px ${accent}`,
               }}
@@ -114,7 +114,7 @@ export default function RiotCaseStudyCard({ story, accent = 'var(--r-yellow)', v
           <figure key={shot.src} style={{ margin: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
             <div
               className="riot-media"
-              style={{ width: '100%', aspectRatio: SHOT_ASPECT, borderRadius: 12, background: '#FFFFFF' }}
+              style={{ width: '100%', aspectRatio: SHOT_ASPECT, borderRadius: 12, background: 'var(--r-cream)' }}
             >
               <MediaSlot
                 src={shot.src}

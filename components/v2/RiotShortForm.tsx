@@ -59,8 +59,8 @@ export default function RiotShortForm() {
               </span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-              <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: '-.01em', color: 'var(--r-ink)' }}>{reel.title}</span>
-              <span style={{ fontSize: 12, color: 'var(--r-muted)' }}>{reel.subtitle}</span>
+              <span style={{ fontSize: 'clamp(16px,1.25vw,19px)', fontWeight: 800, letterSpacing: '-.015em', lineHeight: 1.25, color: 'var(--r-ink)' }}>{reel.title}</span>
+              <span style={{ fontSize: 'clamp(13px,1.02vw,15px)', fontWeight: 600, color: 'var(--r-muted)' }}>{reel.subtitle}</span>
             </div>
           </article>
         ))}

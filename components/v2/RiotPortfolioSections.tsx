@@ -24,8 +24,8 @@ type Theme = (typeof THEMES)[number];
 function Caption({ item, theme }: { item: PortfolioItem; theme: Theme }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-      <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: '-.01em', color: theme.caption }}>{item.title}</span>
-      <span style={{ fontSize: 12, color: theme.text }}>{item.label}</span>
+      <span style={{ fontSize: 'clamp(16px,1.25vw,19px)', fontWeight: 800, letterSpacing: '-.015em', lineHeight: 1.25, color: theme.caption }}>{item.title}</span>
+      <span style={{ fontSize: 'clamp(13px,1.02vw,15px)', fontWeight: 600, color: theme.text }}>{item.label}</span>
     </div>
   );
 }

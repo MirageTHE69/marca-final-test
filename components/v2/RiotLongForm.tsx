@@ -65,11 +65,11 @@ export default function RiotLongForm() {
               <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--r-yellow)' }}>
                 {film.category}
               </span>
-              <h3 style={{ margin: 0, fontSize: 'clamp(18px,1.8vw,27px)', fontWeight: 700, letterSpacing: '-.025em', lineHeight: 1.15, color: 'var(--r-cream)' }}>
+              <h3 style={{ margin: 0, fontSize: 'clamp(21px,2.1vw,31px)', fontWeight: 800, letterSpacing: '-.025em', lineHeight: 1.15, color: 'var(--r-cream)' }}>
                 {film.title}
                 <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 }}>{film.titleSerif}</span>
               </h3>
-              <p style={{ margin: 0, maxWidth: '46ch', fontSize: 14, lineHeight: 1.65, color: 'rgba(243,240,221,.62)' }}>{film.desc}</p>
+              <p style={{ margin: 0, maxWidth: '46ch', fontSize: 'clamp(14px,1.08vw,16px)', fontWeight: 500, lineHeight: 1.6, color: 'rgba(224,225,207,.75)' }}>{film.desc}</p>
             </div>
           </article>
         ))}

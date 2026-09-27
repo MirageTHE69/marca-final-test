@@ -33,7 +33,7 @@ export default function CaseStudiesPage() {
         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-muted)' }}>
           Case Studies
         </span>
-        <h1 className="riot-display" style={{ maxWidth: '16ch', fontSize: 'clamp(40px,7vw,116px)', color: 'var(--r-h-red)' }}>
+        <h1 className="riot-display" style={{ maxWidth: '14ch', fontSize: 'clamp(48px,9.4vw,168px)', color: 'var(--r-h-red)' }}>
           Proof, told as{' '}
           <span
             style={{
