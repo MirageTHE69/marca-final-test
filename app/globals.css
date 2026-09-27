@@ -491,6 +491,15 @@ button {
   box-shadow: 0 16px 0 -4px var(--r-black);
 }
 
+/* The dark colourway would lose its outline against a dark section. */
+.riot-card-invert {
+  border-color: var(--r-cream);
+}
+
+.riot-card-invert:hover {
+  box-shadow: 0 16px 0 -4px var(--r-cream);
+}
+
 /* Rails need their arrows re-themed per surface. */
 .riot-cream .rail-arrow,
 .riot-yellow .rail-arrow,

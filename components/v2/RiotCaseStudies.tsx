@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import RiotCaseStudyCard, { CARD_ACCENTS } from './RiotCaseStudyCard';
+import RiotCaseStudyCard from './RiotCaseStudyCard';
 import { featuredCaseStudies } from '@/components/casestudy/caseStudies';
 
 /**
@@ -82,7 +82,7 @@ export default function RiotCaseStudies() {
             className="riot-stack-item riot-reveal"
             style={{ top: `calc(var(--riot-stack-top) + ${i * 14}px)`, zIndex: i + 1 }}
           >
-            <RiotCaseStudyCard story={story} accent={CARD_ACCENTS[i % CARD_ACCENTS.length]} />
+            <RiotCaseStudyCard story={story} index={i} />
           </div>
         ))}
 

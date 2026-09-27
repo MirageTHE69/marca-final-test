@@ -1,4 +1,3 @@
-import MediaSlot from '@/components/MediaSlot';
 import { portfolioSections } from '@/components/portfolio/portfolioItems';
 
 /** Rotating sticker, text running around the ring. */
@@ -43,72 +42,77 @@ function Badge() {
 export default function RiotPortfolioHero() {
   return (
     <>
+      {/* Type-only hero — the work below carries the pictures. */}
       <section
+        className="riot-stripes"
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(440px, 100%), 1fr))',
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          gap: 'clamp(12px,2vh,20px)',
+          minHeight: 'clamp(460px, 76vh, 860px)',
+          padding: 'clamp(84px,11vh,150px) clamp(20px,5vw,72px) clamp(52px,8vh,100px)',
           borderBottom: '2px solid var(--r-black)',
         }}
       >
-        {/* Left — the film, in its own colours */}
-        <div style={{ position: 'relative', minHeight: 'clamp(320px, 62vh, 700px)', overflow: 'hidden', background: 'var(--r-black)' }}>
-          <MediaSlot type="video" src="https://ik.imagekit.io/5feqwwaxb/MARCA%20WEBSITE%2001.mp4" placeholder="Drop film" />
-        </div>
+        <Badge />
 
-        {/* Right — striped panel */}
-        <div
-          className="riot-stripes"
+        <span className="riot-script" style={{ fontSize: 'clamp(24px,2.6vw,38px)', color: 'var(--r-ink)' }}>
+          content · film · identity
+        </span>
+
+        <span
+          className="riot-display"
           style={{
-            position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            gap: 'clamp(14px,2.2vh,22px)',
-            padding: 'clamp(40px,7vh,84px) clamp(22px,4.5vw,64px)',
-            borderLeft: '2px solid var(--r-black)',
+            display: 'block',
+            width: '100%',
+            fontSize: 'clamp(66px,16.5vw,290px)',
+            color: 'var(--r-h-red)',
+            letterSpacing: '-.055em',
+            lineHeight: .82,
           }}
         >
-          <Badge />
+          portfolio
+        </span>
 
-          <span
-            className="riot-display"
-            style={{ fontSize: 'clamp(44px,6.6vw,96px)', color: 'var(--r-h-red)', letterSpacing: '-.05em', lineHeight: .85 }}
-          >
-            portfolio
-          </span>
+        <h1
+          style={{
+            margin: 0,
+            maxWidth: '16ch',
+            fontFamily: "'Instrument Serif', Georgia, serif",
+            fontWeight: 400,
+            fontSize: 'clamp(38px,6.4vw,104px)',
+            lineHeight: .98,
+            letterSpacing: '-.02em',
+            color: 'var(--r-ink)',
+          }}
+        >
+          Everything we have made.
+        </h1>
 
-          <span className="riot-script" style={{ fontSize: 'clamp(22px,2.2vw,30px)', color: 'var(--r-ink)', marginTop: 6 }}>
-            content · film · identity
-          </span>
+        <p
+          style={{
+            margin: 0,
+            maxWidth: '52ch',
+            fontSize: 'clamp(15px,1.35vw,21px)',
+            lineHeight: 1.6,
+            color: 'var(--r-ink)',
+          }}
+        >
+          Fashion shoots, product shoots, branding, ad campaigns, reels and films — organised by the kind of work you
+          came to see.
+        </p>
 
-          <h1
-            style={{
-              margin: 0,
-              maxWidth: '14ch',
-              fontFamily: "'Instrument Serif', Georgia, serif",
-              fontWeight: 400,
-              fontSize: 'clamp(36px,4.8vw,72px)',
-              lineHeight: 1,
-              letterSpacing: '-.02em',
-              color: 'var(--r-ink)',
-            }}
-          >
-            Everything we have made.
-          </h1>
-
-          <p style={{ margin: 0, maxWidth: '44ch', fontSize: 'clamp(14px,1.1vw,16px)', lineHeight: 1.6, color: 'var(--r-ink)' }}>
-            Fashion shoots, product shoots, branding, ad campaigns, reels and films — organised by the kind of work you
-            came to see.
-          </p>
-
-          <a
-            href="#fashion-shoots"
-            className="riot-btn"
-            style={{ alignSelf: 'flex-start', background: 'var(--r-h-red)', color: '#FFFFFF', marginTop: 6 }}
-          >
-            Explore the work ↓
-          </a>
-        </div>
+        <a
+          href="#fashion-shoots"
+          className="riot-btn"
+          style={{ background: 'var(--r-h-red)', color: '#FFFFFF', marginTop: 'clamp(6px,1.4vh,14px)', padding: '16px 32px', fontSize: 13 }}
+        >
+          Explore the work ↓
+        </a>
       </section>
 
       {/* Category ticker */}

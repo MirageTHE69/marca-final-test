@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import RiotNav from '@/components/v2/RiotNav';
 import RiotFooter from '@/components/v2/RiotFooter';
-import RiotCaseStudyCard, { CARD_ACCENTS } from '@/components/v2/RiotCaseStudyCard';
+import RiotCaseStudyCard from '@/components/v2/RiotCaseStudyCard';
 import { caseStudies } from '@/components/casestudy/caseStudies';
 
 export const metadata: Metadata = {
@@ -71,7 +71,7 @@ export default function CaseStudiesPage() {
           }}
         >
           {caseStudies.map((story, i) => (
-            <RiotCaseStudyCard key={story.title} story={story} accent={CARD_ACCENTS[i % CARD_ACCENTS.length]} />
+            <RiotCaseStudyCard key={story.title} story={story} index={i} />
           ))}
         </div>
       </section>
