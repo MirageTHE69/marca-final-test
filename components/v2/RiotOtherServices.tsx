@@ -199,11 +199,11 @@ export default function RiotOtherServices() {
           margin: '0 auto clamp(38px,6vh,64px)',
         }}
       >
-        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-muted)' }}>
+        <span className="riot-kicker">
           Other Services
         </span>
         <h2 className="riot-display" style={{ fontSize: 'clamp(38px,6.8vw,104px)', color: 'var(--r-h-blue)' }}>Other Services</h2>
-        <p style={{ margin: 0, maxWidth: '68ch', fontSize: 'clamp(14px,1.1vw,17px)', lineHeight: 1.65, color: 'var(--r-muted)' }}>
+        <p className="riot-lede" style={{ maxWidth: '68ch' }}>
           From photoshoots and ad campaigns to packaging and creative design, we offer end to end creative solutions that
           bring your brand to life and create a strong, consistent, and memorable presence across every touchpoint.
         </p>

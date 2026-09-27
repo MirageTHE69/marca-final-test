@@ -44,13 +44,13 @@ export default function RiotLongForm() {
   return (
     <section id="long-form" className="riot-black" style={{ padding: 'clamp(56px,9vh,120px) 0' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '0 clamp(18px,4vw,44px)', textAlign: 'center' }}>
-        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-yellow)' }}>
+        <span className="riot-kicker">
           Long Form
         </span>
         <h2 className="riot-display" style={{ maxWidth: '20ch', fontSize: 'clamp(44px,8.6vw,140px)', color: 'var(--r-h-yellow)' }}>
           YouTube
         </h2>
-        <p style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: 'rgba(243,240,221,.7)' }}>
+        <p className="riot-lede" style={{ maxWidth: '58ch' }}>
           YouTube long-form content crafted to hook viewers early, tell compelling stories, and keep them watching.
         </p>
       </div>

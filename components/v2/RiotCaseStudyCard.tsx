@@ -37,13 +37,12 @@ export const CARD_THEMES = [
     accentInk: 'var(--r-black)',
   },
   {
-    surface: 'var(--r-black)',
-    ink: 'var(--r-cream)',
-    muted: 'rgba(224,225,207,.7)',
-    stat: 'var(--r-yellow)',
+    surface: 'var(--r-red)',
+    ink: 'var(--r-black)',
+    muted: 'rgba(18,18,18,.74)',
+    stat: 'var(--r-black)',
     accent: 'var(--r-yellow)',
     accentInk: 'var(--r-black)',
-    invert: true,
   },
   {
     surface: 'var(--r-orange)',
@@ -80,7 +79,6 @@ interface Props {
  */
 export default function RiotCaseStudyCard({ story, index = 0, variant = 'list' }: Props) {
   const t = CARD_THEMES[index % CARD_THEMES.length];
-  const invert = 'invert' in t && t.invert;
 
   const shots = story.beforeImage
     ? [
@@ -93,7 +91,7 @@ export default function RiotCaseStudyCard({ story, index = 0, variant = 'list' }
 
   return (
     <article
-      className={`riot-card riot-case${invert ? ' riot-card-invert' : ''}`}
+      className="riot-card riot-case"
       style={{
         flex: deck ? '0 0 clamp(300px, 82vw, 1020px)' : undefined,
         width: deck ? 'clamp(300px, 82vw, 1020px)' : '100%',
@@ -130,29 +128,29 @@ export default function RiotCaseStudyCard({ story, index = 0, variant = 'list' }
               </span>
             </span>
           )}
-          <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', color: t.muted }}>
+          <span style={{ fontSize: 'clamp(11px,.95vw,13px)', fontWeight: 800, letterSpacing: '.16em', textTransform: 'uppercase', color: t.ink }}>
             {story.category}
             <br />
             {story.year}
           </span>
         </div>
 
-        <h3 className="riot-display" style={{ fontSize: 'clamp(24px,2.6vw,40px)', color: t.ink }}>{story.title}</h3>
+        <h3 className="riot-display" style={{ fontSize: 'clamp(28px,3.1vw,48px)', color: t.ink }}>{story.title}</h3>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(12px,1.6vw,24px)' }}>
           {story.stats.map((stat, i) => (
             <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 1, minWidth: 0 }}>
               {stat.value && (
-                <span className="riot-display" style={{ fontSize: 'clamp(20px,2vw,30px)', color: t.stat }}>{stat.value}</span>
+                <span className="riot-display" style={{ fontSize: 'clamp(24px,2.4vw,36px)', color: t.stat }}>{stat.value}</span>
               )}
-              <span style={{ fontSize: 11.5, lineHeight: 1.4, color: t.muted, maxWidth: '18ch' }}>{stat.label}</span>
+              <span style={{ fontSize: 'clamp(13px,1.05vw,15px)', fontWeight: 600, lineHeight: 1.35, color: t.ink, maxWidth: '18ch' }}>{stat.label}</span>
             </div>
           ))}
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingTop: 12, borderTop: `2px solid ${t.ink}` }}>
           {story.descriptions.slice(0, deck ? 1 : 2).map((d, i) => (
-            <p key={i} style={{ margin: 0, fontSize: 'clamp(12px,.92vw,13.5px)', lineHeight: 1.6, color: t.muted }}>{d}</p>
+            <p key={i} style={{ margin: 0, fontSize: 'clamp(14px,1.15vw,17px)', fontWeight: 500, lineHeight: 1.55, color: t.ink }}>{d}</p>
           ))}
         </div>
 
@@ -163,8 +161,8 @@ export default function RiotCaseStudyCard({ story, index = 0, variant = 'list' }
             style={{
               alignSelf: 'flex-start',
               marginTop: 'auto',
-              padding: '11px 22px',
-              fontSize: 11,
+              padding: '13px 26px',
+              fontSize: 13,
               background: t.accent,
               color: t.accentInk,
               borderColor: t.ink,

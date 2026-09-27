@@ -1,4 +1,4 @@
-/** Same client roster as TickerBanner, shown as the reference's angled ribbon. */
+/** Same client roster as TickerBanner, shown as a straight marquee band. */
 const clients = [
   'Dr. Aditya Shah',
   'MS Design Studio',
@@ -23,7 +23,7 @@ export default function RiotTicker() {
   );
 
   return (
-    <div style={{ position: 'relative', background: 'var(--r-black)', padding: '18px 0', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', overflow: 'hidden' }}>
       <div className="riot-band">
         <div className="riot-band-track">
           {run('a')}

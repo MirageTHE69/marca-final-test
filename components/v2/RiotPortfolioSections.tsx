@@ -76,13 +76,13 @@ function CategorySection({ section, index }: { section: PortfolioSection; index:
       }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '0 clamp(18px,4vw,44px)', textAlign: 'center' }}>
-        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: theme.text }}>
+        <span className="riot-kicker" style={{ color: theme.caption }}>
           {section.kicker}
         </span>
         <h2 className="riot-display" style={{ maxWidth: '20ch', fontSize: 'clamp(36px,6.6vw,100px)', color: theme.heading }}>
           {section.title}
         </h2>
-        <p style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: theme.text }}>
+        <p className="riot-lede" style={{ maxWidth: '58ch', color: theme.caption }}>
           {section.description}
         </p>
       </div>

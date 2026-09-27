@@ -71,11 +71,11 @@ export default function RiotProcess() {
       >
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 22, padding: '0 clamp(18px,4vw,44px)' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}>
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-muted)' }}>
+            <span className="riot-kicker">
               03 — Process
             </span>
             <h2 className="riot-display" style={{ fontSize: 'clamp(40px,7.2vw,112px)', color: 'var(--r-h-red)' }}>Our Process</h2>
-            <p style={{ margin: 0, fontSize: 'clamp(15px,1.15vw,19px)', lineHeight: 1.6, color: 'var(--r-muted)' }}>
+            <p className="riot-lede">
               Done for you end to end!
             </p>
           </div>

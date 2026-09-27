@@ -447,7 +447,6 @@ button {
   background: var(--r-yellow);
   border-top: 2px solid var(--r-black);
   border-bottom: 2px solid var(--r-black);
-  transform: rotate(-1.6deg) scaleX(1.06);
 }
 
 .riot-band-track {
@@ -491,14 +490,34 @@ button {
   box-shadow: 0 16px 0 -4px var(--r-black);
 }
 
-/* The dark colourway would lose its outline against a dark section. */
-.riot-card-invert {
-  border-color: var(--r-cream);
+/* Section headings: the kicker above a title and the line under it both
+   carry real weight now, and the line sits tight against the title. The
+   display face crops its own leading, so closing the gap takes a pull. */
+.riot-kicker {
+  font-size: clamp(13px, 1.2vw, 17px);
+  font-weight: 800;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--r-ink);
 }
 
-.riot-card-invert:hover {
-  box-shadow: 0 16px 0 -4px var(--r-cream);
+.riot-lede {
+  margin: 0;
+  font-size: clamp(17px, 1.6vw, 24px);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--r-ink);
 }
+
+.riot-display + .riot-lede {
+  margin-top: clamp(-10px, -.7vw, -3px);
+}
+
+.riot-black .riot-kicker,
+.riot-black .riot-lede {
+  color: var(--r-cream);
+}
+
 
 /* Rails need their arrows re-themed per surface. */
 .riot-cream .rail-arrow,

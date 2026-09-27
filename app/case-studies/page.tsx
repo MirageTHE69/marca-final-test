@@ -29,7 +29,7 @@ export default function CaseStudiesPage() {
           textAlign: 'center',
         }}
       >
-        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-yellow)' }}>
+        <span className="riot-kicker">
           Case Studies
         </span>
         <h1 className="riot-display" style={{ maxWidth: '14ch', fontSize: 'clamp(48px,9.4vw,168px)', color: 'var(--r-h-yellow)' }}>
@@ -46,7 +46,7 @@ export default function CaseStudiesPage() {
             a story.
           </span>
         </h1>
-        <p style={{ margin: 0, maxWidth: '58ch', fontSize: 'clamp(14px,1.05vw,17px)', lineHeight: 1.65, color: 'rgba(224,225,207,.72)' }}>
+        <p className="riot-lede" style={{ maxWidth: '58ch' }}>
           Every brand here started somewhere quieter. These are the accounts we built, the numbers behind them, and the
           content strategy that got them there.
         </p>

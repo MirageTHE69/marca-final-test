@@ -60,7 +60,7 @@ export default function RiotCaseStudies() {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-yellow)' }}>
+          <span className="riot-kicker">
             Case Studies
           </span>
           <h2 className="riot-display" style={{ fontSize: 'clamp(34px,5.4vw,82px)', color: 'var(--r-h-yellow)' }}>
