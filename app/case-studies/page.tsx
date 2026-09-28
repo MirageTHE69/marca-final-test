@@ -3,6 +3,7 @@ import Link from 'next/link';
 import RiotNav from '@/components/v2/RiotNav';
 import RiotFooter from '@/components/v2/RiotFooter';
 import RiotCaseStudyCard from '@/components/v2/RiotCaseStudyCard';
+import MediaSlot from '@/components/MediaSlot';
 import { caseStudies } from '@/components/casestudy/caseStudies';
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default function CaseStudiesPage() {
     <main className="riot">
       <RiotNav />
 
-      {/* Hero */}
+      {/* Hero — same film as the landing page, in its own colours */}
       <section
         className="riot-black"
         style={{
@@ -24,32 +25,59 @@ export default function CaseStudiesPage() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          justifyContent: 'center',
           gap: 14,
+          minHeight: 'clamp(420px, 70vh, 780px)',
+          overflow: 'hidden',
           padding: 'clamp(54px,9vh,120px) clamp(18px,4vw,44px)',
           textAlign: 'center',
         }}
       >
-        <span className="riot-kicker">
-          Case Studies
-        </span>
-        <h1 className="riot-display" style={{ maxWidth: '14ch', fontSize: 'clamp(48px,9.4vw,168px)', color: 'var(--r-h-yellow)' }}>
-          Proof, told as{' '}
-          <span
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+          <MediaSlot type="video" src="https://ik.imagekit.io/5feqwwaxb/MARCA%20WEBSITE%2001.mp4" placeholder="Drop film" />
+          <div
+            aria-hidden="true"
             style={{
-              fontFamily: "'Instrument Serif', Georgia, serif",
-              fontStyle: 'italic',
-              fontWeight: 400,
-              textTransform: 'none',
-              color: 'var(--r-cream)',
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(180deg, rgba(12,12,12,.52) 0%, rgba(12,12,12,.58) 45%, rgba(12,12,12,.86) 100%)',
+              pointerEvents: 'none',
             }}
-          >
-            a story.
+          />
+        </div>
+
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 14,
+          }}
+        >
+          <span className="riot-kicker">
+            Case Studies
           </span>
-        </h1>
-        <p className="riot-lede" style={{ maxWidth: '58ch' }}>
-          Every brand here started somewhere quieter. These are the accounts we built, the numbers behind them, and the
-          content strategy that got them there.
-        </p>
+          <h1 className="riot-display" style={{ maxWidth: '14ch', fontSize: 'clamp(48px,9.4vw,168px)', color: 'var(--r-h-yellow)' }}>
+            Proof, told as{' '}
+            <span
+              style={{
+                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontStyle: 'italic',
+                fontWeight: 400,
+                textTransform: 'none',
+                color: 'var(--r-cream)',
+              }}
+            >
+              a story.
+            </span>
+          </h1>
+          <p className="riot-lede" style={{ maxWidth: '58ch' }}>
+            Every brand here started somewhere quieter. These are the accounts we built, the numbers behind them, and the
+            content strategy that got them there.
+          </p>
+        </div>
       </section>
 
       {/* The deck */}

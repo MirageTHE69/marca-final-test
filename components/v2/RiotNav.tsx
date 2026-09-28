@@ -33,7 +33,7 @@ export default function RiotNav() {
           borderBottom: '2px solid var(--r-black)',
         }}
       >
-        <Link href="/#top" className="riot-display" style={{ fontSize: 'clamp(18px,2vw,24px)', color: 'var(--r-black)', textDecoration: 'none' }}>
+        <Link href="/#top" className="riot-display" style={{ fontSize: 'clamp(20px,2.3vw,28px)', color: 'var(--r-black)', textDecoration: 'none' }}>
           Marca
         </Link>
 
@@ -42,7 +42,7 @@ export default function RiotNav() {
             <a
               key={l.href}
               href={l.href}
-              style={{ fontSize: 12, fontWeight: 700, color: 'var(--r-black)', textDecoration: 'none' }}
+              style={{ fontSize: 14, fontWeight: 700, color: 'var(--r-black)', textDecoration: 'none' }}
             >
               {l.label}
             </a>
@@ -50,7 +50,7 @@ export default function RiotNav() {
         </nav>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <Link href="/#contact" className="riot-btn riot-nav-cta" style={{ padding: '9px 18px', fontSize: 11 }}>
+          <Link href="/#contact" className="riot-btn riot-nav-cta" style={{ padding: '10px 20px', fontSize: 12.5 }}>
             Discovery call
           </Link>
           <button
