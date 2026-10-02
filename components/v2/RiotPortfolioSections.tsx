@@ -1,4 +1,5 @@
 import MediaSlot from '@/components/MediaSlot';
+import RiotReelVideo from './RiotReelVideo';
 import ScrollRail from '@/components/ScrollRail';
 import {
   portfolioItems,
@@ -49,7 +50,7 @@ function Card({ item, theme, layout }: { item: PortfolioItem; theme: Theme; layo
         }}
       >
         {item.type === 'video' ? (
-          <MediaSlot type="video" src={item.src} placeholder="Drop film" />
+          <RiotReelVideo src={item.src} poster={item.poster} />
         ) : (
           <MediaSlot src={item.src} alt={item.title} placeholder="Drop image" sizes="500px" fit={item.fit ?? 'cover'} />
         )}

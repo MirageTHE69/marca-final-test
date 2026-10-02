@@ -123,8 +123,8 @@ export default function RiotCaseStudyCard({ story, index = 0, variant = 'list' }
                 boxShadow: `0 0 0 4px ${t.accent}`,
               }}
             >
-              <span style={{ position: 'relative', width: '70%', height: '70%' }}>
-                <MediaSlot src={story.logo} alt={`${story.title} logo`} placeholder="Logo" sizes="60px" fit="contain" />
+              <span style={{ position: 'relative', width: '100%', height: '100%' }}>
+                <MediaSlot src={story.logo} alt={`${story.title} profile`} placeholder="Logo" sizes="60px" fit="cover" />
               </span>
             </span>
           )}

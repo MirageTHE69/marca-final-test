@@ -74,6 +74,7 @@ export default function RiotHero() {
             fontWeight: 400,
             fontSize: 'clamp(26px,6vw,96px)',
             lineHeight: 1.05,
+            marginTop: 'clamp(-8px,-.55vw,-1px)',
             color: 'var(--r-yellow)',
           }}
         >

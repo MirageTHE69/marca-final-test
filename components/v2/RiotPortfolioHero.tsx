@@ -93,15 +93,7 @@ export default function RiotPortfolioHero() {
           Everything we have made.
         </h1>
 
-        <p
-          style={{
-            margin: 0,
-            maxWidth: '52ch',
-            fontSize: 'clamp(15px,1.35vw,21px)',
-            lineHeight: 1.6,
-            color: 'var(--r-ink)',
-          }}
-        >
+        <p className="riot-lede" style={{ maxWidth: '52ch', marginTop: 'calc(-1 * clamp(12px,2vh,20px) - 2px)' }}>
           Fashion shoots, product shoots, branding, ad campaigns, reels and films — organised by the kind of work you
           came to see.
         </p>

@@ -64,7 +64,7 @@ export default function AadicuraHospitalPage() {
             <SectionEyebrow>Case study — 2026</SectionEyebrow>
           </div>
           <h1 style={{ margin: 0, fontSize: 'clamp(42px,10vw,150px)', fontWeight: 700, letterSpacing: '-.045em', lineHeight: .96, textTransform: 'uppercase' }}>Aadicura</h1>
-          <span style={{ fontSize: 13, letterSpacing: '.1em', color: 'rgba(243,240,221,.82)' }}>Healthcare</span>
+          <span style={{ marginTop: 'calc(-1 * clamp(18px,2.8vh,30px) - 2px)', fontSize: 13, letterSpacing: '.1em', color: 'rgba(243,240,221,.82)' }}>Healthcare</span>
           <span style={{ fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(243,240,221,.62)' }}>Brand Strategy • Brand Film • Photography • Social Media</span>
           <p style={{ margin: 0, maxWidth: '44ch', fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontSize: 'clamp(19px,1.9vw,28px)', lineHeight: 1.4, color: CREAM }}>
             Helping a multi-speciality hospital become a trusted, digital-first healthcare brand through documentary storytelling.
@@ -81,7 +81,7 @@ export default function AadicuraHospitalPage() {
         <Reveal style={{ flex: '1 1 420px', display: 'flex', flexDirection: 'column', gap: 20 }}>
           <SectionEyebrow>01 — Project overview</SectionEyebrow>
           <h2 style={{ margin: 0, fontSize: 'clamp(28px,3.2vw,46px)', fontWeight: 700, letterSpacing: '-.03em', lineHeight: 1.08 }}>Project Overview</h2>
-          <p style={{ margin: 0, fontSize: 15, lineHeight: 1.75, color: 'rgba(243,240,221,.62)' }}>
+          <p style={{ margin: '-16px 0 0', fontSize: 15, lineHeight: 1.75, color: 'rgba(243,240,221,.62)' }}>
             Aadicura Hospital is a multi-speciality hospital with one of the busiest emergency units in the city. They came to MARCA after a year of advertising that reached everyone and moved no one — the brand was recognised, never chosen.
           </p>
           <p style={{ margin: 0, fontSize: 15, lineHeight: 1.75, color: 'rgba(243,240,221,.62)' }}>
@@ -189,8 +189,8 @@ export default function AadicuraHospitalPage() {
         </div>
         <Reveal>
           <CompareSlider
-            beforeSrc="https://res.cloudinary.com/ts350ak2/image/upload/v1785488439/Aadicura_hospital__sbh9bl.png"
-            afterSrc="https://res.cloudinary.com/ts350ak2/image/upload/v1785488437/Aadicura_hospital_vsrrd6.png"
+            beforeSrc="https://res.cloudinary.com/fhwvxdg0/image/upload/f_auto,q_auto,w_1400/v1790931648/Aadicura_hospital__1.png"
+            afterSrc="https://res.cloudinary.com/fhwvxdg0/image/upload/f_auto,q_auto,w_1400/v1790931931/Aadicura_hospital_1.png"
             beforePlaceholder="Before — old identity"
             afterPlaceholder="After — new identity"
           />

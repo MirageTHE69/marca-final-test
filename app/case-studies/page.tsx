@@ -53,7 +53,7 @@ export default function CaseStudiesPage() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: 14,
+            gap: 8,
           }}
         >
           <span className="riot-kicker">

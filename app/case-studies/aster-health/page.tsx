@@ -74,7 +74,7 @@ export default function AsterHealthPage() {
             <SectionEyebrow>Case study</SectionEyebrow>
           </div>
           <h1 style={{ margin: 0, fontSize: 'clamp(46px,11vw,168px)', fontWeight: 700, letterSpacing: '-.045em', lineHeight: .94 }}>Aster Health</h1>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 'calc(-1 * clamp(18px,2.8vh,30px) - 2px)' }}>
             {['Healthcare', '2026', 'Bengaluru · 2 campuses'].map((tag) => (
               <span key={tag} style={{ fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(243,240,221,.62)' }}>{tag}</span>
             ))}
@@ -96,7 +96,7 @@ export default function AsterHealthPage() {
           <h2 style={{ margin: 0, fontSize: 'clamp(26px,3vw,42px)', fontWeight: 700, letterSpacing: '-.03em', lineHeight: 1.15 }}>
             Known for its outcomes. Unknown for everything else.
           </h2>
-          <p style={{ margin: 0, fontSize: 15, lineHeight: 1.75, color: 'rgba(243,240,221,.62)' }}>
+          <p style={{ margin: '-16px 0 0', fontSize: 15, lineHeight: 1.75, color: 'rgba(243,240,221,.62)' }}>
             Aster Health runs 1,400 beds across two campuses and one of the busiest trauma units in the state. Online, it existed as a phone number and a parking map. Families researched it and found nothing — no faces, no voice, no reason to choose it over the hospital eleven minutes away. We were hired to give the institution a public identity that matched its clinical one.
           </p>
           <p style={{ margin: 0, fontSize: 15, lineHeight: 1.75, color: 'rgba(243,240,221,.62)' }}>

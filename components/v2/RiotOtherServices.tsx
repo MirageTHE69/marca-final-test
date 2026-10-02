@@ -12,7 +12,10 @@ interface ServiceItem {
   images: { src: string; caption: string }[];
 }
 
-/** Same three services, images and copy as PortfolioSection. */
+/**
+ * Photoshoot and Packaging show the first image of each numbered sub-folder
+ * under Cloudinary PORTFOLIO/1. FASHION SHOOT and PORTFOLIO/3. PACKAGING DESIGN.
+ */
 const otherServices: ServiceItem[] = [
   {
     id: 'photoshoot',
@@ -20,12 +23,14 @@ const otherServices: ServiceItem[] = [
     title: 'Photoshoot',
     tagline: 'Product, portrait, lifestyle and editorial shoots designed to feed high-authority visual content across all channels.',
     bg: 'var(--r-yellow)',
+    // Portrait shots in a 4:3 frame: crop from the top so faces stay in.
     images: [
-      { src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1000/v1786608765/ChatGPT_Image_Jul_16_2026_05_41_45_PM_hox3lo.png', caption: 'Lifestyle & Product Launch' },
-      { src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1000/v1786608769/ChatGPT_Image_Jul_16_2026_06_10_05_PM_c7dwfy.png', caption: 'Bridal & Fashion Editorial' },
-      { src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1000/v1786607738/ChatGPT_Image_Jul_16_2026_06_08_31_PM_ckdz6t.png', caption: 'Studio Culinary Storytelling' },
-      { src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1000/v1786607737/ChatGPT_Image_Jul_16_2026_05_55_07_PM_nx1dgt.png', caption: 'Festive Menswear Campaign' },
-      { src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1000/v1785494169/WhatsApp_Image_2026-07-31_at_2.34.46_PM_f1ofwi.jpg', caption: 'Executive Portrait Shoot' },
+      { src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/c_fill,g_north,ar_4:3,w_1000,f_auto,q_auto/v1790857280/ChatGPT_Image_Jul_17_2026_02_47_38_PM.png', caption: 'Menswear Sherwani Editorial' },
+      { src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/c_fill,g_north,ar_4:3,w_1000,f_auto,q_auto/v1790857363/ChatGPT_Image_Jul_17_2026_02_25_58_PM.png', caption: 'Summer Dress Campaign' },
+      { src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/c_fill,g_north,ar_4:3,w_1000,f_auto,q_auto/v1790857558/ChatGPT_Image_Jul_16_2026_06_10_05_PM.png', caption: 'Bridal Lehenga Editorial' },
+      { src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/c_fill,g_north,ar_4:3,w_1000,f_auto,q_auto/v1790857651/ChatGPT_Image_Jul_16_2026_06_26_24_PM.png', caption: 'Festive Lehenga Outdoor Shoot' },
+      { src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/c_fill,g_north,ar_4:3,w_1000,f_auto,q_auto/v1790857833/ChatGPT_Image_Jul_16_2026_05_41_45_PM.png', caption: 'Lifestyle Picnic Shoot' },
+      { src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/c_fill,g_north,ar_4:3,w_1000,f_auto,q_auto/v1790858055/ChatGPT_Image_Aug_12_2026_01_54_28_PM.png', caption: 'Studio Lehenga Shoot' },
     ],
   },
   {
@@ -48,11 +53,10 @@ const otherServices: ServiceItem[] = [
     tagline: 'Tactile packaging, SKU label architectures, and brand systems crafted to win customer attention on shelves and feeds.',
     bg: 'var(--r-orange)',
     images: [
-      { src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1000/v1786607756/1_2_yk2t4j.jpg', caption: 'Seeds & Berries Stand-Up Pouch' },
-      { src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1000/v1786607755/BOOK_qmgybt.jpg', caption: '20+ Flavor Mukhwas Tube System' },
-      { src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1000/v1786607741/FRUITS_MAGAZINE_tgo2hn.jpg', caption: 'Dehydrated Fruits SKU Packaging' },
-      { src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1000/v1786607738/WhatsApp_Image_2021-02-12_at_3.55.13_AM_20_f5w1vq.jpg', caption: 'Festive Green Kraft Gifting Box' },
-      { src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1000/v1785487014/5_rnslzq.png', caption: 'Identity & Typography System' },
+      { src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/f_auto,q_auto,w_1000/v1790859073/ChatGPT_Image_Aug_20_2026_06_16_38_PM.png', caption: 'Floral Octagon Gift Box' },
+      { src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/f_auto,q_auto,w_1000/v1790859103/ChatGPT_Image_Aug_20_2026_06_20_56_PM.png', caption: 'Illustrated Gifting Box' },
+      { src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/f_auto,q_auto,w_1000/v1790859136/ChatGPT_Image_Aug_20_2026_06_44_34_PM.png', caption: 'Seeds & Berries Stand-Up Pouch' },
+      { src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/f_auto,q_auto,w_1000/v1790859164/ChatGPT_Image_Aug_20_2026_07_13_39_PM.png', caption: 'Fox Nuts Tin — Chilli & Cheese' },
     ],
   },
 ];
