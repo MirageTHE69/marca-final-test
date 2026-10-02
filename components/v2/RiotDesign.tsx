@@ -1,40 +1,40 @@
 import MediaSlot from '@/components/MediaSlot';
 import ScrollRail from '@/components/ScrollRail';
 
-/** Same pieces as DesignSection on the landing page. */
+/** Cloudinary folder "Thumbnails", matched to each card by what the thumbnail shows. */
 const pieces = [
   {
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786475475/1_1_jwps5a.png',
+    src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/f_auto,q_auto/v1790935445/1_1_jwps5a_2.webp',
     category: 'YouTube — Thumbnails',
     title: "Don't Sleep",
     desc: 'A cinematic warning thumbnail built to stop a health scroll dead — dramatized without leaning on shock value alone.',
   },
   {
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786475469/4_1_obs8z8.png',
+    src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/f_auto,q_auto/v1790935444/4_1_obs8z8.webp',
     category: 'YouTube — Thumbnails',
     title: 'Why Some Men Never Go Bald?',
     desc: 'A curiosity-gap headline paired with a follicle cutaway to make a dermatology explainer impossible to skip.',
   },
   {
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786475463/5_Blood_Test_Mistakes_That_Make_Your_5_000_Reports_Useless_1_ulahya.jpg',
+    src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/f_auto,q_auto/v1790935442/5_Blood_Test_Mistakes_That_Make_Your_5_000_Reports_Useless_1_ulahya.webp',
     category: 'YouTube — Thumbnails · Dr. Sumit Kapadia',
     title: 'Blood Report? Useless.',
     desc: 'Built around the exact numbers his patients scroll past — the red circles do the explaining before the video starts.',
   },
   {
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786475461/2_dwdhm2.jpg',
+    src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/f_auto,q_auto/v1790935441/2_dwdhm2.webp',
     category: 'YouTube — Thumbnails · Dr. Sumit Kapadia',
     title: 'Fix Your Morning Routine',
     desc: 'A single cutaway artery makes the health stakes of a coffee habit visible in half a second.',
   },
   {
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786475458/Brain_tumour_treatment_without_surgery_Gamma_knife_on74fv.jpg',
+    src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/f_auto,q_auto/v1790935440/Brain_tumour_treatment_without_surgery_Gamma_knife_on74fv.webp',
     category: 'YouTube — Thumbnails · Dr. Sandip Mavani',
     title: 'Brain Tumour — No Surgery Needed',
     desc: 'A credibility card and a held brain model turn a frightening diagnosis into a reassuring watch.',
   },
   {
-    src: 'https://res.cloudinary.com/ts350ak2/image/upload/f_auto,q_auto,w_1100/v1786475457/Ashwagandha_xcygpx.jpg',
+    src: 'https://res.cloudinary.com/fhwvxdg0/image/upload/f_auto,q_auto/v1790935439/Ashwagandha_xcygpx.webp',
     category: 'YouTube — Thumbnails',
     title: 'Ashwagandha — Wellness Explainer',
     desc: 'High-contrast type and warm product lighting built for a men’s-health topic that needed to feel clinical, not clickbait.',
