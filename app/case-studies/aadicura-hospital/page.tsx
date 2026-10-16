@@ -63,7 +63,9 @@ export default function AadicuraHospitalPage() {
             <span style={{ width: 30, height: 1, background: ACCENT }} />
             <SectionEyebrow>Case study — 2026</SectionEyebrow>
           </div>
-          <h1 style={{ margin: 0, fontSize: 'clamp(42px,10vw,150px)', fontWeight: 700, letterSpacing: '-.045em', lineHeight: .96, textTransform: 'uppercase' }}>Aadicura</h1>
+          <div className="riot-fit-wrap" style={{ marginInline: 'calc(-1 * clamp(20px,5vw,56px))' }}>
+            <h1 className="riot-fit" style={{ '--fit': 23.12, fontWeight: 700, letterSpacing: '-.045em', lineHeight: .96, textTransform: 'uppercase' } as React.CSSProperties}>Aadicura</h1>
+          </div>
           <span style={{ marginTop: 'calc(-1 * clamp(18px,2.8vh,30px) - 2px)', fontSize: 13, letterSpacing: '.1em', color: 'rgba(243,240,221,.82)' }}>Healthcare</span>
           <span style={{ fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(243,240,221,.62)' }}>Brand Strategy • Brand Film • Photography • Social Media</span>
           <p style={{ margin: 0, maxWidth: '44ch', fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontSize: 'clamp(19px,1.9vw,28px)', lineHeight: 1.4, color: CREAM }}>

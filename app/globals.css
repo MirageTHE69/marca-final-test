@@ -518,6 +518,29 @@ button {
   color: var(--r-cream);
 }
 
+/* Page hero titles run edge to edge on one line. The wrapper bleeds out of
+   its parent's side padding (pass the negative margin inline) and becomes a
+   size container; the title's font size is that width times --fit, a
+   per-title constant measured from the real font (10000 / width at 100px). */
+.riot-fit-wrap {
+  container-type: inline-size;
+  align-self: stretch;
+  overflow-x: clip;
+}
+
+.riot-fit {
+  display: block;
+  margin: 0;
+  white-space: nowrap;
+  font-size: calc(var(--fit) * 1cqi);
+  /* Fixed optical size, so the width scales exactly with font size. */
+  font-variation-settings: 'opsz' 96;
+}
+
+.riot-fit-wrap + .riot-lede {
+  margin-top: clamp(-10px, -.7vw, -3px);
+}
+
 
 /* Rails need their arrows re-themed per surface. */
 .riot-cream .rail-arrow,

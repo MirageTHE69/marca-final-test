@@ -73,7 +73,9 @@ export default function AsterHealthPage() {
             <span style={{ width: 30, height: 1, background: ACCENT }} />
             <SectionEyebrow>Case study</SectionEyebrow>
           </div>
-          <h1 style={{ margin: 0, fontSize: 'clamp(46px,11vw,168px)', fontWeight: 700, letterSpacing: '-.045em', lineHeight: .94 }}>Aster Health</h1>
+          <div className="riot-fit-wrap" style={{ marginInline: 'calc(-1 * clamp(20px,5vw,56px))' }}>
+            <h1 className="riot-fit" style={{ '--fit': 20.32, fontWeight: 700, letterSpacing: '-.045em', lineHeight: .94 } as React.CSSProperties}>Aster Health</h1>
+          </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 'calc(-1 * clamp(18px,2.8vh,30px) - 2px)' }}>
             {['Healthcare', '2026', 'Bengaluru · 2 campuses'].map((tag) => (
               <span key={tag} style={{ fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(243,240,221,.62)' }}>{tag}</span>

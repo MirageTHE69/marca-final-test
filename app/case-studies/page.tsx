@@ -53,13 +53,15 @@ export default function CaseStudiesPage() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            alignSelf: 'stretch',
             gap: 8,
           }}
         >
           <span className="riot-kicker">
             Case Studies
           </span>
-          <h1 className="riot-display" style={{ maxWidth: '14ch', fontSize: 'clamp(48px,9.4vw,168px)', color: 'var(--r-h-yellow)' }}>
+          <div className="riot-fit-wrap" style={{ marginInline: 'calc(-1 * clamp(18px,4vw,44px))' }}>
+          <h1 className="riot-display riot-fit" style={{ '--fit': 12.65, color: 'var(--r-h-yellow)' } as React.CSSProperties}>
             Proof, told as{' '}
             <span
               style={{
@@ -73,6 +75,7 @@ export default function CaseStudiesPage() {
               a story.
             </span>
           </h1>
+          </div>
           <p className="riot-lede" style={{ maxWidth: '58ch' }}>
             Every brand here started somewhere quieter. These are the accounts we built, the numbers behind them, and the
             content strategy that got them there.

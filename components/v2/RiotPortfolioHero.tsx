@@ -64,19 +64,14 @@ export default function RiotPortfolioHero() {
           content · film · identity
         </span>
 
-        <span
-          className="riot-display"
-          style={{
-            display: 'block',
-            width: '100%',
-            fontSize: 'clamp(66px,16.5vw,290px)',
-            color: 'var(--r-h-red)',
-            letterSpacing: '-.055em',
-            lineHeight: .82,
-          }}
-        >
-          portfolio
-        </span>
+        <div className="riot-fit-wrap" style={{ marginInline: 'calc(-1 * clamp(20px,5vw,72px))' }}>
+          <span
+            className="riot-display riot-fit"
+            style={{ '--fit': 29.34, color: 'var(--r-h-red)', letterSpacing: '-.055em', lineHeight: .82 } as React.CSSProperties}
+          >
+            portfolio
+          </span>
+        </div>
 
         <h1
           style={{
