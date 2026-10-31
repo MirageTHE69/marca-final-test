@@ -1,7 +1,9 @@
 'use client';
 
-import { useState, useEffect, type FormEvent } from 'react';
+import { useState, useEffect, useTransition, type FormEvent } from 'react';
 import MediaSlot from '@/components/MediaSlot';
+import { site } from '@/content-lib/site';
+import { submitLead } from '@/lib/submitLead';
 
 interface ServiceItem {
   id: string;
@@ -176,18 +178,38 @@ function ServiceCard({ service, onBook }: { service: ServiceItem; onBook: () => 
   );
 }
 
+/** When the form was opened; the server rejects instant (bot) submissions. */
+const timestamp = () => Date.now();
+
 export default function RiotOtherServices() {
   const [booking, setBooking] = useState<number | null>(null);
+  const [openedAt, setOpenedAt] = useState(0);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState('');
+  const [sending, startSending] = useTransition();
+
+  const openBooking = (idx: number) => {
+    setBooking(idx);
+    setOpenedAt(timestamp());
+    setSent(false);
+    setError('');
+  };
 
   const closeBooking = () => {
     setBooking(null);
     setSent(false);
+    setError('');
   };
 
-  const submitBooking = (e: FormEvent) => {
+  const submitBooking = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
+    const data = new FormData(e.currentTarget);
+    setError('');
+    startSending(async () => {
+      const result = await submitLead(data);
+      if (result.ok) setSent(true);
+      else setError(result.error);
+    });
   };
 
   return (
@@ -224,7 +246,7 @@ export default function RiotOtherServices() {
         }}
       >
         {otherServices.map((service, index) => (
-          <ServiceCard key={service.id} service={service} onBook={() => setBooking(index)} />
+          <ServiceCard key={service.id} service={service} onBook={() => openBooking(index)} />
         ))}
       </div>
 
@@ -286,12 +308,30 @@ export default function RiotOtherServices() {
               </p>
             ) : (
               <form onSubmit={submitBooking} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                <input name="name" type="text" placeholder="Your name" required style={inputStyle} />
-                <input name="email" type="email" placeholder="Email" required style={inputStyle} />
-                <input name="brand" type="text" placeholder="Brand or company" style={inputStyle} />
-                <textarea name="brief" rows={3} placeholder="What do you need?" style={{ ...inputStyle, resize: 'vertical' }} />
-                <button type="submit" className="riot-btn riot-btn-yellow" style={{ marginTop: 4, width: '100%' }}>
-                  Send request
+                <input type="hidden" name="service" value={otherServices[booking].id} />
+                <input type="hidden" name="source" value="Book service" />
+                <input type="hidden" name="openedAt" value={openedAt} />
+                {/* Spam trap: hidden from people, filled in by bots. */}
+                <input
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0 }}
+                />
+                <input name="name" type="text" placeholder="Your name" required maxLength={120} style={inputStyle} />
+                <input name="email" type="email" placeholder="Email" required maxLength={200} style={inputStyle} />
+                <input name="phone" type="tel" placeholder="Phone (optional)" maxLength={40} style={inputStyle} />
+                <input name="brand" type="text" placeholder="Brand or company" maxLength={160} style={inputStyle} />
+                <textarea name="message" rows={3} placeholder="What do you need?" maxLength={4000} style={{ ...inputStyle, resize: 'vertical' }} />
+                {error && (
+                  <p role="alert" style={{ margin: 0, fontSize: 13, fontWeight: 600, color: 'var(--r-h-red)' }}>
+                    {error} <a href={`mailto:${site.email}`} style={{ color: 'inherit' }}>{site.email}</a>
+                  </p>
+                )}
+                <button type="submit" disabled={sending} className="riot-btn riot-btn-yellow" style={{ marginTop: 4, width: '100%', opacity: sending ? 0.6 : 1 }}>
+                  {sending ? 'Sending…' : 'Send request'}
                 </button>
               </form>
             )}
