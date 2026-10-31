@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import RiotNav from '@/components/v2/RiotNav';
 import RiotFaq from '@/components/v2/RiotFaq';
 import RiotFooter from '@/components/v2/RiotFooter';
+import { getHome } from '@/lib/cms';
 
 export const metadata: Metadata = {
   title: 'FAQ — Marca Creatives',
@@ -9,11 +10,12 @@ export const metadata: Metadata = {
 };
 
 /** FAQ in the Riot theme; shares the landing page's accordion section. */
-export default function FaqPage() {
+export default async function FaqPage() {
+  const { faq } = await getHome();
   return (
     <main className="riot">
       <RiotNav />
-      <RiotFaq />
+      <RiotFaq data={faq} />
       <RiotFooter />
     </main>
   );

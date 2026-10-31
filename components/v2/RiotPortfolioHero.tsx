@@ -1,4 +1,8 @@
-import { portfolioSections } from '@/components/portfolio/portfolioItems';
+import type { PortfolioPage } from '@/payload/payload-types';
+
+import FitTitle from './FitTitle';
+
+type SectionLink = { key: string; title: string };
 
 /** Rotating sticker, text running around the ring. */
 function Badge() {
@@ -39,7 +43,7 @@ function Badge() {
   );
 }
 
-export default function RiotPortfolioHero() {
+export default function RiotPortfolioHero({ hero, sections: portfolioSections }: { hero: PortfolioPage['hero']; sections: SectionLink[] }) {
   return (
     <>
       {/* Type-only hero — the work below carries the pictures. */}
@@ -61,16 +65,13 @@ export default function RiotPortfolioHero() {
         <Badge />
 
         <span className="riot-script" style={{ fontSize: 'clamp(24px,2.6vw,38px)', color: 'var(--r-ink)' }}>
-          content · film · identity
+          {hero.scriptLine}
         </span>
 
         <div className="riot-fit-wrap" style={{ marginInline: 'calc(-1 * clamp(20px,5vw,72px))' }}>
-          <span
-            className="riot-display riot-fit"
-            style={{ '--fit': 29.34, color: 'var(--r-h-red)', letterSpacing: '-.055em', lineHeight: .82 } as React.CSSProperties}
-          >
-            portfolio
-          </span>
+          <FitTitle as="span" text={hero.bigWord} className="riot-display" style={{ color: 'var(--r-h-red)', letterSpacing: '-.055em', lineHeight: 0.82 }}>
+            {hero.bigWord}
+          </FitTitle>
         </div>
 
         <h1
@@ -85,20 +86,19 @@ export default function RiotPortfolioHero() {
             color: 'var(--r-ink)',
           }}
         >
-          Everything we have made.
+          {hero.title}
         </h1>
 
         <p className="riot-lede" style={{ maxWidth: '52ch', marginTop: 'calc(-1 * clamp(12px,2vh,20px) - 2px)' }}>
-          Fashion shoots, product shoots, branding, ad campaigns, reels and films — organised by the kind of work you
-          came to see.
+          {hero.lede}
         </p>
 
         <a
-          href="#fashion-shoots"
+          href={`#${portfolioSections[0]?.key ?? 'fashion-shoots'}`}
           className="riot-btn"
           style={{ background: 'var(--r-h-red)', color: '#FFFFFF', marginTop: 'clamp(6px,1.4vh,14px)', padding: '16px 32px', fontSize: 13 }}
         >
-          Explore the work ↓
+          {hero.buttonLabel || 'Explore the work ↓'}
         </a>
       </section>
 

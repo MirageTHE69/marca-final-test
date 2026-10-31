@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Link from 'next/link';
 import CaseStudyCard from '@/components/casestudy/CaseStudyCard';
 import { featuredCaseStudies } from '@/components/casestudy/caseStudies';
 
@@ -97,9 +98,9 @@ export default function CaseStudiesSection() {
             <span style={{ fontSize: 11, letterSpacing: '.2em', textTransform: 'uppercase', color: '#6C7A92' }}>
               Scroll to explore case studies →
             </span>
-            <a href="/case-studies" className="btn-outline" style={{ padding: '8px 18px', fontSize: 10 }}>
+            <Link href="/case-studies" className="btn-outline" style={{ padding: '8px 18px', fontSize: 10 }}>
               All studies <span>→</span>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -146,9 +147,9 @@ export default function CaseStudiesSection() {
             <h3 style={{ margin: 0, fontSize: 'clamp(22px, 2.2vw, 32px)', fontWeight: 700, letterSpacing: '-.03em', color: '#F2F4F8', lineHeight: 1.15, maxWidth: '24ch' }}>
               Ready to turn your story into authority?
             </h3>
-            <a href="/case-studies" className="btn-primary" style={{ padding: '16px 32px', fontSize: 12 }}>
+            <Link href="/case-studies" className="btn-primary" style={{ padding: '16px 32px', fontSize: 12 }}>
               Explore full case studies <span>→</span>
-            </a>
+            </Link>
           </article>
         </div>
 

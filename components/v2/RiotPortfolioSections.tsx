@@ -1,12 +1,10 @@
 import MediaSlot from '@/components/MediaSlot';
 import RiotReelVideo from './RiotReelVideo';
 import ScrollRail from '@/components/ScrollRail';
-import {
-  portfolioItems,
-  portfolioSections,
-  type PortfolioItem,
-  type PortfolioSection,
-} from '@/components/portfolio/portfolioItems';
+import type { PortfolioItem, PortfolioSection } from '@/components/portfolio/portfolioItems';
+
+/** One row of the page: its heading and the work in it. */
+export type PortfolioRow = PortfolioSection & { items: PortfolioItem[] };
 
 /**
  * Surface and heading colour cycle together so every heading stays
@@ -60,9 +58,9 @@ function Card({ item, theme, layout }: { item: PortfolioItem; theme: Theme; layo
   );
 }
 
-function CategorySection({ section, index }: { section: PortfolioSection; index: number }) {
+function CategorySection({ section, index }: { section: PortfolioRow; index: number }) {
   const theme = THEMES[index % THEMES.length];
-  const items = portfolioItems.filter((item) => item.category === section.key);
+  const items = section.items;
 
   return (
     <section
@@ -97,10 +95,10 @@ function CategorySection({ section, index }: { section: PortfolioSection; index:
   );
 }
 
-export default function RiotPortfolioSections() {
+export default function RiotPortfolioSections({ rows }: { rows: PortfolioRow[] }) {
   return (
     <>
-      {portfolioSections.map((section, index) => (
+      {rows.map((section, index) => (
         <CategorySection key={section.key} section={section} index={index} />
       ))}
     </>

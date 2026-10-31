@@ -1,23 +1,33 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import RiotNav from '@/components/v2/RiotNav';
-import RiotFooter from '@/components/v2/RiotFooter';
-import RiotCaseStudyCard from '@/components/v2/RiotCaseStudyCard';
+
 import MediaSlot from '@/components/MediaSlot';
-import { caseStudies } from '@/components/casestudy/caseStudies';
+import FitTitle from '@/components/v2/FitTitle';
+import RiotCaseStudyCard from '@/components/v2/RiotCaseStudyCard';
+import RiotFooter from '@/components/v2/RiotFooter';
+import RiotNav from '@/components/v2/RiotNav';
+import { toCardStory } from '@/lib/caseStudyCard';
+import { getCaseStudies, getCaseStudiesPage } from '@/lib/cms';
+import { asMedia, videoUrl } from '@/lib/media';
 
 export const metadata: Metadata = {
   title: 'Case Studies — Marca Creatives',
   description: 'Brands and founders we have built digital presence for — the numbers, the before and after, and what it took.',
 };
 
-/** Case studies in the Riot theme, matching the landing page. */
-export default function CaseStudiesPage() {
+const serif = { fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400 } as const;
+
+/** Case studies: hero, every published card, closing. Content comes from the admin. */
+export default async function CaseStudiesPage() {
+  const [page, studies] = await Promise.all([getCaseStudiesPage(), getCaseStudies()]);
+  const { hero, closing } = page;
+  const film = videoUrl(asMedia(hero.video));
+
   return (
     <main className="riot">
       <RiotNav />
 
-      {/* Hero — same film as the landing page, in its own colours */}
+      {/* Hero */}
       <section
         className="riot-black"
         style={{
@@ -34,7 +44,7 @@ export default function CaseStudiesPage() {
         }}
       >
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
-          <MediaSlot type="video" src="https://ik.imagekit.io/5feqwwaxb/MARCA%20WEBSITE%2001.mp4" placeholder="Drop film" />
+          {film && <MediaSlot type="video" src={film} placeholder="Drop film" />}
           <div
             aria-hidden="true"
             style={{
@@ -46,63 +56,27 @@ export default function CaseStudiesPage() {
           />
         </div>
 
-        <div
-          style={{
-            position: 'relative',
-            zIndex: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            alignSelf: 'stretch',
-            gap: 8,
-          }}
-        >
-          <span className="riot-kicker">
-            Case Studies
-          </span>
+        <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', alignSelf: 'stretch', gap: 8 }}>
+          {hero.kicker && <span className="riot-kicker">{hero.kicker}</span>}
           <div className="riot-fit-wrap" style={{ marginInline: 'calc(-1 * clamp(18px,4vw,44px))' }}>
-          <h1 className="riot-display riot-fit" style={{ '--fit': 12.65, color: 'var(--r-h-yellow)' } as React.CSSProperties}>
-            Proof, told as{' '}
-            <span
-              style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
-                fontStyle: 'italic',
-                fontWeight: 400,
-                textTransform: 'none',
-                color: 'var(--r-cream)',
-              }}
-            >
-              a story.
-            </span>
-          </h1>
+            <FitTitle text={`${hero.title} ${hero.titleAccent ?? ''}`.trim()} className="riot-display" style={{ color: 'var(--r-h-yellow)' }}>
+              {hero.title}{' '}
+              {hero.titleAccent && <span style={{ ...serif, textTransform: 'none', color: 'var(--r-cream)' }}>{hero.titleAccent}</span>}
+            </FitTitle>
           </div>
-          <p className="riot-lede" style={{ maxWidth: '58ch' }}>
-            Every brand here started somewhere quieter. These are the accounts we built, the numbers behind them, and the
-            content strategy that got them there.
-          </p>
+          {hero.lede && (
+            <p className="riot-lede" style={{ maxWidth: '58ch' }}>
+              {hero.lede}
+            </p>
+          )}
         </div>
       </section>
 
       {/* The deck */}
-      <section
-        className="riot-black"
-        style={{
-          padding: 'clamp(46px,7vh,90px) clamp(18px,4vw,44px) clamp(56px,9vh,110px)',
-          boxSizing: 'border-box',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 'clamp(22px,3vw,40px)',
-            maxWidth: 1240,
-            width: '100%',
-            margin: '0 auto',
-          }}
-        >
-          {caseStudies.map((story, i) => (
-            <RiotCaseStudyCard key={story.title} story={story} index={i} />
+      <section className="riot-black" style={{ padding: 'clamp(46px,7vh,90px) clamp(18px,4vw,44px) clamp(56px,9vh,110px)', boxSizing: 'border-box' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(22px,3vw,40px)', maxWidth: 1240, width: '100%', margin: '0 auto' }}>
+          {studies.map((study, i) => (
+            <RiotCaseStudyCard key={study.id} story={toCardStory(study)} index={i} />
           ))}
         </div>
       </section>
@@ -121,13 +95,11 @@ export default function CaseStudiesPage() {
         }}
       >
         <h2 className="riot-display" style={{ maxWidth: '18ch', fontSize: 'clamp(34px,5.4vw,82px)', color: 'var(--r-h-yellow)' }}>
-          Want results like{' '}
-          <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, color: 'var(--r-cream)' }}>
-            these?
-          </span>
+          {closing.title}{' '}
+          {closing.titleAccent && <span style={{ ...serif, color: 'var(--r-cream)' }}>{closing.titleAccent}</span>}
         </h2>
         <Link href="/#contact" className="riot-btn riot-btn-yellow" style={{ padding: '16px 32px', fontSize: 13 }}>
-          Start a project →
+          {closing.buttonLabel || 'Start a project →'}
         </Link>
       </section>
 

@@ -1,37 +1,20 @@
-/** Same testimonials as TestimonialsSection. */
-const testimonials = [
-  {
-    quote: '"We had been posting for two years with nothing to show. Six months in, patients quote our videos back to us in consultations."',
-    name: 'Dr. Anaya Verma',
-    role: 'Verma Dental — Healthcare',
-    bg: 'var(--r-cream)',
-  },
-  {
-    quote: '"The most organised shoot I\'ve been on. They arrived with a plan and left us with a month of content the same week."',
-    name: 'Reyansh Doshi',
-    role: 'Kindra — Consumer brands',
-    bg: 'var(--r-yellow)',
-  },
-  {
-    quote: '"They made a fintech product sound human without dumbing it down. Our investors noticed before our customers did."',
-    name: 'Tara Menon',
-    role: 'Ledgerloop — Startups',
-    bg: 'var(--r-blue)',
-  },
-];
+import { colourVar } from '@/lib/theme';
+import type { Home } from '@/payload/payload-types';
 
-export default function RiotTestimonials() {
+/** Client quotes on coloured cards. */
+export default function RiotTestimonials({ data }: { data: Home['testimonials'] }) {
+  const testimonials = (data.items ?? []).map((t) => ({ quote: t.quote, name: t.name, role: t.role ?? '', bg: colourVar(t.colour) }));
   return (
     <section id="testimonials" className="riot-cream" style={{ padding: 'clamp(56px,9vh,120px) clamp(18px,4vw,44px)', borderTop: '2px solid var(--r-black)' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, textAlign: 'center' }}>
-        <span className="riot-kicker">
-          Testimonials
-        </span>
+        {data.kicker && <span className="riot-kicker">{data.kicker}</span>}
         <h2 className="riot-display" style={{ maxWidth: '20ch', fontSize: 'clamp(36px,6.8vw,104px)', color: 'var(--r-h-red)' }}>
-          What it&apos;s like to{' '}
-          <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, letterSpacing: '-.01em' }}>
-            work with us.
-          </span>
+          {data.title}{' '}
+          {data.titleAccent && (
+            <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, letterSpacing: '-.01em' }}>
+              {data.titleAccent}
+            </span>
+          )}
         </h2>
       </div>
 

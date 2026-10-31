@@ -1,29 +1,31 @@
 import RiotReelVideo from './RiotReelVideo';
-import { reels, videoUrl, posterUrl } from '@/components/portfolio/cloudinaryMedia';
+import { asMedia, posterUrl, videoUrl } from '@/lib/media';
+import type { Home } from '@/payload/payload-types';
 import ScrollRail from '@/components/ScrollRail';
 
-export default function RiotShortForm() {
+export default function RiotShortForm({ data }: { data: Home['instagram'] }) {
+  const reels = data.reels ?? [];
   return (
     <section id="short-form" className="riot-cream" style={{ padding: 'clamp(56px,9vh,120px) 0' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '0 clamp(18px,4vw,44px)', textAlign: 'center' }}>
-        <span className="riot-kicker">
-          Short Form
-        </span>
+        {data.kicker && <span className="riot-kicker">{data.kicker}</span>}
         <h2 className="riot-display" style={{ maxWidth: '20ch', fontSize: 'clamp(42px,8.4vw,132px)', color: 'var(--r-h-red)' }}>
-          Instagram
+          {data.title}
         </h2>
-        <p className="riot-lede" style={{ maxWidth: '52ch' }}>
-          Content that helps you grow and sell.
-        </p>
+        {data.lede && (
+          <p className="riot-lede" style={{ maxWidth: '52ch' }}>
+            {data.lede}
+          </p>
+        )}
       </div>
 
       <ScrollRail ariaLabel="reels">
         {reels.map((reel, i) => (
-          <article key={i} style={{ flex: '0 0 clamp(210px,20vw,280px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <article key={reel.id ?? i} style={{ flex: '0 0 clamp(210px,20vw,280px)', scrollSnapAlign: 'center', display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div className="riot-media" style={{ aspectRatio: '9 / 16', borderRadius: 16 }}>
               <RiotReelVideo
-                src={videoUrl(reel.id)}
-                poster={posterUrl(reel.id, 540)}
+                src={videoUrl(asMedia(reel.video)) ?? ''}
+                poster={posterUrl(asMedia(reel.video), 540)}
               />
               <span
                 style={{

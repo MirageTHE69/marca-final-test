@@ -3,14 +3,15 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import RiotCaseStudyCard from './RiotCaseStudyCard';
-import { featuredCaseStudies } from '@/components/casestudy/caseStudies';
+import type { CaseStudy } from '@/components/casestudy/caseStudies';
+import type { Home } from '@/payload/payload-types';
 
 /**
  * Vertical scroll deck: each card sticks just below the nav and the next
  * one slides up over it, so the set stacks as you scroll. Cards also fade
  * up as they enter. No horizontal scrolling.
  */
-export default function RiotCaseStudies() {
+export default function RiotCaseStudies({ data, stories: featuredCaseStudies }: { data: Home['caseStudies']; stories: CaseStudy[] }) {
   const rootRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -60,18 +61,18 @@ export default function RiotCaseStudies() {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <span className="riot-kicker">
-            Case Studies
-          </span>
+          {data.kicker && <span className="riot-kicker">{data.kicker}</span>}
           <h2 className="riot-display" style={{ fontSize: 'clamp(34px,5.4vw,82px)', color: 'var(--r-h-yellow)' }}>
-            Proof, told as{' '}
-            <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, letterSpacing: '-.01em' }}>
-              a story.
-            </span>
+            {data.title}{' '}
+            {data.titleAccent && (
+              <span style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontStyle: 'italic', fontWeight: 400, letterSpacing: '-.01em' }}>
+                {data.titleAccent}
+              </span>
+            )}
           </h2>
         </div>
         <Link href="/case-studies" className="riot-btn riot-btn-yellow" style={{ padding: '11px 22px', fontSize: 11 }}>
-          All studies →
+          {data.buttonLabel || 'All studies →'}
         </Link>
       </div>
 
@@ -104,12 +105,12 @@ export default function RiotCaseStudies() {
               color: 'var(--r-black)',
             }}
           >
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase' }}>Ready for results?</span>
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.22em', textTransform: 'uppercase' }}>{data.endKicker}</span>
             <h3 className="riot-display" style={{ fontSize: 'clamp(24px,2.8vw,42px)', maxWidth: '22ch' }}>
-              Ready to turn your story into authority?
+              {data.endTitle}
             </h3>
             <Link href="/case-studies" className="riot-btn riot-btn-cream" style={{ padding: '14px 28px' }}>
-              Explore full case studies →
+              {data.endButton || 'Explore full case studies →'}
             </Link>
           </article>
         </div>

@@ -8,7 +8,9 @@ export const Users: CollectionConfig = {
   labels: { singular: 'Admin user', plural: 'Admin users' },
   admin: {
     useAsTitle: 'email',
-    group: 'Settings',
+    // Kept out of the sidebar so Pages and Settings sit together at the bottom;
+    // your own account is under the avatar, top right.
+    group: false,
   },
   auth: {
     tokenExpiration: 60 * 60 * 24 * 7,

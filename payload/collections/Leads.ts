@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload';
+import { Forbidden } from 'payload';
 
 import { isLoggedIn } from '../access/isLoggedIn';
 
@@ -26,6 +27,8 @@ export const Leads: CollectionConfig = {
     defaultColumns: ['name', 'email', 'service', 'status', 'createdAt'],
     listSearchableFields: ['name', 'email', 'phone', 'brand'],
     description: 'Every enquiry sent from the website. Move each one along by changing its status.',
+    group: 'Inbox',
+    components: { beforeListTable: ['/payload/admin/LeadsToolbar#LeadsToolbar'] },
   },
   access: {
     create: isLoggedIn,
@@ -68,13 +71,35 @@ export const Leads: CollectionConfig = {
         { label: 'Won', value: 'won' },
         { label: 'Lost', value: 'lost' },
       ],
-      admin: { position: 'sidebar' },
+      admin: { position: 'sidebar', components: { Cell: '/payload/admin/StatusCell#StatusCell' } },
     },
     {
       name: 'source',
       label: 'Sent from',
       type: 'text',
       admin: { position: 'sidebar', readOnly: true, description: 'The form the lead came from.' },
+    },
+  ],
+  endpoints: [
+    {
+      // Every lead as a spreadsheet (CSV), newest first.
+      path: '/export',
+      method: 'get',
+      handler: async (req) => {
+        if (!req.user) throw new Forbidden(req.t);
+        const { docs } = await req.payload.find({ collection: 'leads', sort: '-createdAt', pagination: false, depth: 0, req });
+        const cols = ['createdAt', 'status', 'name', 'email', 'phone', 'brand', 'service', 'message', 'notes', 'source'] as const;
+        const cell = (v: unknown) => `"${String(v ?? '').replace(/"/g, '""')}"`;
+        const csv = [cols.join(','), ...docs.map((d) => cols.map((c) => cell(d[c])).join(','))].join('\r\n');
+        const day = new Date().toISOString().slice(0, 10);
+        // The byte-order mark makes Excel read the file as UTF-8.
+        return new Response('﻿' + csv, {
+          headers: {
+            'Content-Type': 'text/csv; charset=utf-8',
+            'Content-Disposition': `attachment; filename="marca-leads-${day}.csv"`,
+          },
+        });
+      },
     },
   ],
 };

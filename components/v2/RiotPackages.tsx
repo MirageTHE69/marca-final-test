@@ -1,72 +1,24 @@
-/** Same three packages and full checklists as PackagesSection. */
-const packages = [
-  {
-    num: '01',
-    name: 'Instagram',
-    subtitle: 'Content Package',
-    bg: 'var(--r-yellow)',
-    items: [
-      { text: '10–15 Reels per Month', highlight: true },
-      { text: 'Topic Research & Content Strategy' },
-      { text: 'Custom Scriptwriting' },
-      { text: 'Concept & Creative Direction' },
-      { text: 'Professional Shooting & Production' },
-      { text: 'High-Quality Video Editing' },
-      { text: 'Captions, Hooks & Visual Elements' },
-      { text: 'Done-for-You Posting & Account Management' },
-      { text: 'Performance Tracking & Content Optimization' },
-    ],
-  },
-  {
-    num: '02',
-    name: 'YouTube',
-    subtitle: 'Long-Form Package',
-    bg: 'var(--r-blue)',
-    items: [
-      { text: '4–8 Long-Form Videos per Month', highlight: true },
-      { text: 'Topic Research & Content Strategy' },
-      { text: 'Custom Scriptwriting & Storytelling' },
-      { text: 'Concept & Creative Direction' },
-      { text: 'Professional Shooting & Production' },
-      { text: 'High-Quality Video Editing' },
-      { text: 'Custom YouTube Thumbnail Design' },
-      { text: 'Click-Focused Titles & Thumbnail Concepts' },
-      { text: 'Video Descriptions & Upload Optimization' },
-      { text: 'Performance Tracking & Content Optimization' },
-    ],
-  },
-  {
-    num: '03',
-    name: 'Customized Plan',
-    subtitle: 'Tailored Content Package',
-    bg: 'var(--r-orange)',
-    items: [
-      { text: 'Flexible Content Volume', highlight: true },
-      { text: 'Custom Content Strategy for Instagram & YouTube' },
-      { text: 'Topic Research & Scriptwriting' },
-      { text: 'Concept & Creative Direction' },
-      { text: 'Professional Shooting & Production' },
-      { text: 'Video Editing & Post-Production' },
-      { text: 'Thumbnail & Creative Design' },
-      { text: 'Social Media Management' },
-      { text: 'Campaign & Advertising Content' },
-      { text: 'Fully Tailored to Your Brand Goals', highlight: true },
-    ],
-  },
-];
+import { colourVar, pad2 } from '@/lib/theme';
+import type { Home } from '@/payload/payload-types';
 
-export default function RiotPackages() {
+/** The packages and their checklists. */
+export default function RiotPackages({ data }: { data: Home['packages'] }) {
+  const packages = (data.items ?? []).map((p, i) => ({
+    num: pad2(i + 1),
+    name: p.name,
+    subtitle: p.subtitle ?? '',
+    bg: colourVar(p.colour),
+    items: (p.features ?? []).map((f) => ({ text: f.text, highlight: Boolean(f.highlight) })),
+  }));
   return (
     <section id="packages" className="riot-black" style={{ padding: 'clamp(56px,9vh,120px) clamp(18px,4vw,44px)' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, textAlign: 'center', marginBottom: 'clamp(38px,6vh,68px)' }}>
-        <span className="riot-kicker">
-          Packages
-        </span>
+        {data.kicker && <span className="riot-kicker">{data.kicker}</span>}
         <h2 className="riot-display" style={{ fontSize: 'clamp(32px,5.6vw,86px)', maxWidth: '22ch', color: 'var(--r-h-yellow)' }}>
-          Social Media &amp; Content Production Packages
+          {data.title}
         </h2>
         <p className="riot-lede" style={{ maxWidth: '58ch' }}>
-          Predictable, high-impact content engines designed to turn founders and businesses into industry authorities.
+          {data.lede}
         </p>
       </div>
 

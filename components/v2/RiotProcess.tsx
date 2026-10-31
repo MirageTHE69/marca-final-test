@@ -2,16 +2,12 @@
 
 import { useEffect, useRef } from 'react';
 
-/** Same steps and same sticky horizontal-scroll mechanic as ProcessSection. */
-const processSteps = [
-  { num: '01', title: 'Research', desc: 'We research and analyze top-performing creators and content in your niche on social media to strategically build and establish your unique brand identity.', bg: 'var(--r-yellow)' },
-  { num: '02', title: 'Scripting', desc: 'Using the research and information on you and your business, we script an entire month of short form content.', bg: 'var(--r-blue)' },
-  { num: '03', title: 'Filming', desc: 'We shoot all our content in a dedicated, professionally designed setup to ensure high-quality visuals and consistency.', bg: 'var(--r-orange)' },
-  { num: '04', title: 'Editing', desc: 'We edit videos using high-quality visuals and sound effects to make the content engaging and visually appealing.', bg: 'var(--r-cream)' },
-  { num: '05', title: 'Social Media Management', desc: 'We manage social media accounts, upload content consistently, and optimize it for maximum reach and engagement.', bg: 'var(--r-olive)' },
-];
+import { colourVar, pad2 } from '@/lib/theme';
+import type { Home } from '@/payload/payload-types';
 
-export default function RiotProcess() {
+/** The process steps on a sticky horizontal scroll. */
+export default function RiotProcess({ data }: { data: Home['process'] }) {
+  const processSteps = (data.steps ?? []).map((s, i) => ({ num: pad2(i + 1), title: s.title, desc: s.description ?? '', bg: colourVar(s.colour) }));
   const sectionRef = useRef<HTMLElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -71,13 +67,9 @@ export default function RiotProcess() {
       >
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 22, padding: '0 clamp(18px,4vw,44px)' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}>
-            <span className="riot-kicker">
-              03 — Process
-            </span>
-            <h2 className="riot-display" style={{ fontSize: 'clamp(40px,7.2vw,112px)', color: 'var(--r-h-red)' }}>Our Process</h2>
-            <p className="riot-lede">
-              Done for you end to end!
-            </p>
+            {data.kicker && <span className="riot-kicker">{data.kicker}</span>}
+            <h2 className="riot-display" style={{ fontSize: 'clamp(40px,7.2vw,112px)', color: 'var(--r-h-red)' }}>{data.title}</h2>
+            {data.lede && <p className="riot-lede">{data.lede}</p>}
           </div>
           <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--r-muted)' }}>
             Scroll to move through the process →

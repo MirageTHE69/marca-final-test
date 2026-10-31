@@ -1,27 +1,30 @@
 'use client';
 
 import { useState } from 'react';
-import { faqs, type FaqBlock } from '@/content-lib/faqs';
+import type { Home } from '@/payload/payload-types';
+
+type FaqData = Home['faq'];
+type FaqBlock = NonNullable<FaqData['questions']>[number]['answer'][number];
 
 /* Answers only render on the open (yellow) row, so they need a darker
    tone than --r-muted to stay readable against it. */
 const ANSWER_INK = 'rgba(18,18,18,.82)';
 
 function AnswerBlock({ block }: { block: FaqBlock }) {
-  if (block.kind === 'p') {
+  if (block.blockType === 'paragraph') {
     return <p style={{ margin: '0 0 10px 0', fontSize: 14, lineHeight: 1.7, color: ANSWER_INK }}>{block.text}</p>;
   }
-  if (block.kind === 'list') {
+  if (block.blockType === 'list') {
     const ListTag = block.ordered ? 'ol' : 'ul';
     return (
       <ListTag style={{ margin: '0 0 12px 0', paddingLeft: 22, fontSize: 14, lineHeight: 1.8, color: 'var(--r-ink)' }}>
-        {block.items.map((item, idx) => (
-          <li key={idx} style={{ marginBottom: 4 }}>{item}</li>
+        {(block.items ?? []).map((item, idx) => (
+          <li key={item.id ?? idx} style={{ marginBottom: 4 }}>{item.text}</li>
         ))}
       </ListTag>
     );
   }
-  if (block.kind === 'sub') {
+  if (block.blockType === 'subheading') {
     return (
       <div style={{ margin: '0 0 14px 0', display: 'flex', flexDirection: 'column', gap: 3 }}>
         <h4 style={{ margin: 0, fontSize: 14, fontWeight: 700, color: 'var(--r-ink)' }}>{block.title}</h4>
@@ -32,7 +35,8 @@ function AnswerBlock({ block }: { block: FaqBlock }) {
   return null;
 }
 
-export default function RiotFaq() {
+export default function RiotFaq({ data }: { data: FaqData }) {
+  const faqs = data.questions ?? [];
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const toggle = (idx: number) => setOpenIndex(openIndex === idx ? null : idx);
 
@@ -40,14 +44,13 @@ export default function RiotFaq() {
     <section id="faq" className="riot-olive" style={{ position: 'relative', padding: 'clamp(60px,10vh,140px) clamp(18px,4vw,44px)', borderTop: '2px solid var(--r-black)' }}>
       <div style={{ maxWidth: 880, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 'clamp(30px,4.5vh,50px)' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 8 }}>
-          <span className="riot-kicker">
-            FAQ
-          </span>
-          <h2 className="riot-display" style={{ fontSize: 'clamp(34px,5.8vw,86px)', color: 'var(--r-h-blue)' }}>Frequently Asked Questions</h2>
-          <p className="riot-lede" style={{ maxWidth: '58ch' }}>
-            Everything you need to know about how we work, what we deliver, and what to expect when partnering with
-            MARCA Creatives.
-          </p>
+          {data.kicker && <span className="riot-kicker">{data.kicker}</span>}
+          <h2 className="riot-display" style={{ fontSize: 'clamp(34px,5.8vw,86px)', color: 'var(--r-h-blue)' }}>{data.title}</h2>
+          {data.lede && (
+            <p className="riot-lede" style={{ maxWidth: '58ch' }}>
+              {data.lede}
+            </p>
+          )}
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>

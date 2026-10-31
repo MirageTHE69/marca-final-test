@@ -1,19 +1,8 @@
-/** Same client roster as TickerBanner, shown as a straight marquee band. */
-const clients = [
-  'Dr. Aditya Shah',
-  'MS Design Studio',
-  'Dr. Sandeep Mavani',
-  'The Crossed Boundaries',
-  'Dr. Ashish Desai',
-  'EOS Couture',
-  'Nutty Affair',
-  'Aadicura Hospital',
-];
-
-export default function RiotTicker() {
+/** The client names scrolling under the hero, as a straight marquee band. */
+export default function RiotTicker({ names }: { names: string[] }) {
   const run = (key: string) => (
     <div key={key} aria-hidden={key === 'b'} style={{ display: 'flex', alignItems: 'center', gap: 30 }}>
-      {clients.map((c, i) => (
+      {names.map((c, i) => (
         <span key={`${key}-${i}`} style={{ display: 'flex', alignItems: 'center', gap: 30, flexShrink: 0 }}>
           <span className="riot-display" style={{ fontSize: 'clamp(16px,1.7vw,26px)', color: 'var(--r-black)' }}>{c}</span>
           <span style={{ fontSize: 16, color: 'var(--r-black)' }}>★</span>

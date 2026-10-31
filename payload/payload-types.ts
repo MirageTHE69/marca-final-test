@@ -68,6 +68,10 @@ export interface Config {
   blocks: {};
   collections: {
     leads: Lead;
+    'case-studies': CaseStudy;
+    'portfolio-items': PortfolioItem;
+    posts: Post;
+    media: Media;
     users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -77,6 +81,10 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     leads: LeadsSelect<false> | LeadsSelect<true>;
+    'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
+    'portfolio-items': PortfolioItemsSelect<false> | PortfolioItemsSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -87,8 +95,20 @@ export interface Config {
     defaultIDType: string;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    home: Home;
+    'portfolio-page': PortfolioPage;
+    'case-studies-page': CaseStudiesPage;
+    'blog-page': BlogPage;
+    settings: Setting;
+  };
+  globalsSelect: {
+    home: HomeSelect<false> | HomeSelect<true>;
+    'portfolio-page': PortfolioPageSelect<false> | PortfolioPageSelect<true>;
+    'case-studies-page': CaseStudiesPageSelect<false> | CaseStudiesPageSelect<true>;
+    'blog-page': BlogPageSelect<false> | BlogPageSelect<true>;
+    settings: SettingsSelect<false> | SettingsSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -144,6 +164,164 @@ export interface Lead {
   createdAt: string;
 }
 /**
+ * Cards on the Case Studies page and the landing page. Drag to reorder; publish to put a change live.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies".
+ */
+export interface CaseStudy {
+  id: string;
+  _order?: string | null;
+  title: string;
+  category: string;
+  year?: string | null;
+  logo?: (string | null) | Media;
+  /**
+   * Leave empty if there is no "before".
+   */
+  beforeImage?: (string | null) | Media;
+  afterImage: string | Media;
+  stats?:
+    | {
+        value?: string | null;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  descriptions?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  heroMedia?: (string | null) | Media;
+  intro?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * For case studies with a hand-built page, e.g. /case-studies/aadicura-hospital.
+   */
+  link?: string | null;
+  /**
+   * The page address. Filled from the title if left empty.
+   */
+  slug?: string | null;
+  chip?: string | null;
+  featured?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * Every image and video on the website. Files are stored in your Cloudinary account.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  title: string;
+  /**
+   * Describes the image for screen readers and Google.
+   */
+  alt?: string | null;
+  /**
+   * Which part stays visible when a frame crops the image.
+   */
+  focus?: ('auto' | 'north' | 'center' | 'south') | null;
+  url: string;
+  resourceType?: ('image' | 'video') | null;
+  format?: string | null;
+  folder?: string | null;
+  width?: number | null;
+  height?: number | null;
+  bytes?: number | null;
+  duration?: number | null;
+  publicId?: string | null;
+  provider?: ('cloudinary' | 'external') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Work shown on the portfolio page. Filter by category, then drag to reorder.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolio-items".
+ */
+export interface PortfolioItem {
+  id: string;
+  _order?: string | null;
+  media: string | Media;
+  title: string;
+  label?: string | null;
+  category: 'fashion-shoots' | 'product-shoots' | 'branding-packaging' | 'ad-campaigns';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Articles on /blog. Drafts save as you type; nothing goes live until you publish.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts".
+ */
+export interface Post {
+  id: string;
+  title: string;
+  /**
+   * One or two sentences for the blog list and search results.
+   */
+  excerpt?: string | null;
+  cover?: (string | null) | Media;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * The page address. Filled from the title if left empty.
+   */
+  slug?: string | null;
+  category?: ('insights' | 'content-strategy' | 'behind-the-scenes' | 'case-notes' | 'studio-news') | null;
+  author?: string | null;
+  /**
+   * Set automatically when first published.
+   */
+  publishedAt?: string | null;
+  /**
+   * Optional. Falls back to the title, summary and cover image.
+   */
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -197,6 +375,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'leads';
         value: string | Lead;
+      } | null)
+    | ({
+        relationTo: 'case-studies';
+        value: string | CaseStudy;
+      } | null)
+    | ({
+        relationTo: 'portfolio-items';
+        value: string | PortfolioItem;
+      } | null)
+    | ({
+        relationTo: 'posts';
+        value: string | Post;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: string | Media;
       } | null)
     | ({
         relationTo: 'users';
@@ -258,6 +452,99 @@ export interface LeadsSelect<T extends boolean = true> {
   notes?: T;
   status?: T;
   source?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies_select".
+ */
+export interface CaseStudiesSelect<T extends boolean = true> {
+  _order?: T;
+  title?: T;
+  category?: T;
+  year?: T;
+  logo?: T;
+  beforeImage?: T;
+  afterImage?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  descriptions?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  heroMedia?: T;
+  intro?: T;
+  content?: T;
+  link?: T;
+  slug?: T;
+  chip?: T;
+  featured?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolio-items_select".
+ */
+export interface PortfolioItemsSelect<T extends boolean = true> {
+  _order?: T;
+  media?: T;
+  title?: T;
+  label?: T;
+  category?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+  title?: T;
+  excerpt?: T;
+  cover?: T;
+  content?: T;
+  slug?: T;
+  category?: T;
+  author?: T;
+  publishedAt?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  title?: T;
+  alt?: T;
+  focus?: T;
+  url?: T;
+  resourceType?: T;
+  format?: T;
+  folder?: T;
+  width?: T;
+  height?: T;
+  bytes?: T;
+  duration?: T;
+  publicId?: T;
+  provider?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -326,6 +613,705 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
+ * Text, images and videos for each landing page section. Publish to put changes live.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: string;
+  hero: {
+    video: string | Media;
+    title: string;
+    tagline?: string | null;
+    intro?: string | null;
+    cornerLabel?: string | null;
+    buttonLabel?: string | null;
+  };
+  clients?: {
+    names?:
+      | {
+          name: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  instagram: {
+    kicker?: string | null;
+    title: string;
+    lede?: string | null;
+    reels?:
+      | {
+          video: string | Media;
+          title: string;
+          subtitle?: string | null;
+          badge?: ('Instagram Reel' | 'YouTube Short') | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  youtube: {
+    kicker?: string | null;
+    title: string;
+    lede?: string | null;
+    films?:
+      | {
+          video: string | Media;
+          title: string;
+          titleAccent?: string | null;
+          category?: string | null;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  thumbnails: {
+    kicker?: string | null;
+    title: string;
+    lede?: string | null;
+    pieces?:
+      | {
+          image: string | Media;
+          title: string;
+          category?: string | null;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  process: {
+    kicker?: string | null;
+    title: string;
+    lede?: string | null;
+    steps?:
+      | {
+          title: string;
+          colour?: ('yellow' | 'blue' | 'orange' | 'red' | 'olive' | 'cream') | null;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  caseStudies: {
+    kicker?: string | null;
+    title: string;
+    /**
+     * Shown in the serif italic after the title.
+     */
+    titleAccent?: string | null;
+    buttonLabel?: string | null;
+    endKicker?: string | null;
+    endTitle?: string | null;
+    endButton?: string | null;
+  };
+  services: {
+    kicker?: string | null;
+    title: string;
+    lede?: string | null;
+    items?:
+      | {
+          title: string;
+          leadService: 'photoshoot' | 'ad-campaigns' | 'packaging-creative-design' | 'social-media-content' | 'other';
+          colour?: ('yellow' | 'blue' | 'orange' | 'red' | 'olive' | 'cream') | null;
+          tagline?: string | null;
+          images?:
+            | {
+                image: string | Media;
+                caption?: string | null;
+                id?: string | null;
+              }[]
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  packages: {
+    kicker?: string | null;
+    title: string;
+    lede?: string | null;
+    items?:
+      | {
+          name: string;
+          subtitle?: string | null;
+          colour?: ('yellow' | 'blue' | 'orange' | 'red' | 'olive' | 'cream') | null;
+          features?:
+            | {
+                text: string;
+                highlight?: boolean | null;
+                id?: string | null;
+              }[]
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  testimonials: {
+    kicker?: string | null;
+    title: string;
+    /**
+     * Shown in the serif italic after the title.
+     */
+    titleAccent?: string | null;
+    items?:
+      | {
+          quote: string;
+          name: string;
+          role?: string | null;
+          colour?: ('yellow' | 'blue' | 'orange' | 'red' | 'olive' | 'cream') | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  faq: {
+    kicker?: string | null;
+    title: string;
+    lede?: string | null;
+    questions?:
+      | {
+          question: string;
+          answer: (
+            | {
+                text: string;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'paragraph';
+              }
+            | {
+                ordered?: boolean | null;
+                items?:
+                  | {
+                      text: string;
+                      id?: string | null;
+                    }[]
+                  | null;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'list';
+              }
+            | {
+                title: string;
+                text: string;
+                id?: string | null;
+                blockName?: string | null;
+                blockType: 'subheading';
+              }
+          )[];
+          id?: string | null;
+        }[]
+      | null;
+  };
+  contact: {
+    video?: (string | null) | Media;
+    kicker?: string | null;
+    title: string;
+    /**
+     * Shown in the serif italic after the title.
+     */
+    titleAccent?: string | null;
+    primaryButton?: string | null;
+    secondaryButton?: string | null;
+    note?: string | null;
+    formTitle?: string | null;
+    formButton?: string | null;
+  };
+  _status?: ('draft' | 'published') | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Headings on /portfolio. The images and videos are managed in Content → Portfolio and the Home page lists.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolio-page".
+ */
+export interface PortfolioPage {
+  id: string;
+  hero: {
+    scriptLine?: string | null;
+    bigWord: string;
+    buttonLabel?: string | null;
+    title?: string | null;
+    lede?: string | null;
+  };
+  sections: {
+    fashionShoots: {
+      kicker?: string | null;
+      title: string;
+      description?: string | null;
+    };
+    productShoots: {
+      kicker?: string | null;
+      title: string;
+      description?: string | null;
+    };
+    brandingPackaging: {
+      kicker?: string | null;
+      title: string;
+      description?: string | null;
+    };
+    adCampaigns: {
+      kicker?: string | null;
+      title: string;
+      description?: string | null;
+    };
+    /**
+     * Videos come from Home page → Instagram.
+     */
+    instagramReels: {
+      kicker?: string | null;
+      title: string;
+      description?: string | null;
+    };
+    /**
+     * Videos come from Home page → YouTube.
+     */
+    youtubeVideos: {
+      kicker?: string | null;
+      title: string;
+      description?: string | null;
+    };
+  };
+  closing: {
+    title: string;
+    titleAccent?: string | null;
+    buttonLabel?: string | null;
+  };
+  _status?: ('draft' | 'published') | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * The hero and closing of /case-studies. The cards are managed in Content → Case studies.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies-page".
+ */
+export interface CaseStudiesPage {
+  id: string;
+  hero: {
+    video?: (string | null) | Media;
+    kicker?: string | null;
+    title: string;
+    titleAccent?: string | null;
+    lede?: string | null;
+  };
+  closing: {
+    title: string;
+    titleAccent?: string | null;
+    buttonLabel?: string | null;
+  };
+  _status?: ('draft' | 'published') | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * The heading of /blog. Write posts in Content → Blog.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-page".
+ */
+export interface BlogPage {
+  id: string;
+  scriptLine?: string | null;
+  bigWord: string;
+  lede?: string | null;
+  emptyMessage?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Contact details and links shown in the menu, footer and contact section on every page.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings".
+ */
+export interface Setting {
+  id: string;
+  email: string;
+  phone: string;
+  /**
+   * Country code, no spaces.
+   */
+  phoneLink: string;
+  addressLine1?: string | null;
+  addressLine2?: string | null;
+  socials?:
+    | {
+        name: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  footerBlurb?: string | null;
+  copyright?: string | null;
+  seoTitle?: string | null;
+  seoDescription?: string | null;
+  shareImage?: (string | null) | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        video?: T;
+        title?: T;
+        tagline?: T;
+        intro?: T;
+        cornerLabel?: T;
+        buttonLabel?: T;
+      };
+  clients?:
+    | T
+    | {
+        names?:
+          | T
+          | {
+              name?: T;
+              id?: T;
+            };
+      };
+  instagram?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        lede?: T;
+        reels?:
+          | T
+          | {
+              video?: T;
+              title?: T;
+              subtitle?: T;
+              badge?: T;
+              id?: T;
+            };
+      };
+  youtube?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        lede?: T;
+        films?:
+          | T
+          | {
+              video?: T;
+              title?: T;
+              titleAccent?: T;
+              category?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  thumbnails?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        lede?: T;
+        pieces?:
+          | T
+          | {
+              image?: T;
+              title?: T;
+              category?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  process?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        lede?: T;
+        steps?:
+          | T
+          | {
+              title?: T;
+              colour?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  caseStudies?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        titleAccent?: T;
+        buttonLabel?: T;
+        endKicker?: T;
+        endTitle?: T;
+        endButton?: T;
+      };
+  services?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        lede?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              leadService?: T;
+              colour?: T;
+              tagline?: T;
+              images?:
+                | T
+                | {
+                    image?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+      };
+  packages?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        lede?: T;
+        items?:
+          | T
+          | {
+              name?: T;
+              subtitle?: T;
+              colour?: T;
+              features?:
+                | T
+                | {
+                    text?: T;
+                    highlight?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+      };
+  testimonials?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        titleAccent?: T;
+        items?:
+          | T
+          | {
+              quote?: T;
+              name?: T;
+              role?: T;
+              colour?: T;
+              id?: T;
+            };
+      };
+  faq?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        lede?: T;
+        questions?:
+          | T
+          | {
+              question?: T;
+              answer?:
+                | T
+                | {
+                    paragraph?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                    list?:
+                      | T
+                      | {
+                          ordered?: T;
+                          items?:
+                            | T
+                            | {
+                                text?: T;
+                                id?: T;
+                              };
+                          id?: T;
+                          blockName?: T;
+                        };
+                    subheading?:
+                      | T
+                      | {
+                          title?: T;
+                          text?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                  };
+              id?: T;
+            };
+      };
+  contact?:
+    | T
+    | {
+        video?: T;
+        kicker?: T;
+        title?: T;
+        titleAccent?: T;
+        primaryButton?: T;
+        secondaryButton?: T;
+        note?: T;
+        formTitle?: T;
+        formButton?: T;
+      };
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolio-page_select".
+ */
+export interface PortfolioPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        scriptLine?: T;
+        bigWord?: T;
+        buttonLabel?: T;
+        title?: T;
+        lede?: T;
+      };
+  sections?:
+    | T
+    | {
+        fashionShoots?:
+          | T
+          | {
+              kicker?: T;
+              title?: T;
+              description?: T;
+            };
+        productShoots?:
+          | T
+          | {
+              kicker?: T;
+              title?: T;
+              description?: T;
+            };
+        brandingPackaging?:
+          | T
+          | {
+              kicker?: T;
+              title?: T;
+              description?: T;
+            };
+        adCampaigns?:
+          | T
+          | {
+              kicker?: T;
+              title?: T;
+              description?: T;
+            };
+        instagramReels?:
+          | T
+          | {
+              kicker?: T;
+              title?: T;
+              description?: T;
+            };
+        youtubeVideos?:
+          | T
+          | {
+              kicker?: T;
+              title?: T;
+              description?: T;
+            };
+      };
+  closing?:
+    | T
+    | {
+        title?: T;
+        titleAccent?: T;
+        buttonLabel?: T;
+      };
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies-page_select".
+ */
+export interface CaseStudiesPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        video?: T;
+        kicker?: T;
+        title?: T;
+        titleAccent?: T;
+        lede?: T;
+      };
+  closing?:
+    | T
+    | {
+        title?: T;
+        titleAccent?: T;
+        buttonLabel?: T;
+      };
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-page_select".
+ */
+export interface BlogPageSelect<T extends boolean = true> {
+  scriptLine?: T;
+  bigWord?: T;
+  lede?: T;
+  emptyMessage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings_select".
+ */
+export interface SettingsSelect<T extends boolean = true> {
+  email?: T;
+  phone?: T;
+  phoneLink?: T;
+  addressLine1?: T;
+  addressLine2?: T;
+  socials?:
+    | T
+    | {
+        name?: T;
+        url?: T;
+        id?: T;
+      };
+  footerBlurb?: T;
+  copyright?: T;
+  seoTitle?: T;
+  seoDescription?: T;
+  shareImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "collections_widget".
  */
@@ -334,6 +1320,40 @@ export interface CollectionsWidget {
     [k: string]: unknown;
   };
   width: 'full';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaBlock".
+ */
+export interface MediaBlock {
+  media: string | Media;
+  caption?: string | null;
+  size?: ('content' | 'wide') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mediaBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "YoutubeBlock".
+ */
+export interface YoutubeBlock {
+  url: string;
+  caption?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'youtube';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PullQuoteBlock".
+ */
+export interface PullQuoteBlock {
+  quote: string;
+  attribution?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pullQuote';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

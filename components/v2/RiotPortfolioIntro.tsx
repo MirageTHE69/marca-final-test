@@ -1,4 +1,4 @@
-import { portfolioSections } from '@/components/portfolio/portfolioItems';
+type SectionLink = { key: string; title: string };
 
 const PILL_COLOURS = ['var(--r-yellow)', 'var(--r-blue)', 'var(--r-orange)'];
 
@@ -65,7 +65,7 @@ function RightDoodle() {
   );
 }
 
-export default function RiotPortfolioIntro() {
+export default function RiotPortfolioIntro({ sections: portfolioSections }: { sections: SectionLink[] }) {
   return (
     <section className="riot-cream" style={{ padding: 'clamp(56px,9vh,110px) clamp(18px,4vw,44px) clamp(60px,10vh,120px)' }}>
       <p

@@ -1,10 +1,12 @@
 import MediaSlot from '@/components/MediaSlot';
+import { asMedia, videoUrl } from '@/lib/media';
+import type { Home } from '@/payload/payload-types';
 
 /**
  * Same structure as HeroSection — full-bleed film, centred wordmark with
  * the serif tagline, and the positioning line along the bottom.
  */
-export default function RiotHero() {
+export default function RiotHero({ data }: { data: Home['hero'] }) {
   return (
     <section
       id="top"
@@ -23,7 +25,7 @@ export default function RiotHero() {
       <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
         <MediaSlot
           type="video"
-          src="https://ik.imagekit.io/5feqwwaxb/MARCA%20WEBSITE%2001.mp4"
+          src={videoUrl(asMedia(data.video))}
           placeholder="Drop hero film"
         />
         <div
@@ -47,7 +49,7 @@ export default function RiotHero() {
             color: 'var(--r-yellow)',
           }}
         >
-          Content · Film · Identity
+          {data.cornerLabel}
         </span>
       </div>
 
@@ -65,7 +67,7 @@ export default function RiotHero() {
         }}
       >
         <h1 className="riot-display" style={{ fontSize: 'clamp(62px,15.5vw,248px)', letterSpacing: '-.055em', color: 'var(--r-cream)' }}>
-          MARCA
+          {data.title}
         </h1>
         <span
           style={{
@@ -78,7 +80,7 @@ export default function RiotHero() {
             color: 'var(--r-yellow)',
           }}
         >
-          Made to Make You Grow.
+          {data.tagline}
         </span>
       </div>
 
@@ -95,10 +97,10 @@ export default function RiotHero() {
         }}
       >
         <p style={{ margin: 0, maxWidth: '46ch', fontSize: 'clamp(14px,1.2vw,18px)', lineHeight: 1.55, color: 'var(--r-cream)' }}>
-          We turn founders into content machines that attract clients, build authority, and drive revenue.
+          {data.intro}
         </p>
         <a href="#contact" className="riot-btn riot-btn-yellow">
-          Start a project →
+          {data.buttonLabel || 'Start a project →'}
         </a>
       </div>
     </section>

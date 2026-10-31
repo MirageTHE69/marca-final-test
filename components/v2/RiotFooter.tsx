@@ -1,8 +1,10 @@
-import { site } from '@/content-lib/site';
 import Link from 'next/link';
 
-/** Same four columns and links as Footer. */
-export default function RiotFooter() {
+import { getSettings } from '@/lib/cms';
+
+/** Footer columns; contact details come from Site settings. */
+export default async function RiotFooter() {
+  const site = await getSettings();
   return (
     <footer
       className="riot-yellow"
@@ -12,18 +14,18 @@ export default function RiotFooter() {
         <div style={{ flex: '1 1 260px', display: 'flex', flexDirection: 'column', gap: 18 }}>
           <span className="riot-display" style={{ fontSize: 'clamp(26px,3vw,40px)' }}>Marca</span>
           <p style={{ margin: 0, maxWidth: '30ch', fontSize: 14, lineHeight: 1.7, color: 'rgba(18,18,18,.72)' }}>
-            A creative production studio for content, film and brand identity.
+            {site.footerBlurb}
           </p>
           <div style={{ display: 'flex', gap: 16, paddingTop: 4 }}>
-            {site.socials.map((s) => (
+            {(site.socials ?? []).map((s) => (
               <a
-                key={s.label}
-                href={s.href}
+                key={s.name}
+                href={s.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--r-black)' }}
               >
-                {s.label}
+                {s.name}
               </a>
             ))}
           </div>
@@ -47,6 +49,7 @@ export default function RiotFooter() {
           {[
             { href: '/portfolio', label: 'Services' },
             { href: '/case-studies', label: 'Case studies' },
+            { href: '/blog', label: 'Blog' },
             { href: '/#process', label: 'Process' },
             { href: '/#packages', label: 'Packages' },
             { href: '/faq', label: 'FAQ' },
@@ -61,11 +64,11 @@ export default function RiotFooter() {
           <a href={`mailto:${site.email}`} style={{ fontSize: 'clamp(16px,1.5vw,20px)', fontWeight: 700, letterSpacing: '-.01em', color: 'var(--r-black)' }}>
             {site.email}
           </a>
-          <a href={site.phone.href} style={{ fontSize: 14, color: 'var(--r-black)' }}>{site.phone.display}</a>
+          <a href={`tel:${site.phoneLink}`} style={{ fontSize: 14, color: 'var(--r-black)' }}>{site.phone}</a>
           <span style={{ fontSize: 14, lineHeight: 1.7, color: 'rgba(18,18,18,.7)' }}>
-            {site.address.line1}
+            {site.addressLine1}
             <br />
-            {site.address.line2}
+            {site.addressLine2}
           </span>
         </div>
       </div>
@@ -81,7 +84,7 @@ export default function RiotFooter() {
           borderTop: '2px solid var(--r-black)',
         }}
       >
-        <span style={{ fontSize: 11, fontWeight: 600, color: 'rgba(18,18,18,.7)' }}>© 2026 Marca Creatives. All rights reserved.</span>
+        <span style={{ fontSize: 11, fontWeight: 600, color: 'rgba(18,18,18,.7)' }}>{site.copyright}</span>
         <div style={{ display: 'flex', gap: 24 }}>
           <Link href="/#contact" style={{ fontSize: 11, fontWeight: 600, color: 'rgba(18,18,18,.7)' }}>Privacy policy</Link>
           <Link href="/#contact" style={{ fontSize: 11, fontWeight: 600, color: 'rgba(18,18,18,.7)' }}>Terms &amp; conditions</Link>

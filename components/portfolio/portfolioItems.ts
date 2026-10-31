@@ -78,7 +78,7 @@ export const portfolioSections: PortfolioSection[] = [
 /** What each numbered sub-folder shows: [title, line under it]. */
 type SetNames = Record<number, [string, string]>;
 
-const fashionSets: SetNames = {
+export const fashionSets: SetNames = {
   1: ['Festive Menswear Editorial', 'Fashion Shoot · Menswear'],
   2: ['Summer Dress Campaign', 'Fashion Shoot · Womenswear'],
   3: ['Bridal Lehenga Editorial', 'Fashion Shoot · Bridal'],
@@ -87,7 +87,7 @@ const fashionSets: SetNames = {
   6: ['Studio Lehenga Collection', 'Fashion Shoot · Studio'],
 };
 
-const productSets: SetNames = {
+export const productSets: SetNames = {
   1: ['Sculptural Lighting Collection', 'Product Shoot · Home Decor'],
   2: ['Artisan Cake Styling', 'Product Shoot · Food'],
   3: ['Handcrafted Silver Jewellery', 'Product Shoot · Jewellery'],
@@ -95,7 +95,7 @@ const productSets: SetNames = {
   5: ['Menswear Boutique Showcase', 'Product Shoot · Retail'],
 };
 
-const packagingSets: SetNames = {
+export const packagingSets: SetNames = {
   1: ['Floral Octagon Gift Box', 'Packaging Design · Gifting'],
   2: ['Illustrated City Gift Box', 'Packaging Design · Gifting'],
   3: ['Nutty Affair Stand-Up Pouches', 'Packaging Design · FMCG'],
