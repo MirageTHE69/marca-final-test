@@ -18,12 +18,12 @@ export const metadata: Metadata = {
 
 /** The rows, in page order: which heading group in the admin, and how the work is laid out. */
 const ROWS: { key: PortfolioSectionKey; group: keyof PortfolioPageData['sections']; layout: PortfolioRow['layout'] }[] = [
+  { key: 'instagram-reels', group: 'instagramReels', layout: 'reel' },
+  { key: 'youtube-videos', group: 'youtubeVideos', layout: 'film' },
   { key: 'fashion-shoots', group: 'fashionShoots', layout: 'mixed' },
   { key: 'product-shoots', group: 'productShoots', layout: 'mixed' },
   { key: 'branding-packaging', group: 'brandingPackaging', layout: 'mixed' },
   { key: 'ad-campaigns', group: 'adCampaigns', layout: 'reel' },
-  { key: 'instagram-reels', group: 'instagramReels', layout: 'reel' },
-  { key: 'youtube-videos', group: 'youtubeVideos', layout: 'film' },
 ];
 
 /** A library file as a portfolio tile. */
