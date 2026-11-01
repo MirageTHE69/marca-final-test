@@ -382,6 +382,8 @@ button {
 .riot-black { background: var(--r-black); color: var(--r-cream); }
 .riot-yellow { background: var(--r-yellow); color: var(--r-black); }
 .riot-olive { background: var(--r-olive); color: var(--r-black); }
+.riot-red { background: var(--r-red); color: var(--r-black); }
+.riot-blue { background: var(--r-blue); color: var(--r-black); }
 
 /* Small coloured pill that sits inline over a headline. */
 .riot-pill {
@@ -545,14 +547,18 @@ button {
 /* Rails need their arrows re-themed per surface. */
 .riot-cream .rail-arrow,
 .riot-yellow .rail-arrow,
-.riot-olive .rail-arrow {
+.riot-olive .rail-arrow,
+.riot-red .rail-arrow,
+.riot-blue .rail-arrow {
   border: 2px solid var(--r-black);
   color: var(--r-black);
 }
 
 .riot-cream .rail-arrow:hover,
 .riot-yellow .rail-arrow:hover,
-.riot-olive .rail-arrow:hover {
+.riot-olive .rail-arrow:hover,
+.riot-red .rail-arrow:hover,
+.riot-blue .rail-arrow:hover {
   background: var(--r-yellow);
   border-color: var(--r-black);
 }
