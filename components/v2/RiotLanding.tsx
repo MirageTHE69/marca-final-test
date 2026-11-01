@@ -14,7 +14,6 @@ import RiotOtherServices from './RiotOtherServices';
 import RiotPackages from './RiotPackages';
 import RiotProcess from './RiotProcess';
 import RiotShortForm from './RiotShortForm';
-import RiotTestimonials from './RiotTestimonials';
 import RiotTicker from './RiotTicker';
 
 /** The landing page — served at `/` and `/v2`. All content comes from the admin's Home page. */
@@ -40,7 +39,9 @@ export default async function RiotLanding() {
       <RiotCaseStudies data={home.caseStudies} stories={featured} />
       <RiotOtherServices data={home.services} email={settings.email} />
       <RiotPackages data={home.packages} />
-      <RiotTestimonials data={home.testimonials} />
+      {/* Testimonials are hidden for now; their content stays in the admin
+          (Home page → Testimonials). To bring them back, render
+          <RiotTestimonials data={home.testimonials} /> here again. */}
       <RiotFaq data={home.faq} />
       <RiotContact data={home.contact} settings={settings} services={services} />
       <RiotFooter />
