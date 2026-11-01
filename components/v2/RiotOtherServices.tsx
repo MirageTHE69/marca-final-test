@@ -180,6 +180,7 @@ export default function RiotOtherServices({ data, email }: { data: Home['service
   return (
     <section id="other-services" className="riot-cream" style={{ position: 'relative', padding: 'clamp(56px,9vh,120px) clamp(18px,4vw,44px)', borderTop: '2px solid var(--r-black)' }}>
       <div
+        className="riot-head"
         style={{
           display: 'flex',
           flexDirection: 'column',

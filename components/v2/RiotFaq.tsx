@@ -43,7 +43,7 @@ export default function RiotFaq({ data }: { data: FaqData }) {
   return (
     <section id="faq" className="riot-blue" style={{ position: 'relative', padding: 'clamp(60px,10vh,140px) clamp(18px,4vw,44px)', borderTop: '2px solid var(--r-black)' }}>
       <div style={{ maxWidth: 880, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 'clamp(30px,4.5vh,50px)' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 8 }}>
+        <div className="riot-head" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 8 }}>
           {data.kicker && <span className="riot-kicker">{data.kicker}</span>}
           <h2 className="riot-display" style={{ fontSize: 'clamp(34px,5.8vw,86px)', color: 'var(--r-h-red)' }}>{data.title}</h2>
           {data.lede && (

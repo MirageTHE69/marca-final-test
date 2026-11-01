@@ -7,7 +7,7 @@ export default function RiotLongForm({ data }: { data: Home['youtube'] }) {
   const films = data.films ?? [];
   return (
     <section id="long-form" className="riot-black" style={{ padding: 'clamp(56px,9vh,120px) 0' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '0 clamp(18px,4vw,44px)', textAlign: 'center' }}>
+      <div className="riot-head" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '0 clamp(18px,4vw,44px)', textAlign: 'center' }}>
         {data.kicker && <span className="riot-kicker">{data.kicker}</span>}
         <h2 className="riot-display" style={{ maxWidth: '20ch', fontSize: 'clamp(44px,8.6vw,140px)', color: 'var(--r-h-yellow)' }}>
           {data.title}

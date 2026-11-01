@@ -74,7 +74,9 @@ export default function RiotPortfolioHero({ hero, sections: portfolioSections }:
           </FitTitle>
         </div>
 
+        <div className="riot-head" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(12px,2vh,20px)' }}>
         <h1
+          className="riot-head__title"
           style={{
             margin: 0,
             maxWidth: '16ch',
@@ -92,6 +94,7 @@ export default function RiotPortfolioHero({ hero, sections: portfolioSections }:
         <p className="riot-lede" style={{ maxWidth: '52ch', marginTop: 'calc(-1 * clamp(12px,2vh,20px) - 2px)' }}>
           {hero.lede}
         </p>
+        </div>
 
         <a
           href={`#${portfolioSections[0]?.key ?? 'fashion-shoots'}`}

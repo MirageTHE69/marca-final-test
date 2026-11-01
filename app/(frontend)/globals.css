@@ -515,6 +515,43 @@ button {
   margin-top: clamp(-10px, -.7vw, -3px);
 }
 
+/* A title and the line under it share one width: the title's. The group
+   shrinks to fit the title, and the line takes no width of its own
+   (width 0) before stretching to the group (min-width 100%), so it wraps
+   under the title instead of running wider than it. */
+.riot-head {
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.riot-head--start {
+  margin-inline: 0;
+}
+
+.riot-head > .riot-lede {
+  width: 0;
+  min-width: 100%;
+  /* Words spread to the title's edges; a short last line stays centred. */
+  text-align: justify;
+  text-align-last: center;
+}
+
+/* A one-line line is spread the whole way (set by HeadFitter). */
+.riot-head > .riot-lede.is-one-line {
+  text-align-last: justify;
+}
+
+.riot-head--start > .riot-lede {
+  text-align-last: left;
+}
+
+.riot-head > .riot-display,
+.riot-head > .riot-head__title {
+  text-wrap: balance;
+}
+
 .riot-black .riot-kicker,
 .riot-black .riot-lede {
   color: var(--r-cream);

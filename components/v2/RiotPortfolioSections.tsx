@@ -74,7 +74,7 @@ function CategorySection({ section, index }: { section: PortfolioRow; index: num
         scrollMarginTop: 64,
       }}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '0 clamp(18px,4vw,44px)', textAlign: 'center' }}>
+      <div className="riot-head" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '0 clamp(18px,4vw,44px)', textAlign: 'center' }}>
         <span className="riot-kicker" style={{ color: theme.caption }}>
           {section.kicker}
         </span>

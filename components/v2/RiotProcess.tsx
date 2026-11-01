@@ -66,7 +66,7 @@ export default function RiotProcess({ data }: { data: Home['process'] }) {
         style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(26px,4.5vh,54px)' }}
       >
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 22, padding: '0 clamp(18px,4vw,44px)' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}>
+          <div className="riot-head riot-head--start" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}>
             {data.kicker && <span className="riot-kicker">{data.kicker}</span>}
             <h2 className="riot-display" style={{ fontSize: 'clamp(40px,7.2vw,112px)', color: 'var(--r-h-red)' }}>{data.title}</h2>
             {data.lede && <p className="riot-lede">{data.lede}</p>}
