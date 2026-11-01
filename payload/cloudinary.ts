@@ -30,6 +30,10 @@ export type CloudinaryAsset = {
   secure_url: string;
 };
 
+/** Demo files every Cloudinary account starts with; never part of the site. */
+export const isCloudinaryDemo = (a: Pick<CloudinaryAsset, 'public_id'>) =>
+  /^(sample|main-sample|cld-sample(-\d+)?)$|^samples\//.test(a.public_id);
+
 /** A clean delivery URL (no transformations) for an asset. */
 export const cleanUrl = (a: Pick<CloudinaryAsset, 'secure_url'>) => a.secure_url;
 

@@ -1,8 +1,8 @@
 'use client';
 
 import { FieldDescription, FieldError, FieldLabel, useConfig, useDocumentDrawer, useField, useListDrawer } from '@payloadcms/ui';
-import type { RelationshipFieldClientProps } from 'payload';
-import { useEffect, useState } from 'react';
+import type { CollectionSlug, RelationshipFieldClientProps } from 'payload';
+import { useEffect, useMemo, useState } from 'react';
 
 import { thumbUrl, type MediaDoc } from '@/lib/media';
 
@@ -33,10 +33,11 @@ export function MediaPicker({ path, field, accept, readOnly }: Props) {
 
   const shown = id && doc?.id === id ? doc : null;
 
-  const [ListDrawer, , list] = useListDrawer({
-    collectionSlugs: ['media'],
-    filterOptions: accept ? { media: { resourceType: { equals: accept } } } : undefined,
-  });
+  // The drawer reloads whenever these change identity, so they must be stable
+  // between renders — a fresh object each render reloads it forever.
+  const collectionSlugs = useMemo<CollectionSlug[]>(() => ['media'], []);
+  const filterOptions = useMemo(() => (accept ? { media: { resourceType: { equals: accept } } } : undefined), [accept]);
+  const [ListDrawer, , list] = useListDrawer({ collectionSlugs, filterOptions });
   const [CreateDrawer, , create] = useDocumentDrawer({ collectionSlug: 'media' });
 
   const label = typeof field?.label === 'string' ? field.label : field?.name;

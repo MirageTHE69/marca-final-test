@@ -12,7 +12,7 @@ import { fashionShoots, films, packagingDesigns, productShoots, reels, type Port
 import { fashionSets, packagingSets, portfolioItems, portfolioSections, productSets } from '../components/portfolio/portfolioItems';
 import { faqs } from '../content-lib/faqs';
 import { site } from '../content-lib/site';
-import { getCloudinary, mediaDataFromAsset, type CloudinaryAsset } from '../payload/cloudinary';
+import { getCloudinary, isCloudinaryDemo, mediaDataFromAsset, type CloudinaryAsset } from '../payload/cloudinary';
 import { clients, otherServices, packages, pieces, processSteps, testimonials } from './seed-data';
 
 const force = process.argv.includes('--force');
@@ -41,7 +41,7 @@ for (const m of existing.docs) {
 }
 let added = 0;
 for (const a of assets) {
-  if (byPublicId.has(a.public_id)) continue;
+  if (byPublicId.has(a.public_id) || isCloudinaryDemo(a)) continue;
   const doc = await payload.create({ collection: 'media', data: mediaDataFromAsset(a) });
   byPublicId.set(a.public_id, doc.id);
   byUrl.set(doc.url, doc.id);

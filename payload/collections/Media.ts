@@ -2,7 +2,7 @@ import type { CollectionConfig, PayloadRequest } from 'payload';
 import { Forbidden } from 'payload';
 
 import { isLoggedIn } from '../access/isLoggedIn';
-import { getCloudinary, mediaDataFromAsset, type CloudinaryAsset } from '../cloudinary';
+import { getCloudinary, isCloudinaryDemo, mediaDataFromAsset, type CloudinaryAsset } from '../cloudinary';
 import { revalidateAfterChange, revalidateAfterDelete } from '../hooks/revalidate';
 
 const requireUser = (req: PayloadRequest) => {
@@ -172,7 +172,7 @@ export async function syncCloudinary(req: PayloadRequest) {
   const known = new Set(existing.docs.map((d) => d.publicId));
   let added = 0;
   for (const asset of assets) {
-    if (known.has(asset.public_id)) continue;
+    if (known.has(asset.public_id) || isCloudinaryDemo(asset)) continue;
     await req.payload.create({ collection: 'media', data: mediaDataFromAsset(asset), req });
     known.add(asset.public_id);
     added += 1;
