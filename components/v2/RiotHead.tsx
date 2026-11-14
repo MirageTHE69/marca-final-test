@@ -243,9 +243,22 @@ export default function RiotHead({
       const first = lineEls[0];
       const chars = charRects(first);
       const c1 = chars[0];
-      const m1 = c.measureText(c1?.ch ?? 'H');
+      // The display face changes its letter shapes with size (optical sizing);
+      // on screen it is fixed at the large design, so measure the first letter
+      // large and scale down — exact on phones too.
+      const BIG = Math.max(fs, 200);
+      c.font = `${cs.fontStyle} ${cs.fontWeight} ${BIG}px ${cs.fontFamily}`;
+      const big = c.measureText(c1?.ch ?? 'H');
+      c.font = font;
+      const scale = fs / BIG;
+      const m1 = {
+        actualBoundingBoxLeft: big.actualBoundingBoxLeft * scale,
+        actualBoundingBoxRight: big.actualBoundingBoxRight * scale,
+        actualBoundingBoxAscent: big.actualBoundingBoxAscent * scale,
+      };
       const bearing1 = -m1.actualBoundingBoxLeft; // blank space left of the first letter
       const capTop = baseline - m1.actualBoundingBoxAscent;
+      const phone = vw <= 700;
 
       // Pull the title so its first letter's ink lines up with the line below,
       // and so its ink top is the top of the block.
@@ -350,9 +363,12 @@ export default function RiotHead({
         } else {
           root.classList.remove('rh--notch');
           k.style.top = '';
-          // Gap between the label and the title, in proportion to the title.
-          const gap = Math.min(16, Math.max(9, fs * 0.05));
-          k.style.marginBottom = `${gap - (klh - kBase)}px`;
+          // Gap between the label and the title's tallest letter (an "h" or
+          // "b" can stand above the capitals): close and even on phones.
+          let topMost = capTop;
+          for (const t of prof.tops) if (!Number.isNaN(t) && t < topMost) topMost = t;
+          const gap = phone ? 6 : Math.min(16, Math.max(9, fs * 0.05));
+          k.style.marginBottom = `${gap - (klh - kBase) + (capTop - topMost)}px`;
         }
       }
 
@@ -383,7 +399,12 @@ export default function RiotHead({
           if (d > fs * 0.03) drop = Math.max(drop, d);
         }
         c.font = font;
-        const gap = Math.min(16, Math.max(8, fs * 0.045));
+        const gap = phone ? 6 : Math.min(16, Math.max(8, fs * 0.045));
+        // Line up the line's first letter by its ink, not its box.
+        const ledeText = (p.textContent ?? '').trimStart();
+        c.font = pf.font;
+        p.style.marginLeft = ledeText ? `${c.measureText(ledeText[0]).actualBoundingBoxLeft}px` : '';
+        c.font = font;
         // Line box bottom sits (lh - baseline) below the baseline.
         h.style.marginBottom = `${drop + gap - pInkTop - (lh - baseline)}px`;
       }

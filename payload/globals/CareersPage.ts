@@ -58,8 +58,22 @@ export const CareersPage: GlobalConfig = {
           ],
         },
         {
+          name: 'life',
+          label: 'Life at MARCA',
+          fields: [
+            {
+              type: 'row',
+              fields: [
+                { name: 'kicker', label: 'Small label above', type: 'text', admin: { width: '30%', placeholder: D.life.kicker } },
+                { name: 'title', type: 'text', admin: { width: '70%', placeholder: D.life.title } },
+              ],
+            },
+            { name: 'lede', label: 'Text', type: 'textarea', admin: { placeholder: D.life.lede, description: 'A new line starts a new paragraph.' } },
+          ],
+        },
+        {
           name: 'perks',
-          label: 'Why Marca',
+          label: 'Why MARCA?',
           fields: [
             ...optional(sectionHeading()),
             {
@@ -67,7 +81,7 @@ export const CareersPage: GlobalConfig = {
               label: 'Reasons',
               type: 'array',
               labels: { singular: 'Reason', plural: 'Reasons' },
-              admin: { description: 'Leave empty to use the six starter reasons.' },
+              admin: { description: 'Shown as numbered cards that slide sideways. Leave empty to use the five reasons from the content brief.' },
               fields: [
                 { type: 'row', fields: [{ name: 'title', type: 'text', required: true, admin: { width: '60%' } }, { ...colourField(), admin: { width: '40%' } }] },
                 { name: 'text', type: 'textarea' },
@@ -85,23 +99,6 @@ export const CareersPage: GlobalConfig = {
               fields: [
                 { name: 'emptyTitle', label: 'When there are no roles: title', type: 'text', admin: { width: '40%', placeholder: D.openings.emptyTitle } },
                 { name: 'emptyText', label: 'When there are no roles: text', type: 'textarea', admin: { width: '60%', placeholder: D.openings.emptyText } },
-              ],
-            },
-          ],
-        },
-        {
-          name: 'process',
-          label: 'How we hire',
-          fields: [
-            ...optional(sectionHeading()),
-            {
-              name: 'steps',
-              type: 'array',
-              labels: { singular: 'Step', plural: 'Steps' },
-              admin: { description: 'Leave empty to use the four starter steps.' },
-              fields: [
-                { name: 'title', type: 'text', required: true },
-                { name: 'text', type: 'textarea' },
               ],
             },
           ],

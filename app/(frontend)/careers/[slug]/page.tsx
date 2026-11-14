@@ -15,7 +15,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const job = await getJob((await params).slug);
   if (!job) return {};
   const title = `${job.title} — Careers at Marca Creatives`;
-  return { title, description: job.summary, openGraph: { title, description: job.summary } };
+  const description = job.summary || `${job.title} at MARCA Creatives, ${job.location}.`;
+  return { title, description, openGraph: { title, description } };
 }
 
 /** One role on /careers/[slug]. */

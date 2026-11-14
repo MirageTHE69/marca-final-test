@@ -1,53 +1,46 @@
 /**
- * Starter content for the Careers page. The admin's "Careers page" fills
- * these in; anything left empty there falls back to the text here, so the
- * page always reads complete.
+ * Content for the Careers page (from "MARCA — Careers Page Content"). The
+ * admin's "Careers page" can change any of it; anything left empty there
+ * falls back to the text here, so the page always reads complete.
  */
 export const CAREERS_DEFAULTS = {
   hero: {
-    scriptLine: 'we are hiring',
+    scriptLine: 'careers at marca',
     bigWord: 'careers',
-    title: 'Make the work people stop scrolling for.',
-    lede: 'Marca is a small, fast studio of editors, designers and storytellers building content machines for founders and brands. Come do the best work of your life with us.',
-    primaryButton: 'See open roles ↓',
-    secondaryButton: 'Send your CV',
-    bandWords: ['Editors', 'Designers', 'Storytellers', 'Strategists', 'Shooters', 'Producers'],
+    title: 'Make a career out of creativity.',
+    lede: 'We’re not here to create more content. We’re here to create work that makes people stop, think, watch and remember.\nAt MARCA, we bring strategy, storytelling and production together to build brands people pay attention to.',
+    primaryButton: 'Explore open positions ↓',
+    secondaryButton: 'Submit a general application',
+    bandWords: ['Strategy', 'Storytelling', 'Production', 'Design', 'Editing', 'Social'],
+  },
+  life: {
+    kicker: 'Life at MARCA',
+    title: 'Ideas don’t just happen. People make them happen.',
+    lede: 'A typical day at MARCA could mean brainstorming a new campaign, shooting with an expert, building a creative set or spending hours perfecting a 30-second edit.\nIt’s fast-paced, hands-on and never quite the same.',
   },
   perks: {
-    kicker: 'Why Marca',
-    title: 'Life at the studio',
-    lede: 'We keep the team small and the standards high — so your work ships, gets seen and gets better every week.',
+    kicker: 'Why MARCA?',
+    title: 'More than a job. A place to build your craft.',
+    lede: '',
     items: [
-      { title: 'Real briefs, real brands', text: 'Founders, doctors, architects and consumer brands — work that goes live to millions, not a drawer.', colour: 'yellow' },
-      { title: 'Grow fast', text: 'Weekly feedback, open reviews of what performed and why, and room to own a client end to end.', colour: 'blue' },
-      { title: 'Proper kit', text: 'A dedicated shoot setup, good machines and the tools you need — you focus on the craft.', colour: 'orange' },
-      { title: 'Small team, big say', text: 'No layers. Your ideas reach the work and the client in days, not quarters.', colour: 'cream' },
-      { title: 'Flexible where it counts', text: 'Hybrid days for focused edit work, and time off that is actually taken.', colour: 'olive' },
-      { title: 'Paid fairly, on time', text: 'Clear pay, a review every six months and a bonus when the work wins.', colour: 'yellow' },
+      { title: 'Work that challenges you.', text: 'Real brands, interesting industries and creative challenges that push you to think beyond the obvious.', colour: 'yellow' },
+      { title: 'Learn by doing.', text: 'Hands-on exposure to strategy, production and post-production across diverse projects.', colour: 'blue' },
+      { title: 'Creativity with purpose.', text: 'We don’t create just to fill a calendar. Every idea has an objective, every story has a reason.', colour: 'orange' },
+      { title: 'A culture of experimentation.', text: 'We encourage fresh perspectives, new ideas and people who aren’t afraid to try something different.', colour: 'cream' },
+      { title: 'Grow with the work.', text: 'Take ownership, sharpen your skills, explore new possibilities and grow alongside a team that is constantly evolving.', colour: 'olive' },
     ],
   },
   openings: {
-    kicker: 'Open roles',
-    title: 'Join the team',
-    lede: 'Pick a role to read more and apply. Applications go straight to the people you would work with.',
+    kicker: 'Find your space at MARCA',
+    title: 'Open roles',
+    lede: 'Different talents. One creative ecosystem.',
     emptyTitle: 'No open roles right now',
-    emptyText: 'We are always happy to meet great people. Send your CV and portfolio and we will reach out when something fits.',
-  },
-  process: {
-    kicker: 'How we hire',
-    title: 'Four steps, no ghosting',
-    lede: 'You hear back from us within a week of applying — whatever the answer.',
-    steps: [
-      { title: 'Apply', text: 'Send your CV and the work you are proudest of. Two minutes, no cover-letter essays.' },
-      { title: 'Intro call', text: 'A 20-minute chat about you, the role and how we work.' },
-      { title: 'Small task', text: 'A short, paid task close to the real job — so we both see the fit.' },
-      { title: 'Meet the team', text: 'A final conversation with the founders, then an offer.' },
-    ],
+    emptyText: 'We’re always open to meeting creative minds. Send us your work and we’ll reach out when something fits.',
   },
   general: {
-    kicker: 'Don’t see your role?',
-    title: 'Send us your work anyway',
-    text: 'Great editors, designers and storytellers are always welcome. Tell us what you do best.',
+    kicker: 'Don’t see a role that fits?',
+    title: 'We’re always open to meeting creative minds.',
+    text: 'Show us what you do, tell us what excites you and why you’d like to be part of MARCA.',
   },
 } as const;
 
@@ -59,12 +52,11 @@ export const or = <T,>(value: T | null | undefined, fallback: T): T =>
 
 /* Job facts: the choices in the admin, and their labels on the site. */
 export const JOB_DEPARTMENTS = [
-  { label: 'Video & Editing', value: 'video' },
-  { label: 'Design', value: 'design' },
-  { label: 'Content & Strategy', value: 'content' },
-  { label: 'Production', value: 'production' },
-  { label: 'Marketing & Growth', value: 'marketing' },
-  { label: 'Operations', value: 'operations' },
+  { label: 'Strategy & Research', value: 'strategy' },
+  { label: 'Creative & Design', value: 'creative' },
+  { label: 'Production & Studio', value: 'production' },
+  { label: 'Editing & Post-Production', value: 'editing' },
+  { label: 'Social Media & Client Management', value: 'social' },
 ] as const;
 
 export const JOB_TYPES = [
@@ -79,7 +71,6 @@ export const JOB_MODES = [
   { label: 'Hybrid', value: 'hybrid' },
   { label: 'Remote', value: 'remote' },
 ] as const;
-
 
 export const EXPERIENCE_LEVELS = [
   { label: 'Fresher / student', value: 'fresher' },

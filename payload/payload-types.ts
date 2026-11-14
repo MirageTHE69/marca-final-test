@@ -341,16 +341,16 @@ export interface Job {
   id: string;
   _order?: string | null;
   title: string;
-  department: 'video' | 'design' | 'content' | 'production' | 'marketing' | 'operations';
+  department: 'strategy' | 'creative' | 'production' | 'editing' | 'social';
   employmentType: 'full-time' | 'part-time' | 'internship' | 'freelance';
-  workMode: 'on-site' | 'hybrid' | 'remote';
+  workMode?: ('on-site' | 'hybrid' | 'remote') | null;
   location: string;
   experience?: string | null;
   salary?: string | null;
   /**
    * One or two sentences shown on the Careers page list.
    */
-  summary: string;
+  summary?: string | null;
   /**
    * The full write-up on the job page.
    */
@@ -1145,7 +1145,7 @@ export interface CareersPage {
     primaryButton?: string | null;
     secondaryButton?: string | null;
     /**
-     * Leave empty for: Editors, Designers, Storytellers, Strategists, Shooters, Producers.
+     * Leave empty for: Strategy, Storytelling, Production, Design, Editing, Social.
      */
     bandWords?:
       | {
@@ -1154,12 +1154,20 @@ export interface CareersPage {
         }[]
       | null;
   };
+  life?: {
+    kicker?: string | null;
+    title?: string | null;
+    /**
+     * A new line starts a new paragraph.
+     */
+    lede?: string | null;
+  };
   perks?: {
     kicker?: string | null;
     title?: string | null;
     lede?: string | null;
     /**
-     * Leave empty to use the six starter reasons.
+     * Shown as numbered cards that slide sideways. Leave empty to use the five reasons from the content brief.
      */
     items?:
       | {
@@ -1176,21 +1184,6 @@ export interface CareersPage {
     lede?: string | null;
     emptyTitle?: string | null;
     emptyText?: string | null;
-  };
-  process?: {
-    kicker?: string | null;
-    title?: string | null;
-    lede?: string | null;
-    /**
-     * Leave empty to use the four starter steps.
-     */
-    steps?:
-      | {
-          title: string;
-          text?: string | null;
-          id?: string | null;
-        }[]
-      | null;
   };
   general?: {
     kicker?: string | null;
@@ -1589,6 +1582,13 @@ export interface CareersPageSelect<T extends boolean = true> {
               id?: T;
             };
       };
+  life?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        lede?: T;
+      };
   perks?:
     | T
     | {
@@ -1612,20 +1612,6 @@ export interface CareersPageSelect<T extends boolean = true> {
         lede?: T;
         emptyTitle?: T;
         emptyText?: T;
-      };
-  process?:
-    | T
-    | {
-        kicker?: T;
-        title?: T;
-        lede?: T;
-        steps?:
-          | T
-          | {
-              title?: T;
-              text?: T;
-              id?: T;
-            };
       };
   general?:
     | T

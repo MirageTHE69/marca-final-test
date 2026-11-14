@@ -4,18 +4,21 @@ import FitTitle from '@/components/v2/FitTitle';
 import RiotFooter from '@/components/v2/RiotFooter';
 import RiotHead from '@/components/v2/RiotHead';
 import RiotNav from '@/components/v2/RiotNav';
+import RiotProcess from '@/components/v2/RiotProcess';
 import RiotTicker from '@/components/v2/RiotTicker';
 import RiotApplyForm from '@/components/v2/careers/RiotApplyForm';
 import RiotJobList from '@/components/v2/careers/RiotJobList';
-import { CAREERS_DEFAULTS as D, or } from '@/lib/careers';
+import { CAREERS_DEFAULTS as D, JOB_DEPARTMENTS, or } from '@/lib/careers';
 import { getCareersPage, getOpenJobs, getSettings } from '@/lib/cms';
-import { colourVar } from '@/lib/theme';
 
 export const metadata: Metadata = {
-  title: 'Careers — Marca Creatives',
-  description: 'Join Marca Creatives — open roles for editors, designers, storytellers and strategists. See the openings and apply in two minutes.',
-  openGraph: { title: 'Careers at Marca Creatives', description: 'Open roles for editors, designers, storytellers and strategists.' },
+  title: 'Careers — MARCA Creatives',
+  description: 'Make a career out of creativity. Open roles at MARCA across strategy, design, production, editing and social media — explore the positions and apply.',
+  openGraph: { title: 'Careers at MARCA', description: 'Make a career out of creativity. Explore open positions at MARCA.' },
 };
+
+/** Text with line breaks as separate paragraphs. */
+const paragraphs = (text: string) => text.split(/\n+/).map((t) => t.trim()).filter(Boolean);
 
 /** Rotating sticker in the hero, text running around the ring. */
 function HiringBadge() {
@@ -42,7 +45,7 @@ function HiringBadge() {
   );
 }
 
-/** /careers: hero, why Marca, open roles, how we hire, and a general application. */
+/** /careers: hero, life at MARCA, why MARCA, open roles, and a general application. */
 export default async function CareersPage() {
   const [page, jobs, site] = await Promise.all([getCareersPage(), getOpenJobs(), getSettings()]);
 
@@ -54,6 +57,11 @@ export default async function CareersPage() {
     primaryButton: or(page.hero?.primaryButton, D.hero.primaryButton),
     secondaryButton: or(page.hero?.secondaryButton, D.hero.secondaryButton),
     bandWords: or(page.hero?.bandWords?.map((w) => w.word), [...D.hero.bandWords]),
+  };
+  const life = {
+    kicker: or(page.life?.kicker, D.life.kicker),
+    title: or(page.life?.title, D.life.title),
+    lede: or(page.life?.lede, D.life.lede),
   };
   const perks = {
     kicker: or(page.perks?.kicker, D.perks.kicker),
@@ -67,12 +75,6 @@ export default async function CareersPage() {
     lede: or(page.openings?.lede, D.openings.lede),
     emptyTitle: or(page.openings?.emptyTitle, D.openings.emptyTitle),
     emptyText: or(page.openings?.emptyText, D.openings.emptyText),
-  };
-  const process = {
-    kicker: or(page.process?.kicker, D.process.kicker),
-    title: or(page.process?.title, D.process.title),
-    lede: or(page.process?.lede, D.process.lede),
-    steps: or(page.process?.steps as { title: string; text?: string | null }[] | undefined, [...D.process.steps]),
   };
   const general = {
     kicker: or(page.general?.kicker, D.general.kicker),
@@ -109,8 +111,17 @@ export default async function CareersPage() {
             {hero.bigWord}
           </FitTitle>
         </div>
-        <p className="riot-careers__title">{hero.title}</p>
-        <p className="riot-lede riot-careers__lede">{hero.lede}</p>
+        {/* The title on one line; the text below is exactly as wide as it. */}
+        <div className="riot-careers__intro">
+          <p className="riot-careers__title">{hero.title}</p>
+          <div className="riot-careers__lede">
+            {paragraphs(hero.lede).map((t) => (
+              <p key={t} className="riot-lede">
+                {t}
+              </p>
+            ))}
+          </div>
+        </div>
         <div className="riot-careers__actions">
           <a href="#openings" className="riot-btn riot-btn-yellow">
             {hero.primaryButton}
@@ -118,62 +129,56 @@ export default async function CareersPage() {
           <a href="#apply" className="riot-btn riot-btn-ghost" style={{ color: 'var(--r-cream)', borderColor: 'var(--r-cream)' }}>
             {hero.secondaryButton}
           </a>
-          {cards.length > 0 && (
-            <span className="riot-careers__count">
-              <b>{cards.length}</b> open role{cards.length === 1 ? '' : 's'}
-            </span>
-          )}
         </div>
       </section>
-      <RiotTicker names={hero.bandWords} label="We hire" />
+      <RiotTicker names={hero.bandWords} label="At MARCA" />
 
-      {/* Why Marca */}
-      <section className="riot-cream" style={{ padding: 'clamp(40px,7vh,90px) clamp(18px,4vw,44px) clamp(60px,10vh,120px)' }}>
-        <RiotHead kicker={perks.kicker} title={perks.title} lede={perks.lede} color="var(--r-h-red)" />
-        <div className="riot-perks">
-          {perks.items.map((p, i) => (
-            <article key={`${p.title}-${i}`} className="riot-card riot-perk" style={{ background: colourVar(p.colour) }}>
-              <span className="riot-perk__num">{String(i + 1).padStart(2, '0')}</span>
-              <h3 className="riot-display" style={{ fontSize: 'clamp(22px,2vw,30px)' }}>{p.title}</h3>
-              {p.text && <p>{p.text}</p>}
-            </article>
+      {/* Life at MARCA */}
+      <section className="riot-cream riot-careers__life">
+        <RiotHead kicker={life.kicker} title={life.title} color="var(--r-h-red)" />
+        <div className="riot-careers__life-text">
+          {paragraphs(life.lede).map((t, i) => (
+            <p key={t} className={i === 0 ? 'riot-lede' : 'riot-careers__life-note'}>
+              {t}
+            </p>
           ))}
         </div>
       </section>
+
+      {/* Why MARCA? — numbered cards that slide sideways as you scroll */}
+      <RiotProcess
+        id="why-marca"
+        surface="riot-black"
+        dark
+        maxLines={2}
+        hint="Scroll to see why →"
+        data={{
+          kicker: perks.kicker,
+          title: perks.title,
+          lede: perks.lede || null,
+          steps: perks.items.map((p) => ({ title: p.title, description: p.text ?? '', colour: (p.colour ?? 'yellow') as never })),
+        }}
+      />
 
       {/* Open roles */}
       <section id="openings" className="riot-stripes" style={{ padding: 'clamp(56px,9vh,120px) clamp(18px,4vw,44px)', color: 'var(--r-ink)', borderTop: '2px solid var(--r-black)' }}>
         <RiotHead kicker={openings.kicker} title={openings.title} lede={openings.lede} color="var(--r-h-red)" />
         <div style={{ maxWidth: 1240, margin: 'clamp(30px,5vh,56px) auto 0' }}>
           {cards.length ? (
-            <RiotJobList jobs={cards} />
+            <RiotJobList jobs={cards} departments={JOB_DEPARTMENTS.map((d) => d.value)} />
           ) : (
             <div className="riot-card riot-empty" style={{ background: 'var(--r-cream)' }}>
               <span className="riot-display" style={{ fontSize: 'clamp(28px,3.4vw,48px)' }}>{openings.emptyTitle}</span>
               <p>{openings.emptyText}</p>
               <a href="#apply" className="riot-btn riot-btn-yellow">
-                Send your CV →
+                Submit a general application →
               </a>
             </div>
           )}
         </div>
       </section>
 
-      {/* How we hire */}
-      <section className="riot-black" style={{ padding: 'clamp(56px,9vh,120px) clamp(18px,4vw,44px)' }}>
-        <RiotHead kicker={process.kicker} title={process.title} lede={process.lede} color="var(--r-h-yellow)" />
-        <ol className="riot-steps">
-          {process.steps.map((s, i) => (
-            <li key={`${s.title}-${i}`} className="riot-step">
-              <span className="riot-display riot-step__num">{String(i + 1).padStart(2, '0')}</span>
-              <h3 className="riot-display" style={{ fontSize: 'clamp(22px,2vw,30px)' }}>{s.title}</h3>
-              {s.text && <p>{s.text}</p>}
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      {/* General application */}
+      {/* Don't see a role that fits? */}
       <section id="apply" className="riot-cream" style={{ padding: 'clamp(56px,9vh,120px) clamp(18px,4vw,44px)', borderTop: '2px solid var(--r-black)' }}>
         <div className="riot-careers__apply">
           <div className="riot-careers__apply-copy">

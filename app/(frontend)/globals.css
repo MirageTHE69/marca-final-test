@@ -1239,6 +1239,19 @@ button {
 
 @media (max-width: 700px) {
   .rh { --rh-t: 86vw; }
+
+  /* Every title as wide as the column, so short words (YouTube, Packages)
+     match the rest and give the line under them room. */
+  .rh__h {
+    font-size: min(26vw, calc(var(--rh-t) / var(--rh-w)), var(--rh-max, 260px));
+  }
+
+  /* Phones: the line under each title a size smaller, so it takes about
+     half as many lines and stays tight to the heading. */
+  .rh__lede {
+    font-size: 13px;
+    line-height: 1.45;
+  }
 }
 
 /* ── Careers ───────────────────────────────────────────────────────── */
@@ -1261,22 +1274,85 @@ button {
   height: clamp(92px, 10vw, 132px);
 }
 
+.riot-careers__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 2vh, 20px);
+  width: fit-content;
+  max-width: 100%;
+}
+
+/* One line at every size: the font scales with the screen width. */
 .riot-careers__title {
   margin: 0;
-  max-width: 18ch;
   font-family: 'Instrument Serif', Georgia, serif;
   font-weight: 400;
-  font-size: clamp(34px, 5.2vw, 84px);
+  font-size: clamp(22px, 8.9vw, 84px);
   line-height: 1;
   letter-spacing: -.02em;
+  white-space: nowrap;
   color: var(--r-cream);
-  text-wrap: balance;
 }
 
 .riot-careers__lede {
-  max-width: 56ch;
-  color: rgba(224, 225, 207, .82);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* As wide as the title above, never wider. */
+  width: 0;
+  min-width: 100%;
+}
+
+.riot-careers__lede .riot-lede {
+  color: rgba(224, 225, 207, .85);
   text-wrap: balance;
+}
+
+@media (max-width: 700px) {
+  .riot-careers__lede .riot-lede {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+}
+
+/* Life at MARCA */
+.riot-careers__life {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(18px, 3vh, 30px);
+  padding: clamp(40px, 7vh, 90px) clamp(18px, 4vw, 44px) clamp(56px, 9vh, 110px);
+}
+
+.riot-careers__life-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 62ch;
+  text-align: center;
+}
+
+.riot-careers__life-text .riot-lede {
+  text-wrap: balance;
+}
+
+.riot-careers__life-note {
+  margin: 0;
+  padding: 10px 20px;
+  border: 2px solid var(--r-black);
+  border-radius: 999px;
+  background: var(--r-yellow);
+  font-size: clamp(14px, 1.1vw, 17px);
+  font-weight: 800;
+  letter-spacing: -.01em;
+  transform: rotate(-1.5deg);
+}
+
+.riot-chip:disabled {
+  opacity: .45;
+  cursor: default;
 }
 
 .riot-careers__actions {
@@ -1298,37 +1374,6 @@ button {
 
 .riot-careers__count b {
   color: var(--r-yellow);
-}
-
-/* Why Marca */
-.riot-perks {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
-  gap: clamp(14px, 1.6vw, 22px);
-  max-width: 1240px;
-  margin: clamp(30px, 5vh, 56px) auto 0;
-}
-
-.riot-perk {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: clamp(22px, 2.4vw, 32px);
-  color: var(--r-black);
-}
-
-.riot-perk p {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.6;
-  color: rgba(18, 18, 18, .78);
-}
-
-.riot-perk__num {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .18em;
 }
 
 /* Open roles */
@@ -1472,40 +1517,6 @@ button {
     justify-self: start;
     margin-top: 6px;
   }
-}
-
-/* How we hire */
-.riot-steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
-  gap: clamp(14px, 1.6vw, 22px);
-  max-width: 1240px;
-  margin: clamp(30px, 5vh, 56px) auto 0;
-  padding: 0;
-  list-style: none;
-}
-
-.riot-step {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: clamp(22px, 2.4vw, 32px);
-  border: 2px solid var(--r-cream);
-  border-radius: 20px;
-  color: var(--r-cream);
-}
-
-.riot-step__num {
-  font-size: clamp(40px, 4vw, 60px);
-  color: var(--r-yellow);
-}
-
-.riot-step p {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.6;
-  color: rgba(224, 225, 207, .78);
 }
 
 /* General application block */

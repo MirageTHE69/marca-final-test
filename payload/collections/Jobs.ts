@@ -46,15 +46,15 @@ export const Jobs: CollectionConfig = {
             {
               type: 'row',
               fields: [
-                { name: 'department', type: 'select', required: true, defaultValue: 'video', options: [...JOB_DEPARTMENTS], admin: { width: '34%' } },
+                { name: 'department', type: 'select', required: true, defaultValue: 'editing', options: [...JOB_DEPARTMENTS], admin: { width: '34%' } },
                 { name: 'employmentType', label: 'Type', type: 'select', required: true, defaultValue: 'full-time', options: [...JOB_TYPES], admin: { width: '33%' } },
-                { name: 'workMode', label: 'Where', type: 'select', required: true, defaultValue: 'on-site', options: [...JOB_MODES], admin: { width: '33%' } },
+                { name: 'workMode', label: 'Where (optional)', type: 'select', options: [...JOB_MODES], admin: { width: '33%' } },
               ],
             },
             {
               type: 'row',
               fields: [
-                { name: 'location', type: 'text', required: true, defaultValue: 'Ahmedabad, India', admin: { width: '34%' } },
+                { name: 'location', type: 'text', required: true, defaultValue: 'Ahmedabad', admin: { width: '34%' } },
                 { name: 'experience', type: 'text', admin: { width: '33%', placeholder: '1–3 years' } },
                 { name: 'salary', label: 'Pay (optional)', type: 'text', admin: { width: '33%', placeholder: '₹25k–40k / month' } },
               ],
@@ -62,7 +62,6 @@ export const Jobs: CollectionConfig = {
             {
               name: 'summary',
               type: 'textarea',
-              required: true,
               admin: { description: 'One or two sentences shown on the Careers page list.' },
             },
           ],

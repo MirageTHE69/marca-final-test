@@ -31,7 +31,7 @@ export default function RiotJobView({ job, email }: { job: Job; email: string })
   const facts = [
     { label: 'Team', value: departmentLabel(job.department) },
     { label: 'Type', value: typeLabel(job.employmentType) },
-    { label: 'Where', value: `${modeLabel(job.workMode)} · ${job.location}` },
+    { label: 'Where', value: [modeLabel(job.workMode), job.location].filter(Boolean).join(' · ') },
     job.experience ? { label: 'Experience', value: job.experience } : null,
     job.salary ? { label: 'Pay', value: job.salary } : null,
   ].filter(Boolean) as { label: string; value: string }[];
@@ -42,7 +42,7 @@ export default function RiotJobView({ job, email }: { job: Job; email: string })
         '@context': 'https://schema.org',
         '@type': 'JobPosting',
         title: job.title,
-        description: job.summary,
+        description: job.summary || `${job.title} at MARCA Creatives, ${job.location}.`,
         datePosted: job.createdAt,
         employmentType: EMPLOYMENT[job.employmentType],
         hiringOrganization: { '@type': 'Organization', name: 'Marca Creatives', sameAs: 'https://www.marcacreative.com' },
@@ -63,7 +63,7 @@ export default function RiotJobView({ job, email }: { job: Job; email: string })
           </Link>
           <span className="riot-kicker">{departmentLabel(job.department)}</span>
           <h1 className="riot-display riot-jobpage__title">{job.title}</h1>
-          <p className="riot-lede riot-jobpage__summary">{job.summary}</p>
+          {job.summary && <p className="riot-lede riot-jobpage__summary">{job.summary}</p>}
           <ul className="riot-jobpage__facts">
             {facts.map((f) => (
               <li key={f.label}>

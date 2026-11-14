@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import { departmentLabel, modeLabel, typeLabel } from '@/lib/careers';
 
@@ -11,31 +11,42 @@ export type JobCard = {
   title: string;
   department: string;
   employmentType: string;
-  workMode: string;
+  workMode?: string | null;
   location: string;
   experience?: string | null;
-  summary: string;
+  summary?: string | null;
 };
 
 const TONES = ['var(--r-yellow)', 'var(--r-blue)', 'var(--r-orange)', 'var(--r-cream)'];
 
-/** Open roles, with department filters when there is more than one team hiring. */
-export default function RiotJobList({ jobs }: { jobs: JobCard[] }) {
-  const departments = useMemo(() => [...new Set(jobs.map((j) => j.department))], [jobs]);
+/**
+ * Open roles, filtered by department. Every department shows, so people see
+ * the whole studio; teams without an opening right now are greyed out.
+ */
+export default function RiotJobList({ jobs, departments }: { jobs: JobCard[]; departments: string[] }) {
   const [dept, setDept] = useState<string>('all');
   const shown = dept === 'all' ? jobs : jobs.filter((j) => j.department === dept);
+  const count = (d: string) => jobs.filter((j) => j.department === d).length;
 
   return (
     <div className="riot-jobs">
-      {departments.length > 1 && (
-        <div className="riot-jobs__filters" role="group" aria-label="Filter by team">
-          {['all', ...departments].map((d) => (
-            <button key={d} type="button" className={`riot-chip${dept === d ? ' is-on' : ''}`} aria-pressed={dept === d} onClick={() => setDept(d)}>
-              {d === 'all' ? `All roles · ${jobs.length}` : `${departmentLabel(d)} · ${jobs.filter((j) => j.department === d).length}`}
-            </button>
-          ))}
-        </div>
-      )}
+      <div className="riot-jobs__filters" role="group" aria-label="Filter by department">
+        <button type="button" className={`riot-chip${dept === 'all' ? ' is-on' : ''}`} aria-pressed={dept === 'all'} onClick={() => setDept('all')}>
+          All roles · {jobs.length}
+        </button>
+        {departments.map((d) => (
+          <button
+            key={d}
+            type="button"
+            className={`riot-chip${dept === d ? ' is-on' : ''}`}
+            aria-pressed={dept === d}
+            disabled={!count(d)}
+            onClick={() => setDept(d)}
+          >
+            {departmentLabel(d)} · {count(d)}
+          </button>
+        ))}
+      </div>
 
       <ul className="riot-jobs__list">
         {shown.map((job, i) => (
@@ -43,10 +54,10 @@ export default function RiotJobList({ jobs }: { jobs: JobCard[] }) {
             <Link href={`/careers/${job.slug}`} className="riot-job" style={{ ['--tone' as string]: TONES[i % TONES.length] }}>
               <span className="riot-job__dept">{departmentLabel(job.department)}</span>
               <span className="riot-display riot-job__title">{job.title}</span>
-              <span className="riot-job__summary">{job.summary}</span>
+              {job.summary && <span className="riot-job__summary">{job.summary}</span>}
               <span className="riot-job__facts">
                 <span>{typeLabel(job.employmentType)}</span>
-                <span>{modeLabel(job.workMode)}</span>
+                {job.workMode && <span>{modeLabel(job.workMode)}</span>}
                 <span>{job.location}</span>
                 {job.experience && <span>{job.experience}</span>}
               </span>

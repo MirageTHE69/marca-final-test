@@ -6,8 +6,26 @@ import { colourVar, pad2 } from '@/lib/theme';
 import type { Home } from '@/payload/payload-types';
 import RiotHead from './RiotHead';
 
-/** The process steps on a sticky horizontal scroll. */
-export default function RiotProcess({ data }: { data: Home['process'] }) {
+/**
+ * Numbered cards on a sticky horizontal scroll — the home page's process
+ * steps, and the "Why MARCA?" reasons on Careers.
+ */
+export default function RiotProcess({
+  data,
+  id = 'process',
+  hint = 'Scroll to move through the process →',
+  surface = 'riot-cream',
+  maxLines = 1,
+  dark = false,
+}: {
+  data: Pick<Home['process'], 'kicker' | 'title' | 'lede' | 'steps'>;
+  id?: string;
+  hint?: string;
+  surface?: string;
+  maxLines?: 1 | 2;
+  /** On a dark surface: yellow title, light hint and progress bar. */
+  dark?: boolean;
+}) {
   const processSteps = (data.steps ?? []).map((s, i) => ({ num: pad2(i + 1), title: s.title, desc: s.description ?? '', bg: colourVar(s.colour) }));
   const sectionRef = useRef<HTMLElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
@@ -61,7 +79,7 @@ export default function RiotProcess({ data }: { data: Home['process'] }) {
   }, []);
 
   return (
-    <section id="process" ref={sectionRef} className="riot-cream" style={{ position: 'relative', height: '260vh' }}>
+    <section id={id} ref={sectionRef} className={surface} style={{ position: 'relative', height: '260vh' }}>
       <div
         ref={stickyRef}
         style={{
@@ -79,9 +97,9 @@ export default function RiotProcess({ data }: { data: Home['process'] }) {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(12px,1.8vh,18px)', padding: '0 clamp(18px,4vw,44px)' }}>
-          <RiotHead kicker={data.kicker} title={data.title} lede={data.lede} color="var(--r-h-red)" maxLines={1} />
-          <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--r-muted)' }}>
-            Scroll to move through the process →
+          <RiotHead kicker={data.kicker} title={data.title} lede={data.lede} color={dark ? 'var(--r-h-yellow)' : 'var(--r-h-red)'} maxLines={maxLines} />
+          <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', color: dark ? 'rgba(224,225,207,.6)' : 'var(--r-muted)' }}>
+            {hint}
           </span>
         </div>
 
@@ -111,8 +129,8 @@ export default function RiotProcess({ data }: { data: Home['process'] }) {
         </div>
 
         <div style={{ padding: '0 clamp(18px,4vw,44px)' }}>
-          <div style={{ height: 3, background: 'rgba(18,18,18,.15)' }}>
-            <div ref={barRef} style={{ height: 3, width: '0%', background: 'var(--r-black)' }} />
+          <div style={{ height: 3, background: dark ? 'rgba(224,225,207,.2)' : 'rgba(18,18,18,.15)' }}>
+            <div ref={barRef} style={{ height: 3, width: '0%', background: dark ? 'var(--r-yellow)' : 'var(--r-black)' }} />
           </div>
         </div>
       </div>
