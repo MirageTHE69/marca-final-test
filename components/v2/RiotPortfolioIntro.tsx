@@ -3,7 +3,7 @@ type SectionLink = { key: string; title: string };
 const PILL_COLOURS = ['var(--r-yellow)', 'var(--r-blue)', 'var(--r-orange)'];
 
 /** Small inline marks, standing in for the reference's illustrated icons. */
-function Squiggle() {
+export function Squiggle() {
   return (
     <svg aria-hidden="true" viewBox="0 0 64 30" width="1.25em" height=".6em" style={{ verticalAlign: 'middle', margin: '0 .12em' }}>
       <rect x="1" y="1" width="62" height="28" rx="14" fill="var(--r-blue)" stroke="var(--r-black)" strokeWidth="2" />
@@ -12,7 +12,7 @@ function Squiggle() {
   );
 }
 
-function Star() {
+export function Star() {
   return (
     <svg aria-hidden="true" viewBox="0 0 40 40" width=".72em" height=".72em" style={{ verticalAlign: 'middle', margin: '0 .12em' }}>
       <path
@@ -26,7 +26,7 @@ function Star() {
   );
 }
 
-function Dot() {
+export function Dot() {
   return (
     <svg aria-hidden="true" viewBox="0 0 40 40" width=".62em" height=".62em" style={{ verticalAlign: 'middle', margin: '0 .12em' }}>
       <circle cx="20" cy="20" r="17" fill="var(--r-yellow)" stroke="var(--r-black)" strokeWidth="2.4" />
@@ -65,24 +65,47 @@ function RightDoodle() {
   );
 }
 
-export default function RiotPortfolioIntro({ sections: portfolioSections }: { sections: SectionLink[] }) {
+export default function RiotPortfolioIntro({
+  sections: portfolioSections,
+  title,
+  lede,
+}: {
+  sections: SectionLink[];
+  title?: string | null;
+  lede?: string | null;
+}) {
   return (
     <section className="riot-cream" style={{ padding: 'clamp(56px,9vh,110px) clamp(18px,4vw,44px) clamp(60px,10vh,120px)' }}>
-      <p
-        style={{
-          margin: '0 auto',
-          maxWidth: '30ch',
-          textAlign: 'center',
-          fontFamily: "'Instrument Serif', Georgia, serif",
-          fontSize: 'clamp(28px,3.6vw,52px)',
-          lineHeight: 1.14,
-          letterSpacing: '-.015em',
-          color: 'var(--r-ink)',
-        }}
-      >
-        We turn founders into content machines <Squiggle /> that attract clients, build authority <Star /> and
-        drive revenue <Dot />
-      </p>
+      {/* Serif title and the line under it, set the way the hero used to set them. */}
+      {(title || lede) && (
+        <div
+          className="riot-head"
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 'clamp(12px,2vh,20px)' }}
+        >
+          {title && (
+            <h2
+              className="riot-head__title"
+              style={{
+                margin: 0,
+                maxWidth: '16ch',
+                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontWeight: 400,
+                fontSize: 'clamp(38px,6.4vw,104px)',
+                lineHeight: 0.98,
+                letterSpacing: '-.02em',
+                color: 'var(--r-ink)',
+              }}
+            >
+              {title}
+            </h2>
+          )}
+          {lede && (
+            <p className="riot-lede" style={{ maxWidth: '52ch', marginTop: title ? 'calc(-1 * clamp(12px,2vh,20px) - 2px)' : 0 }}>
+              {lede}
+            </p>
+          )}
+        </div>
+      )}
 
       <div
         style={{
@@ -90,7 +113,7 @@ export default function RiotPortfolioIntro({ sections: portfolioSections }: { se
           alignItems: 'center',
           justifyContent: 'center',
           gap: 'clamp(8px,2vw,28px)',
-          marginTop: 'clamp(34px,6vh,64px)',
+          marginTop: title || lede ? 'clamp(40px,7vh,72px)' : 0,
         }}
       >
         <LeftDoodle />

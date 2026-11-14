@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { Home } from '@/payload/payload-types';
+import RiotHead from './RiotHead';
 
 type FaqData = Home['faq'];
 type FaqBlock = NonNullable<FaqData['questions']>[number]['answer'][number];
@@ -43,15 +44,7 @@ export default function RiotFaq({ data }: { data: FaqData }) {
   return (
     <section id="faq" className="riot-blue" style={{ position: 'relative', padding: 'clamp(60px,10vh,140px) clamp(18px,4vw,44px)', borderTop: '2px solid var(--r-black)' }}>
       <div style={{ maxWidth: 880, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 'clamp(30px,4.5vh,50px)' }}>
-        <div className="riot-head" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 8 }}>
-          {data.kicker && <span className="riot-kicker">{data.kicker}</span>}
-          <h2 className="riot-display" style={{ fontSize: 'clamp(34px,5.8vw,86px)', color: 'var(--r-h-red)' }}>{data.title}</h2>
-          {data.lede && (
-            <p className="riot-lede" style={{ maxWidth: '58ch' }}>
-              {data.lede}
-            </p>
-          )}
-        </div>
+        <RiotHead kicker={data.kicker} title={data.title} lede={data.lede} color="var(--r-h-red)" />
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {faqs.map((faq, idx) => {

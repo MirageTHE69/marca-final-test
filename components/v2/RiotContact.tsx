@@ -34,7 +34,8 @@ export default function RiotContact({ data, settings, services }: { data: Home['
 
       <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 'clamp(28px,4vw,52px)' }}>
         {data.kicker && (
-          <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: 'var(--r-yellow)' }}>{data.kicker}</span>
+          // Same size and weight as the other section labels.
+          <span className="riot-kicker" style={{ color: 'var(--r-yellow)' }}>{data.kicker}</span>
         )}
         <h2 className="riot-display" style={{ maxWidth: 1100, fontSize: 'clamp(36px,7.2vw,124px)', color: 'var(--r-h-yellow)' }}>
           {data.title}{' '}

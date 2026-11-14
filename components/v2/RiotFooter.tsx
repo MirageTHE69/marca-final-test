@@ -53,6 +53,7 @@ export default async function RiotFooter() {
             { href: '/#process', label: 'Process' },
             { href: '/#packages', label: 'Packages' },
             { href: '/faq', label: 'FAQ' },
+            { href: '/careers', label: 'Careers' },
             { href: '/#contact', label: 'Contact' },
           ].map((link) => (
             <a key={link.href} href={link.href} style={{ fontSize: 14, color: 'var(--r-black)' }}>{link.label}</a>

@@ -318,6 +318,19 @@ h2,
     background: var(--theme-elevation-150);
     color: var(--theme-elevation-600);
   }
+
+  // Applicants
+  &--app-new { background: var(--mc-yellow); color: var(--mc-ink); }
+  &--app-reviewing { background: var(--mc-blue); color: var(--mc-ink); }
+  &--app-shortlisted { background: #e4b06a; color: var(--mc-ink); }
+  &--app-interview { background: var(--mc-orange); color: var(--mc-ink); }
+  &--app-offer { background: #9fd3a8; color: var(--mc-ink); }
+  &--app-hired { background: #2f7d4f; color: #fff; }
+  &--app-rejected { background: var(--theme-elevation-150); color: var(--theme-elevation-600); }
+
+  // Jobs
+  &--job-open { background: #9fd3a8; color: var(--mc-ink); }
+  &--job-closed { background: var(--theme-elevation-150); color: var(--theme-elevation-600); }
 }
 
 /* ── Media: uploader ──────────────────────────────── */
@@ -826,5 +839,49 @@ h2,
     margin-left: 8px;
     color: var(--theme-elevation-500);
     font-weight: 400;
+  }
+}
+
+
+/* A link styled as a pill (Open CV in the applications list). */
+.mc-pill--link {
+  text-decoration: none;
+  background: var(--mc-ink);
+  color: var(--mc-yellow);
+
+  &:hover { opacity: 0.85; }
+}
+
+/* The CV block on an application's page. */
+.mc-resume {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin: 4px 0 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--theme-elevation-150);
+  border-radius: 12px;
+  background: var(--theme-elevation-50);
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 52px;
+    border-radius: 8px;
+    background: var(--mc-yellow);
+    color: var(--mc-ink);
+    font-weight: 800;
+    font-size: 13px;
+  }
+
+  &__name {
+    display: flex;
+    flex: 1 1 200px;
+    flex-direction: column;
+    gap: 2px;
+
+    span { font-size: 12px; color: var(--theme-elevation-600); }
   }
 }

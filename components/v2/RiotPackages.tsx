@@ -1,5 +1,6 @@
 import { colourVar, pad2 } from '@/lib/theme';
 import type { Home } from '@/payload/payload-types';
+import RiotHead from './RiotHead';
 
 /** The packages and their checklists. */
 export default function RiotPackages({ data }: { data: Home['packages'] }) {
@@ -12,14 +13,8 @@ export default function RiotPackages({ data }: { data: Home['packages'] }) {
   }));
   return (
     <section id="packages" className="riot-black" style={{ padding: 'clamp(56px,9vh,120px) clamp(18px,4vw,44px)' }}>
-      <div className="riot-head" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, textAlign: 'center', marginBottom: 'clamp(38px,6vh,68px)' }}>
-        {data.kicker && <span className="riot-kicker">{data.kicker}</span>}
-        <h2 className="riot-display" style={{ fontSize: 'clamp(32px,5.6vw,86px)', maxWidth: '22ch', color: 'var(--r-h-yellow)' }}>
-          {data.title}
-        </h2>
-        <p className="riot-lede" style={{ maxWidth: '58ch' }}>
-          {data.lede}
-        </p>
+      <div style={{ marginBottom: 'clamp(38px,6vh,68px)' }}>
+        <RiotHead kicker={data.kicker} title={data.title} lede={data.lede} color="var(--r-h-yellow)" />
       </div>
 
       <div

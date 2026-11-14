@@ -18,7 +18,8 @@ export default function RiotHero({ data }: { data: Home['hero'] }) {
         justifyContent: 'space-between',
         overflow: 'hidden',
         background: 'var(--r-black)',
-        padding: 'clamp(28px,5vh,52px) clamp(18px,4vw,44px) clamp(24px,4vh,44px)',
+        // Extra room at the bottom for the curved client band that overlaps the film.
+        padding: 'clamp(28px,5vh,52px) clamp(18px,4vw,44px) calc(clamp(24px,4vh,44px) + var(--wave-overlap))',
       }}
     >
       {/* Hero film — real colours, only a neutral scrim for legibility */}
@@ -84,19 +85,19 @@ export default function RiotHero({ data }: { data: Home['hero'] }) {
         </span>
       </div>
 
-      {/* Bottom band */}
+      {/* Intro line and button, centred under the tagline */}
       <div
         style={{
           position: 'relative',
           zIndex: 2,
           display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'flex-end',
-          justifyContent: 'space-between',
-          gap: 20,
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+          gap: 'clamp(14px,2.2vh,22px)',
         }}
       >
-        <p style={{ margin: 0, maxWidth: '46ch', fontSize: 'clamp(14px,1.2vw,18px)', lineHeight: 1.55, color: 'var(--r-cream)' }}>
+        <p style={{ margin: 0, maxWidth: '46ch', fontSize: 'clamp(14px,1.2vw,18px)', lineHeight: 1.55, color: 'var(--r-cream)', textWrap: 'balance' }}>
           {data.intro}
         </p>
         <a href="#contact" className="riot-btn riot-btn-yellow">

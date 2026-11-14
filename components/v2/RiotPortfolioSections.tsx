@@ -2,27 +2,43 @@ import MediaSlot from '@/components/MediaSlot';
 import RiotReelVideo from './RiotReelVideo';
 import ScrollRail from '@/components/ScrollRail';
 import type { PortfolioItem, PortfolioSection } from '@/components/portfolio/portfolioItems';
+import RiotHead from './RiotHead';
 
 /** One row of the page: its heading and the work in it. */
 export type PortfolioRow = PortfolioSection & { items: PortfolioItem[] };
 
 /**
  * Surface and heading colour cycle together so every heading stays
- * readable: red on cream, blue on the yellow band, yellow on black.
+ * readable: red on cream, red on the gingham band (as the home page's
+ * Thumbnails section), yellow on black.
  */
 const THEMES = [
   { surface: 'riot-cream', heading: 'var(--r-h-red)', text: 'var(--r-muted)', caption: 'var(--r-ink)', band: false },
-  { surface: 'riot-yellow', heading: 'var(--r-h-blue)', text: 'rgba(18,18,18,.72)', caption: 'var(--r-black)', band: true },
+  { surface: 'riot-stripes', heading: 'var(--r-h-red)', text: 'var(--r-muted)', caption: 'var(--r-ink)', band: true },
   { surface: 'riot-black', heading: 'var(--r-h-yellow)', text: 'rgba(243,240,221,.7)', caption: 'var(--r-cream)', band: false },
 ] as const;
 
 const RAIL_HEIGHT = 'clamp(250px, 40vh, 420px)';
 
+/** "Ad Campaigns": the label goes over "gns", after the "i". */
+const LABEL_AFTER: Record<string, string> = { 'ad-campaigns': 'Campai' };
+
 type Theme = (typeof THEMES)[number];
 
 function Caption({ item, theme }: { item: PortfolioItem; theme: Theme }) {
+  // On the gingham the words sit on an off-white tag so they read cleanly.
+  const onCheck = theme.surface === 'riot-stripes';
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 4,
+        ...(onCheck
+          ? { alignSelf: 'flex-start', maxWidth: '100%', boxSizing: 'border-box', padding: '10px 14px', background: 'var(--r-cream)', border: '2px solid var(--r-black)', borderRadius: 12 }
+          : null),
+      }}
+    >
       <span style={{ fontSize: 'clamp(16px,1.25vw,19px)', fontWeight: 800, letterSpacing: '-.015em', lineHeight: 1.25, color: theme.caption }}>{item.title}</span>
       <span style={{ fontSize: 'clamp(13px,1.02vw,15px)', fontWeight: 600, color: theme.text }}>{item.label}</span>
     </div>
@@ -68,22 +84,25 @@ function CategorySection({ section, index }: { section: PortfolioRow; index: num
       className={theme.surface}
       style={{
         position: 'relative',
+        color: theme.surface === 'riot-stripes' ? 'var(--r-ink)' : undefined,
         padding: 'clamp(56px,9vh,110px) 0',
         borderRadius: theme.band ? 'clamp(28px,4vw,56px) clamp(28px,4vw,56px) 0 0' : undefined,
         borderTop: theme.band ? '2px solid var(--r-black)' : undefined,
         scrollMarginTop: 64,
       }}
     >
-      <div className="riot-head" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '0 clamp(18px,4vw,44px)', textAlign: 'center' }}>
-        <span className="riot-kicker" style={{ color: theme.caption }}>
-          {section.kicker}
-        </span>
-        <h2 className="riot-display" style={{ maxWidth: '20ch', fontSize: 'clamp(36px,6.6vw,100px)', color: theme.heading }}>
-          {section.title}
-        </h2>
-        <p className="riot-lede" style={{ maxWidth: '58ch', color: theme.caption }}>
-          {section.description}
-        </p>
+      <div style={{ padding: '0 clamp(18px,4vw,44px)' }}>
+        <RiotHead
+          kicker={section.kicker}
+          title={section.title}
+          lede={section.description}
+          color={theme.heading}
+          kickerStyle={{ color: theme.caption }}
+          // Where the label sits beside the letters, when it should skip the first gap.
+          labelAfter={LABEL_AFTER[section.key]}
+          labelFirstGap={section.key === 'instagram-reels'}
+          ledeStyle={{ color: theme.caption }}
+        />
       </div>
 
       <ScrollRail ariaLabel={section.title}>

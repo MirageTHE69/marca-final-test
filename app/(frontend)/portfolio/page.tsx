@@ -66,7 +66,7 @@ export default async function PortfolioPage() {
     <main className="riot">
       <RiotNav />
       <RiotPortfolioHero hero={page.hero} sections={links} />
-      <RiotPortfolioIntro sections={links} />
+      <RiotPortfolioIntro sections={links} title={page.hero.introTitle} lede={page.hero.introLede} />
       <RiotPortfolioSections rows={rows} />
 
       <section

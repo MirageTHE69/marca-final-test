@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import HeadFitter from "@/components/v2/HeadFitter";
 
 export const metadata: Metadata = {
   title: "MARCA Creatives | Content · Film · Brand Identity Studio",
@@ -25,7 +24,6 @@ export default function RootLayout({
       </head>
       <body>
         {children}
-        <HeadFitter />
       </body>
     </html>
   );

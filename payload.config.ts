@@ -5,13 +5,16 @@ import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
 
+import { Applications } from './payload/collections/Applications';
 import { CaseStudies } from './payload/collections/CaseStudies';
+import { Jobs } from './payload/collections/Jobs';
 import { Leads } from './payload/collections/Leads';
 import { Media } from './payload/collections/Media';
 import { PortfolioItems } from './payload/collections/PortfolioItems';
 import { Posts } from './payload/collections/Posts';
 import { Users } from './payload/collections/Users';
 import { BlogPage } from './payload/globals/BlogPage';
+import { CareersPage } from './payload/globals/CareersPage';
 import { CaseStudiesPage } from './payload/globals/CaseStudiesPage';
 import { Home } from './payload/globals/Home';
 import { PortfolioPage } from './payload/globals/PortfolioPage';
@@ -41,8 +44,8 @@ export default buildConfig({
     },
   },
   // Sidebar order: inbox first, then content, pages, library, settings.
-  collections: [Leads, CaseStudies, PortfolioItems, Posts, Media, Users],
-  globals: [Home, PortfolioPage, CaseStudiesPage, BlogPage, Settings],
+  collections: [Leads, CaseStudies, PortfolioItems, Posts, Jobs, Applications, Media, Users],
+  globals: [Home, PortfolioPage, CaseStudiesPage, BlogPage, CareersPage, Settings],
   editor: richTextEditor,
   secret: process.env.PAYLOAD_SECRET,
   typescript: { outputFile: path.resolve(dirname, 'payload/payload-types.ts') },

@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 
 import { colourVar, pad2 } from '@/lib/theme';
 import type { Home } from '@/payload/payload-types';
+import RiotHead from './RiotHead';
 
 /** The process steps on a sticky horizontal scroll. */
 export default function RiotProcess({ data }: { data: Home['process'] }) {
@@ -33,7 +34,7 @@ export default function RiotProcess({ data }: { data: Home['process'] }) {
       section.style.height = '260vh';
       sticky.style.position = 'sticky';
       sticky.style.height = '100vh';
-      sticky.style.padding = '';
+      sticky.style.padding = 'clamp(70px,9vh,96px) 0 clamp(20px,3vh,40px)';
       track.style.overflowX = 'visible';
       const rect = section.getBoundingClientRect();
       const total = rect.height - window.innerHeight;
@@ -63,14 +64,22 @@ export default function RiotProcess({ data }: { data: Home['process'] }) {
     <section id="process" ref={sectionRef} className="riot-cream" style={{ position: 'relative', height: '260vh' }}>
       <div
         ref={stickyRef}
-        style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 'clamp(26px,4.5vh,54px)' }}
+        style={{
+          position: 'sticky',
+          top: 0,
+          height: '100vh',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          // Room for the menu bar on top; "safe" so a tall heading never slides under it.
+          justifyContent: 'safe center',
+          gap: 'clamp(26px,4.5vh,54px)',
+          padding: 'clamp(70px,9vh,96px) 0 clamp(20px,3vh,40px)',
+          boxSizing: 'border-box',
+        }}
       >
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 22, padding: '0 clamp(18px,4vw,44px)' }}>
-          <div className="riot-head riot-head--start" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}>
-            {data.kicker && <span className="riot-kicker">{data.kicker}</span>}
-            <h2 className="riot-display" style={{ fontSize: 'clamp(40px,7.2vw,112px)', color: 'var(--r-h-red)' }}>{data.title}</h2>
-            {data.lede && <p className="riot-lede">{data.lede}</p>}
-          </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(12px,1.8vh,18px)', padding: '0 clamp(18px,4vw,44px)' }}>
+          <RiotHead kicker={data.kicker} title={data.title} lede={data.lede} color="var(--r-h-red)" maxLines={1} />
           <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--r-muted)' }}>
             Scroll to move through the process →
           </span>

@@ -48,8 +48,16 @@ export const PortfolioPage: GlobalConfig = {
                 { name: 'buttonLabel', label: 'Button', type: 'text', admin: { width: '30%' } },
               ],
             },
-            { name: 'title', label: 'Serif title', type: 'text' },
+            { name: 'title', label: 'Serif title', type: 'text', admin: { description: 'Write [squiggle], [star] or [dot] where a small drawn mark should appear.' } },
             { name: 'lede', label: 'Line under the title', type: 'textarea' },
+            {
+              type: 'collapsible',
+              label: 'Below the hero (above "Before you scroll any further")',
+              fields: [
+                { name: 'introTitle', label: 'Serif title', type: 'text' },
+                { name: 'introLede', label: 'Line under the title', type: 'textarea' },
+              ],
+            },
           ],
         },
         {

@@ -2,7 +2,7 @@ import { getPayload } from 'payload';
 import { cache } from 'react';
 
 import config from '@payload-config';
-import type { CaseStudy, Home, PortfolioItem, Post, Setting } from '@/payload/payload-types';
+import type { CaseStudy, Home, Job, PortfolioItem, Post, Setting } from '@/payload/payload-types';
 
 /**
  * Reads the admin panel's content for the public site. Only published
@@ -59,3 +59,28 @@ export const getPost = cache(async (slug: string): Promise<Post | null> => {
 });
 
 export { colourVar } from './theme';
+
+export const getCareersPage = cache(async () => (await cms()).findGlobal({ slug: 'careers-page', depth: 0 }));
+
+/** Published jobs that are taking applications, in the admin's order. */
+export const getOpenJobs = cache(async (): Promise<Job[]> => {
+  const { docs } = await (await cms()).find({
+    collection: 'jobs',
+    where: { and: [published, { status: { equals: 'open' } }] },
+    sort: '_order',
+    depth: 0,
+    pagination: false,
+  });
+  return docs;
+});
+
+/** One published job (open or closed) by its address. */
+export const getJob = cache(async (slug: string): Promise<Job | null> => {
+  const { docs } = await (await cms()).find({
+    collection: 'jobs',
+    where: { and: [published, { slug: { equals: slug } }] },
+    depth: 1,
+    limit: 1,
+  });
+  return docs[0] ?? null;
+});

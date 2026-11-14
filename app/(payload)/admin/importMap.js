@@ -25,6 +25,11 @@ import { StrikethroughFeatureClient as StrikethroughFeatureClient_e70f5e05f09f93
 import { UnderlineFeatureClient as UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
+import { JobStatusCell as JobStatusCell_a8bb8e417f3a1b10a6e201dc1d7e488b } from '../../../payload/admin/StatusCell'
+import { ResumeField as ResumeField_54d54f98982593f535bc2bcec8753fc8 } from '../../../payload/admin/ResumeLink'
+import { ResumeCell as ResumeCell_54d54f98982593f535bc2bcec8753fc8 } from '../../../payload/admin/ResumeLink'
+import { ApplicationStatusCell as ApplicationStatusCell_a8bb8e417f3a1b10a6e201dc1d7e488b } from '../../../payload/admin/StatusCell'
+import { ApplicationsToolbar as ApplicationsToolbar_3b067417a2e64284c659314297429d27 } from '../../../payload/admin/ApplicationsToolbar'
 import { CloudinaryUploader as CloudinaryUploader_8069427c3d7714d123f6ea167c216b26 } from '../../../payload/admin/CloudinaryUploader'
 import { MediaCell as MediaCell_8c1a918decd3d23c4097a35f1f1e507e } from '../../../payload/admin/MediaCell'
 import { MediaSyncButton as MediaSyncButton_dadc841659a07b95e014b7c8476471a2 } from '../../../payload/admin/MediaSyncButton'
@@ -64,6 +69,11 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#UnderlineFeatureClient": UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "/payload/admin/StatusCell#JobStatusCell": JobStatusCell_a8bb8e417f3a1b10a6e201dc1d7e488b,
+  "/payload/admin/ResumeLink#ResumeField": ResumeField_54d54f98982593f535bc2bcec8753fc8,
+  "/payload/admin/ResumeLink#ResumeCell": ResumeCell_54d54f98982593f535bc2bcec8753fc8,
+  "/payload/admin/StatusCell#ApplicationStatusCell": ApplicationStatusCell_a8bb8e417f3a1b10a6e201dc1d7e488b,
+  "/payload/admin/ApplicationsToolbar#ApplicationsToolbar": ApplicationsToolbar_3b067417a2e64284c659314297429d27,
   "/payload/admin/CloudinaryUploader#CloudinaryUploader": CloudinaryUploader_8069427c3d7714d123f6ea167c216b26,
   "/payload/admin/MediaCell#MediaCell": MediaCell_8c1a918decd3d23c4097a35f1f1e507e,
   "/payload/admin/MediaSyncButton#MediaSyncButton": MediaSyncButton_dadc841659a07b95e014b7c8476471a2,

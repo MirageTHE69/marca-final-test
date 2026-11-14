@@ -71,6 +71,8 @@ export interface Config {
     'case-studies': CaseStudy;
     'portfolio-items': PortfolioItem;
     posts: Post;
+    jobs: Job;
+    applications: Application;
     media: Media;
     users: User;
     'payload-kv': PayloadKv;
@@ -78,12 +80,18 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    jobs: {
+      applications: 'applications';
+    };
+  };
   collectionsSelect: {
     leads: LeadsSelect<false> | LeadsSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     'portfolio-items': PortfolioItemsSelect<false> | PortfolioItemsSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
+    jobs: JobsSelect<false> | JobsSelect<true>;
+    applications: ApplicationsSelect<false> | ApplicationsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -100,6 +108,7 @@ export interface Config {
     'portfolio-page': PortfolioPage;
     'case-studies-page': CaseStudiesPage;
     'blog-page': BlogPage;
+    'careers-page': CareersPage;
     settings: Setting;
   };
   globalsSelect: {
@@ -107,6 +116,7 @@ export interface Config {
     'portfolio-page': PortfolioPageSelect<false> | PortfolioPageSelect<true>;
     'case-studies-page': CaseStudiesPageSelect<false> | CaseStudiesPageSelect<true>;
     'blog-page': BlogPageSelect<false> | BlogPageSelect<true>;
+    'careers-page': CareersPageSelect<false> | CareersPageSelect<true>;
     settings: SettingsSelect<false> | SettingsSelect<true>;
   };
   locale: null;
@@ -322,6 +332,124 @@ export interface Post {
   _status?: ('draft' | 'published') | null;
 }
 /**
+ * Vacancies on the Careers page. Publish to list a role; set it to Closed to stop applications. Drag to reorder.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "jobs".
+ */
+export interface Job {
+  id: string;
+  _order?: string | null;
+  title: string;
+  department: 'video' | 'design' | 'content' | 'production' | 'marketing' | 'operations';
+  employmentType: 'full-time' | 'part-time' | 'internship' | 'freelance';
+  workMode: 'on-site' | 'hybrid' | 'remote';
+  location: string;
+  experience?: string | null;
+  salary?: string | null;
+  /**
+   * One or two sentences shown on the Careers page list.
+   */
+  summary: string;
+  /**
+   * The full write-up on the job page.
+   */
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Short points, one per line.
+   */
+  responsibilities?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Must-haves.
+   */
+  requirements?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional extras.
+   */
+  niceToHave?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  applications?: {
+    docs?: (string | Application)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  /**
+   * The page address. Filled from the title if left empty.
+   */
+  slug?: string | null;
+  /**
+   * Closed roles leave the Careers list; their page says the role is closed.
+   */
+  status: 'open' | 'closed';
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * Everyone who applied through the Careers page. Open the CV, add notes, and move each applicant along by status.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "applications".
+ */
+export interface Application {
+  id: string;
+  /**
+   * Empty for a general application.
+   */
+  job?: (string | null) | Job;
+  name: string;
+  email: string;
+  phone?: string | null;
+  city?: string | null;
+  experience?: ('fresher' | 'lt1' | '1-3' | '3-5' | '5plus') | null;
+  portfolio?: string | null;
+  linkedin?: string | null;
+  noticePeriod?: string | null;
+  message?: string | null;
+  resume?: {
+    publicId?: string | null;
+    fileName?: string | null;
+    bytes?: number | null;
+    format?: string | null;
+  };
+  /**
+   * Only visible here — interview notes, test task, next steps.
+   */
+  notes?: string | null;
+  status: 'new' | 'reviewing' | 'shortlisted' | 'interview' | 'offer' | 'hired' | 'rejected';
+  source?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -387,6 +515,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'posts';
         value: string | Post;
+      } | null)
+    | ({
+        relationTo: 'jobs';
+        value: string | Job;
+      } | null)
+    | ({
+        relationTo: 'applications';
+        value: string | Application;
       } | null)
     | ({
         relationTo: 'media';
@@ -526,6 +662,75 @@ export interface PostsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "jobs_select".
+ */
+export interface JobsSelect<T extends boolean = true> {
+  _order?: T;
+  title?: T;
+  department?: T;
+  employmentType?: T;
+  workMode?: T;
+  location?: T;
+  experience?: T;
+  salary?: T;
+  summary?: T;
+  description?: T;
+  responsibilities?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  requirements?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  niceToHave?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  applications?: T;
+  slug?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "applications_select".
+ */
+export interface ApplicationsSelect<T extends boolean = true> {
+  job?: T;
+  name?: T;
+  email?: T;
+  phone?: T;
+  city?: T;
+  experience?: T;
+  portfolio?: T;
+  linkedin?: T;
+  noticePeriod?: T;
+  message?: T;
+  resume?:
+    | T
+    | {
+        publicId?: T;
+        fileName?: T;
+        bytes?: T;
+        format?: T;
+      };
+  notes?: T;
+  status?: T;
+  source?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -830,8 +1035,13 @@ export interface PortfolioPage {
     scriptLine?: string | null;
     bigWord: string;
     buttonLabel?: string | null;
+    /**
+     * Write [squiggle], [star] or [dot] where a small drawn mark should appear.
+     */
     title?: string | null;
     lede?: string | null;
+    introTitle?: string | null;
+    introLede?: string | null;
   };
   sections: {
     fashionShoots: {
@@ -916,6 +1126,77 @@ export interface BlogPage {
   bigWord: string;
   lede?: string | null;
   emptyMessage?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * The words on /careers. Add and close vacancies in Careers → Jobs. Anything left empty uses the starter text.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "careers-page".
+ */
+export interface CareersPage {
+  id: string;
+  hero?: {
+    scriptLine?: string | null;
+    bigWord?: string | null;
+    title?: string | null;
+    lede?: string | null;
+    primaryButton?: string | null;
+    secondaryButton?: string | null;
+    /**
+     * Leave empty for: Editors, Designers, Storytellers, Strategists, Shooters, Producers.
+     */
+    bandWords?:
+      | {
+          word: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  perks?: {
+    kicker?: string | null;
+    title?: string | null;
+    lede?: string | null;
+    /**
+     * Leave empty to use the six starter reasons.
+     */
+    items?:
+      | {
+          title: string;
+          colour?: ('yellow' | 'blue' | 'orange' | 'red' | 'olive' | 'cream') | null;
+          text?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  openings?: {
+    kicker?: string | null;
+    title?: string | null;
+    lede?: string | null;
+    emptyTitle?: string | null;
+    emptyText?: string | null;
+  };
+  process?: {
+    kicker?: string | null;
+    title?: string | null;
+    lede?: string | null;
+    /**
+     * Leave empty to use the four starter steps.
+     */
+    steps?:
+      | {
+          title: string;
+          text?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  general?: {
+    kicker?: string | null;
+    title?: string | null;
+    text?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1187,6 +1468,8 @@ export interface PortfolioPageSelect<T extends boolean = true> {
         buttonLabel?: T;
         title?: T;
         lede?: T;
+        introTitle?: T;
+        introLede?: T;
       };
   sections?:
     | T
@@ -1281,6 +1564,76 @@ export interface BlogPageSelect<T extends boolean = true> {
   bigWord?: T;
   lede?: T;
   emptyMessage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "careers-page_select".
+ */
+export interface CareersPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        scriptLine?: T;
+        bigWord?: T;
+        title?: T;
+        lede?: T;
+        primaryButton?: T;
+        secondaryButton?: T;
+        bandWords?:
+          | T
+          | {
+              word?: T;
+              id?: T;
+            };
+      };
+  perks?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        lede?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              colour?: T;
+              text?: T;
+              id?: T;
+            };
+      };
+  openings?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        lede?: T;
+        emptyTitle?: T;
+        emptyText?: T;
+      };
+  process?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        lede?: T;
+        steps?:
+          | T
+          | {
+              title?: T;
+              text?: T;
+              id?: T;
+            };
+      };
+  general?:
+    | T
+    | {
+        kicker?: T;
+        title?: T;
+        text?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

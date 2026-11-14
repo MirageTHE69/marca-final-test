@@ -33,7 +33,7 @@ export async function Dashboard() {
   const payload = await getPayload({ config });
   const monthStart = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString();
 
-  const [newLeads, monthLeads, recent, caseStudies, posts, drafts, media] = await Promise.all([
+  const [newLeads, monthLeads, recent, caseStudies, posts, drafts, media, newApplicants, openJobs] = await Promise.all([
     payload.count({ collection: 'leads', where: { status: { equals: 'new' } } }),
     payload.count({ collection: 'leads', where: { createdAt: { greater_than_equal: monthStart } } }),
     payload.find({ collection: 'leads', sort: '-createdAt', limit: 5, depth: 0 }),
@@ -41,6 +41,8 @@ export async function Dashboard() {
     payload.count({ collection: 'posts', where: { _status: { equals: 'published' } } }),
     payload.count({ collection: 'posts', where: { _status: { equals: 'draft' } } }),
     payload.count({ collection: 'media' }),
+    payload.count({ collection: 'applications', where: { status: { equals: 'new' } } }),
+    payload.count({ collection: 'jobs', where: { and: [{ _status: { equals: 'published' } }, { status: { equals: 'open' } }] } }),
   ]);
 
   const stats = [
@@ -48,6 +50,7 @@ export async function Dashboard() {
     { label: 'Leads this month', value: monthLeads.totalDocs, note: 'from all website forms', href: '/admin/collections/leads', tone: 'blue' },
     { label: 'Case studies', value: caseStudies.totalDocs, note: 'live on the site', href: '/admin/collections/case-studies', tone: 'orange' },
     { label: 'Blog posts', value: posts.totalDocs, note: drafts.totalDocs ? `${drafts.totalDocs} draft${drafts.totalDocs === 1 ? '' : 's'} in progress` : 'published', href: '/admin/collections/posts', tone: 'olive' },
+    { label: 'New applicants', value: newApplicants.totalDocs, note: `${openJobs.totalDocs} open role${openJobs.totalDocs === 1 ? '' : 's'} on Careers`, href: '/admin/collections/applications?where[status][equals]=new', tone: 'blue' },
     { label: 'Media files', value: media.totalDocs, note: 'in the library', href: '/admin/collections/media', tone: 'cream' },
   ];
 
@@ -57,6 +60,7 @@ export async function Dashboard() {
     { label: 'Add a case study', href: '/admin/collections/case-studies/create', icon: '+' },
     { label: 'Edit the home page', href: '/admin/globals/home', icon: '⌂' },
     { label: 'Add portfolio work', href: '/admin/collections/portfolio-items/create', icon: '◧' },
+    { label: 'Post a job', href: '/admin/collections/jobs/create', icon: '★' },
     { label: 'Contact details', href: '/admin/globals/settings', icon: '☎' },
   ];
 

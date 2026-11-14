@@ -6,6 +6,7 @@ import { asMedia, imageUrl } from '@/lib/media';
 import { submitLead } from '@/lib/submitLead';
 import { colourVar, pad2 } from '@/lib/theme';
 import type { Home } from '@/payload/payload-types';
+import RiotHead from './RiotHead';
 
 interface ServiceItem {
   id: string;
@@ -179,23 +180,8 @@ export default function RiotOtherServices({ data, email }: { data: Home['service
 
   return (
     <section id="other-services" className="riot-cream" style={{ position: 'relative', padding: 'clamp(56px,9vh,120px) clamp(18px,4vw,44px)', borderTop: '2px solid var(--r-black)' }}>
-      <div
-        className="riot-head"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 8,
-          textAlign: 'center',
-          maxWidth: 960,
-          margin: '0 auto clamp(38px,6vh,64px)',
-        }}
-      >
-        {data.kicker && <span className="riot-kicker">{data.kicker}</span>}
-        <h2 className="riot-display" style={{ fontSize: 'clamp(38px,6.8vw,104px)', color: 'var(--r-h-blue)' }}>{data.title}</h2>
-        <p className="riot-lede" style={{ maxWidth: '68ch' }}>
-          {data.lede}
-        </p>
+      <div style={{ marginBottom: 'clamp(38px,6vh,64px)' }}>
+        <RiotHead kicker={data.kicker} title={data.title} lede={data.lede} color="var(--r-h-blue)" labelAfter="Servi" />
       </div>
 
       <div
